@@ -100,10 +100,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="DynamicEntity.cpp" />
+    <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="StaticEntity.cpp" />
     <QtRcc Include="GPA675Lab2.qrc" />
     <QtMoc Include="GPA675Lab2.h" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="BodyItem.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GPA675Lab2.cpp" />
     <ClCompile Include="Iterator.cpp" />
@@ -112,9 +116,13 @@
   <ItemGroup>
     <ClInclude Include="Body.h" />
     <ClInclude Include="BodyItem.h" />
+    <ClInclude Include="DynamicEntity.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="PressedKeys.h" />
+    <ClInclude Include="Snake.h" />
+    <ClInclude Include="StaticEntity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

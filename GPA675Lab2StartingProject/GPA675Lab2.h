@@ -7,6 +7,7 @@
 #include <QElapsedTimer>
 
 #include "Game.h"
+#include "Entity.h"
 
 // 
 // Classe GPA675Lab2
