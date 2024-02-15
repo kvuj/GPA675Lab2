@@ -103,12 +103,14 @@
     <QtRcc Include="GPA675Lab2.qrc" />
     <QtMoc Include="GPA675Lab2.h" />
     <ClCompile Include="Body.cpp" />
+    <ClCompile Include="BodyItem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GPA675Lab2.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
+    <ClInclude Include="BodyItem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="PressedKeys.h" />
   </ItemGroup>
