@@ -106,12 +106,14 @@
     <ClCompile Include="BodyItem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GPA675Lab2.cpp" />
+    <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />
     <ClInclude Include="BodyItem.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Iterator.h" />
     <ClInclude Include="PressedKeys.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

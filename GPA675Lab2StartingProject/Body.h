@@ -24,12 +24,15 @@ private:
 	void removeFirst();
 	void removeLast();
 	void remove(size_t index);
-	
+
 	void clear();
 	void swap(size_t index0, size_t index1);
+	BodyItem* operator[](int);
+
 private:
 	size_t mSize;
-	BodyItem* mHead, *mTail;
+	BodyItem* mHead, * mTail;
+
 };
 
 #endif //BODY_H
