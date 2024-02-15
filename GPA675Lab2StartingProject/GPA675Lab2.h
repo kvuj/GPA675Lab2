@@ -55,6 +55,8 @@ protected:
     // > event Détails de l'événement de peinture.
     void paintEvent(QPaintEvent* event) override;
 
+   
+
 private slots:
     // 
     // Slot appelé à chaque tic du timer.

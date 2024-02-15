@@ -1,12 +1,15 @@
 #pragma once
-#ifndef DYNAMIC_ENTITY_H
-#define DYNAMIC_ENTITY_H
+#ifndef DYNAMICENTITY_H
+#define DYNAMICENTITY_H
 
-#include "Entity.h"
+#include "Entity.h" // Inclure la classe de base Entity
 
-class DynamicEntity : public Entity
-{
 
+class DynamicEntity : public Entity {
+public:
+    DynamicEntity(Game& board); // Constructeur prenant une référence à un objet Game
+    ~DynamicEntity(); // Destructeur par défaut
+ 
 };
 
-#endif //DYNAMIC_ENTITY_H
+#endif // DYNAMICENTITY_H

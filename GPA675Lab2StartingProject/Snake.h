@@ -9,7 +9,8 @@
 class Snake : public DynamicEntity
 {
 public:
-	Snake();
+	Snake()=default;
+	~Snake() = default;
 
 private:
 	QString mName;

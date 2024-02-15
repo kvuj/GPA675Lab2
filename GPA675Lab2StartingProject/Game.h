@@ -9,6 +9,7 @@
 #include <QColor>
 #include "PressedKeys.h"
 
+#include  <list>
 
 class QPainter;
 
@@ -46,6 +47,9 @@ public:
     // > painter QPainter à utiliser pour le dessin, configuré avec le contexte graphique approprié.
     void draw(QPainter& painter);
 
+    //void addEntity(Entity* entity);
+    //void clearAllEntities();
+
 private:
     QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
     qreal mRadius;      // Rayon des éléments de jeu, en pixels, utilisé pour leur rendu.
@@ -54,7 +58,9 @@ private:
     QColor mColor;      // Couleur de l'élément principal de jeu, utilisée lors du rendu.
     qreal mTotalElapsedTime; // Temps écoulé depuis le début du jeu, en secondes.
     static std::array<QColor, 2> mBackgroundColors; // Les couleurs définissant le fond de la scène. 
-    
+
+    // Liste des entités de jeu, utilisées pour gérer les éléments de jeu supplémentaires.
+
     //
     // Restreint la position fournie dans la scène.
     // 
