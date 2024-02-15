@@ -5,7 +5,7 @@ BodyItem::BodyItem()
 {
 }
 
-BodyItem::BodyItem(QPoint point, BodyItem* cNext = nullptr, BodyItem* cPrevious = nullptr)
+BodyItem::BodyItem(QPoint point, BodyItem* cNext, BodyItem* cPrevious)
 	: position{ point }, mNext{ cNext }, mPrevious{ cPrevious }
 {
 }
