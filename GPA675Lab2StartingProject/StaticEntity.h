@@ -7,12 +7,11 @@
 class StaticEntity : public Entity
 {
 	public:
-
-		//accesseurs inline
+		// Accesseurs inline
 		QColor color() const { return mColor; }
 		QPoint position() const { return mPosition; }
 
-		//mutateurs inline
+		// Mutateurs inline
 		void setColor(QColor const& color) { mColor = color; }
 		void setPosition(QPoint const& position) { mPosition = position; }
 
