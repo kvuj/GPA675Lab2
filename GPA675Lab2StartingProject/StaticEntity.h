@@ -6,18 +6,18 @@
 #include "Entity.h"
 class StaticEntity : public Entity
 {
-	public:
-		// Accesseurs inline
-		QColor color() const { return mColor; }
-		QPoint position() const { return mPosition; }
+public:
+	// Accesseurs inline
+	QColor color() const { return mColor; }
+	QPoint position() const { return mPosition; }
 
-		// Mutateurs inline
-		void setColor(QColor const& color) { mColor = color; }
-		void setPosition(QPoint const& position) { mPosition = position; }
+	// Mutateurs inline
+	void setColor(QColor const& color) { mColor = color; }
+	void setPosition(QPoint const& position) { mPosition = position; }
 
-	private: 
-		QPoint mPosition;
-		QColor mColor;
+private:
+	QPoint mPosition;
+	QColor mColor;
 };
 
 #endif //STATIC_ENTITY_H
