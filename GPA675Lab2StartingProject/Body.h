@@ -20,6 +20,11 @@ public:
 	void addFirst(QPoint position);
 	void addLast(QPoint position);
 
+	/// <summary>
+	/// Ajout une position à un index.
+	/// </summary>
+	/// <param name="index">Index commençant à 0</param>
+	/// <param name="position">Position en QPoint</param>
 	void add(size_t index, QPoint position);
 	void removeFirst();
 	void removeLast();

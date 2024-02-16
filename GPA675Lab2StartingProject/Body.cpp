@@ -65,12 +65,11 @@ void Body::addLast(QPoint position)
 	mTail = temp;
 
 	if (mSize == 0)
-		mTail = temp;
+		mHead = temp;
 
 	mSize++;
 }
 
-// 0 base indexing
 void Body::add(size_t index, QPoint position)
 {
 	if (index > mSize)
@@ -113,7 +112,7 @@ void Body::removeLast()
 	mTail = mTail->mPrevious;
 	mTail->mNext = nullptr;
 
-	// À voir si on peut retirer.
+	// Ã€ voir si on peut retirer.
 	temp->mPrevious = nullptr;
 	delete temp;
 	mSize--;
