@@ -8,11 +8,11 @@ Body::Body()
 
 Body::~Body()
 {
-	// Entraîne la destruction en chaîne.
+	// EntraÃ®ne la destruction en chaÃ®ne.
 	delete mHead;
 }
 
-bool Body::isEmtpy() const
+bool Body::isEmpty() const
 {
 	return mSize;
 }

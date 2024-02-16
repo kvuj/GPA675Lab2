@@ -8,11 +8,11 @@
 
 class Body
 {
-private:
+public:
 	Body();
 	~Body();
 
-	bool isEmtpy() const;
+	bool isEmpty() const;
 	size_t size() const;
 	QPoint first() const;
 	QPoint last() const;
