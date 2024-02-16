@@ -7,8 +7,8 @@
 
 class DynamicEntity : public Entity {
 public:
-    DynamicEntity(Game& board); // Constructeur prenant une référence à un objet Game
-    ~DynamicEntity(); // Destructeur par défaut
+    DynamicEntity(Game& board); // Constructeur prenant une rÃ©fÃ©rence Ã  un objet Game
+    ~DynamicEntity(); // Destructeur par dÃ©faut
  
 };
 
