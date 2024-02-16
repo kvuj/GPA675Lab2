@@ -38,8 +38,8 @@ QPoint Body::last() const
 
 void Body::addFirst(QPoint position)
 {
-	// À double checker
-	BodyItem* temp = new BodyItem();
+	// Ã€ double checker
+	BodyItem* temp = new BodyItem(position);
 	temp->mNext = mHead;
 
 	if (mHead)
@@ -55,8 +55,8 @@ void Body::addFirst(QPoint position)
 
 void Body::addLast(QPoint position)
 {
-	// À double checker
-	BodyItem* temp = new BodyItem();
+	// Ã€ double checker
+	BodyItem* temp = new BodyItem(position);
 	temp->mPrevious = mTail;
 
 	if (mTail)
