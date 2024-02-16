@@ -103,6 +103,7 @@
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="StaticEntity.cpp" />
+    <ClCompile Include="Tests.cpp" />
     <QtRcc Include="GPA675Lab2.qrc" />
     <QtMoc Include="GPA675Lab2.h" />
     <ClCompile Include="Body.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="PressedKeys.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="StaticEntity.h" />
+    <ClInclude Include="Tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
