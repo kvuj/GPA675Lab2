@@ -6,7 +6,8 @@
 int main(int argc, char *argv[])
 {
 #ifdef _DEBUG
-    runTests();
+    Tests t;
+    t.runTests();
 #endif
 
     QApplication application(argc, argv);

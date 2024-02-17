@@ -38,7 +38,6 @@ QPoint Body::last() const
 
 void Body::addFirst(QPoint position)
 {
-	// À double checker
 	BodyItem* temp = new BodyItem(position);
 	temp->mNext = mHead;
 
@@ -55,7 +54,6 @@ void Body::addFirst(QPoint position)
 
 void Body::addLast(QPoint position)
 {
-	// À double checker
 	BodyItem* temp = new BodyItem(position);
 	temp->mPrevious = mTail;
 
@@ -73,7 +71,7 @@ void Body::addLast(QPoint position)
 void Body::add(size_t index, QPoint position)
 {
 	if (index > mSize)
-		return;
+		throw new std::exception("Grandeur trop grande pour la grosseur");
 
 	if (index == 0)
 		addFirst(position);
@@ -93,7 +91,7 @@ void Body::add(size_t index, QPoint position)
 void Body::removeFirst()
 {
 	if (!mHead)
-		return;
+		throw new std::exception("Pointeur invalide");;
 
 	BodyItem* temp{ mHead };
 	mHead = mHead->mNext;
@@ -106,7 +104,7 @@ void Body::removeFirst()
 void Body::removeLast()
 {
 	if (!mTail)
-		return;
+		throw new std::exception("Pointeur invalide");;
 
 	BodyItem* temp{ mTail };
 	mTail = mTail->mPrevious;
@@ -121,7 +119,7 @@ void Body::removeLast()
 void Body::remove(size_t index)
 {
 	if (index >= mSize)
-		return;
+		throw new std::exception("Grandeur trop grande pour la grosseur");;
 
 	if (index == 0)
 		removeFirst();

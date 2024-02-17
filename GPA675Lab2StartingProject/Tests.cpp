@@ -1,11 +1,22 @@
 #include "Tests.h"
 
-void runTests()
+// Variable statique de la classe Tests. Elle doit être
+// définie dans le fichier .cpp pour résoudre un problème
+// de linker.
+std::vector<void(*)()> Tests::vec;
+
+Tests::Tests()
 {
-	testLL();
+	// Ajuster en fonction du nombre de tests.
+	vec.reserve(10);
 }
 
-void testLL()
+void Tests::runTests()
+{
+	for (auto& i : vec) i();
+}
+
+ADD_TEST(testLL)
 {
 	Body bd;
 	bd.addLast(QPoint(5, 6));
