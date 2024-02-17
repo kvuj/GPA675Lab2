@@ -1,7 +1,7 @@
 #include "Tests.h"
 
-// Variable statique de la classe Tests. Elle doit être
-// définie dans le fichier .cpp pour résoudre un problème
+// Variable statique de la classe Tests. Elle doit Ãªtre
+// dÃ©finie dans le fichier .cpp pour rÃ©soudre un problÃ¨me
 // de linker.
 std::vector<void(*)()> Tests::vec;
 
