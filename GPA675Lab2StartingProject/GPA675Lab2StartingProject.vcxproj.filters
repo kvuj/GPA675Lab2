@@ -39,6 +39,12 @@
     <Filter Include="Source Files\Tools">
       <UniqueIdentifier>{6186c9cb-cc73-4315-abe2-1bc892b760af}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Controls">
+      <UniqueIdentifier>{e3a8eee7-11fa-46d7-b711-0075818105b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controls">
+      <UniqueIdentifier>{500c8484-5a69-4384-b26e-78d7512ed9e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GPA675Lab2.qrc">
@@ -79,6 +85,24 @@
     <ClCompile Include="Tests.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Pellet.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="GrowingPellet.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeKeyboardRelativeController.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeKeyboardAbsoluteController.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeKeyboardController.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicEntity.h">
@@ -110,6 +134,24 @@
     </ClInclude>
     <ClInclude Include="Tests.h">
       <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Pellet.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="GrowingPellet.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeKeyboardAbsoluteController.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeKeyboardController.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeKeyboardRelativeController.h">
+      <Filter>Header Files\Controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

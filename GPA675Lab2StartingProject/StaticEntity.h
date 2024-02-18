@@ -15,7 +15,7 @@ public:
 	void setColor(QColor const& color) { mColor = color; }
 	void setPosition(QPoint const& position) { mPosition = position; }
 
-private:
+protected:
 	QPoint mPosition;
 	QColor mColor;
 };

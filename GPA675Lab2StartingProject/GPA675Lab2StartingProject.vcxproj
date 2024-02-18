@@ -100,8 +100,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
+    <ClCompile Include="GrowingPellet.cpp" />
+    <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeKeyboardAbsoluteController.cpp" />
+    <ClCompile Include="SnakeKeyboardController.cpp" />
+    <ClCompile Include="SnakeKeyboardRelativeController.cpp" />
     <ClCompile Include="StaticEntity.cpp" />
     <ClCompile Include="Tests.cpp" />
     <QtRcc Include="GPA675Lab2.qrc" />
@@ -117,12 +123,18 @@
   <ItemGroup>
     <ClInclude Include="Body.h" />
     <ClInclude Include="BodyItem.h" />
+    <ClInclude Include="Controller.h" />
     <ClInclude Include="DynamicEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GrowingPellet.h" />
     <ClInclude Include="Iterator.h" />
+    <ClInclude Include="Pellet.h" />
     <ClInclude Include="PressedKeys.h" />
     <ClInclude Include="Snake.h" />
+    <ClInclude Include="SnakeKeyboardAbsoluteController.h" />
+    <ClInclude Include="SnakeKeyboardController.h" />
+    <ClInclude Include="SnakeKeyboardRelativeController.h" />
     <ClInclude Include="StaticEntity.h" />
     <ClInclude Include="Tests.h" />
   </ItemGroup>

@@ -31,6 +31,8 @@ void Game::draw(QPainter& painter)
     painter.setPen(Qt::NoPen);
     painter.setBrush(mColor);
     painter.drawEllipse(QRectF(mPosition, QSize(mRadius, mRadius)));
+
+    // pour la longeur de la list Entity on draw chaque entity
 }
 
 void Game::constrainPosition()
