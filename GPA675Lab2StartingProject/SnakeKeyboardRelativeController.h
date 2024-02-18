@@ -7,7 +7,7 @@
 class SnakeKeyboardRelativeController : public SnakeKeyboardController
 {
     public:
-        SnakeKeyboardRelativeController(Snake& snake);
+        SnakeKeyboardRelativeController(Snake& snake) = delete;
         virtual ~SnakeKeyboardRelativeController() = default;
         virtual void control() override;
   

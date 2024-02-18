@@ -8,11 +8,10 @@
 #include <QPointF>
 #include <QColor>
 #include "PressedKeys.h"
-
+#include "Entity.h"
 #include  <list>
-
+#include <memory>
 class QPainter;
-
 
 // 
 // Classe Game
@@ -60,7 +59,7 @@ private:
     static std::array<QColor, 2> mBackgroundColors; // Les couleurs définissant le fond de la scène. 
 
     // Liste des entités de jeu, utilisées pour gérer les éléments de jeu supplémentaires.
-
+    std::list<std::shared_ptr<Entity>> mEntities;
     //
     // Restreint la position fournie dans la scène.
     // 
