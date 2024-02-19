@@ -33,7 +33,7 @@ ADD_TEST(testLLGeneral)
 	assert(!bd.size());
 }
 
-ADD_TEST(testLLSwap)
+ADD_TEST(testLLSwapIndex)
 {
 	Body bd;
 	bd.addFirst(QPoint(1, 2));
@@ -47,4 +47,16 @@ ADD_TEST(testLLSwap)
 	assert(bd.last() == QPoint(3, 4));
 	bd.swap(0, 0);
 	assert(bd.first() == QPoint(5, 6));
+}
+
+ADD_TEST(testLLSwapRef)
+{
+	Body bd1, bd2;
+	bd1.addFirst(QPoint(1, 2));
+	bd1.addLast(QPoint(3, 4));
+	bd2.addFirst(QPoint(5, 6));
+	bd2.addLast(QPoint(7, 8));
+	bd1.swap(bd2);
+	assert(bd1.at(0) == QPoint(5, 6));
+	assert(bd2.at(0) == QPoint(1, 2));
 }

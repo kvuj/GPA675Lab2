@@ -202,6 +202,12 @@ void Body::swap(size_t index0, size_t index1)
 #endif
 }
 
+void Body::swap(Body& otherBody)
+{
+	std::swap(mHead, otherBody.mHead);
+	std::swap(mTail, otherBody.mTail);
+}
+
 Body::BodyItem* Body::operator[](int val)
 {
 	if (val >= mSize)
