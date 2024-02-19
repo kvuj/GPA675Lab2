@@ -3,6 +3,7 @@
 #define BODY_H
 
 #include <QPoint>
+#include <QPainter>
 
 
 /*
@@ -31,6 +32,10 @@ public:
 
 	void clear();
 	void swap(size_t index0, size_t index1);
+	void swap(Body& otherBody);
+	void rotate(int indexFrom);
+	bool isColliding(QPoint const& position);
+	void draw(QPainter& painter);
 
 private:
 	class BodyItem
