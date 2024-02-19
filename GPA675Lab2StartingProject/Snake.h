@@ -10,6 +10,12 @@ class Snake : public DynamicEntity
 {
 public:
 	using SpeedType = double;
+	enum Direction : uint8_t {
+		toUp = 0,
+		toRight = 1,
+		toDown = 2,
+		toLeft = 3
+	};
 
 	Snake(Game* board);
 	~Snake() = default;
