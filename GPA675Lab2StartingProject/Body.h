@@ -5,7 +5,7 @@
 #include <QPoint>
 #include <QPainter>
 
-
+#define BODY_SIMPLE_SWAP 1
 /*
 	ATTENTION: Cette classe utilise de l'indexing à partir de 0.
 */

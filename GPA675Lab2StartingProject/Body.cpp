@@ -160,6 +160,9 @@ void Body::swap(size_t index0, size_t index1)
 	// Exceptions gérées par operator[]
 	auto* i0{ (*this)[index0] }, * i1{ (*this)[index1] };
 
+#ifdef BODY_SIMPLE_SWAP
+	std::swap(i0->position, i1->position);
+#else
 	// On ajuste les voisins.
 	if (i0->mPrevious && i0->mPrevious != i1) i0->mPrevious->mNext = i1;
 	if (i0->mNext && i0->mNext != i1) i0->mNext->mPrevious = i1;
@@ -196,6 +199,7 @@ void Body::swap(size_t index0, size_t index1)
 
 	if (i0 == mTail) mTail = i1;
 	else if (i1 == mTail) mTail = i0;
+#endif
 }
 
 Body::BodyItem* Body::operator[](int val)
