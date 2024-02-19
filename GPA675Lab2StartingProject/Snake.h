@@ -9,7 +9,7 @@
 class Snake : public DynamicEntity
 {
 public:
-	Snake()=default;
+	Snake() = default;
 	~Snake() = default;
 
 private:
