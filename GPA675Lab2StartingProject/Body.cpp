@@ -91,7 +91,7 @@ void Body::add(size_t index, QPoint position)
 void Body::removeFirst()
 {
 	if (!mHead)
-		throw new std::exception("Pointeur invalide");;
+		throw new std::exception("Pointeur invalide");
 
 	BodyItem* temp{ mHead };
 	mHead = mHead->mNext;
@@ -104,7 +104,7 @@ void Body::removeFirst()
 void Body::removeLast()
 {
 	if (!mTail)
-		throw new std::exception("Pointeur invalide");;
+		throw new std::exception("Pointeur invalide");
 
 	BodyItem* temp{ mTail };
 	mTail = mTail->mPrevious;
@@ -119,7 +119,7 @@ void Body::removeLast()
 void Body::remove(size_t index)
 {
 	if (index >= mSize)
-		throw new std::exception("Grandeur trop grande pour la grosseur");;
+		throw new std::exception("Grandeur trop grande pour la grosseur");
 
 	if (index == 0)
 		removeFirst();
@@ -138,6 +138,11 @@ void Body::remove(size_t index)
 	}
 }
 
+QPoint Body::at(size_t index)
+{
+	return (*this)[index]->data();
+}
+
 void Body::clear()
 {
 	delete mHead;
@@ -150,7 +155,7 @@ void Body::swap(size_t index0, size_t index1)
 {
 }
 
-BodyItem* Body::operator[](int val)
+Body::BodyItem* Body::operator[](int val)
 {
 	if (val >= mSize)
 		throw new std::exception("Position hors champs");
