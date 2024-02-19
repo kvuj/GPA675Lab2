@@ -20,12 +20,20 @@ public:
 	Snake(Game* board);
 	~Snake() = default;
 
+	QString name();
+	int score();
+	size_t bodyLength();
+	SpeedType speed();
 	QColor headColor();
 	QColor bodyColor();
 	bool isReverseProhibited();
+	void setName(const QString& name);
+	void setSpeed(SpeedType speed);
 	void setColors(QColor head, QColor body);
 	void adjustScore(int score);
-	void setSpeed(SpeedType speed);
+
+	void grow(size_t size = 1);
+	void shrink(size_t size = 1);
 
 private:
 	Body mBody;

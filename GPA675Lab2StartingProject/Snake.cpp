@@ -16,9 +16,39 @@ QColor Snake::bodyColor()
 	return mBodyColor;
 }
 
+QString Snake::name()
+{
+	return mName;
+}
+
+int Snake::score()
+{
+	return mScore;
+}
+
+size_t Snake::bodyLength()
+{
+	return mBody.size();
+}
+
+Snake::SpeedType Snake::speed()
+{
+	return mSpeed;
+}
+
 bool Snake::isReverseProhibited()
 {
 	return mReverseProhibited;
+}
+
+void Snake::setName(const QString& name)
+{
+	mName = name;
+}
+
+void Snake::setSpeed(SpeedType speed)
+{
+	mSpeed = speed;
 }
 
 void Snake::setColors(QColor head, QColor body)
@@ -32,7 +62,12 @@ void Snake::adjustScore(int score)
 	mScore = score;
 }
 
-void Snake::setSpeed(SpeedType speed)
+void Snake::grow(size_t size)
 {
-	mSpeed = speed;
+	//mBody.addLast();
+}
+
+void Snake::shrink(size_t size)
+{
+	mBody.removeLast();
 }
