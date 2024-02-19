@@ -60,3 +60,14 @@ ADD_TEST(testLLSwapRef)
 	assert(bd1.at(0) == QPoint(5, 6));
 	assert(bd2.at(0) == QPoint(1, 2));
 }
+
+ADD_TEST(testLLCollision)
+{
+	Body bd;
+	bd.addFirst(QPoint(5, 6));
+	bd.addFirst(QPoint(7, 8));
+	bd.addFirst(QPoint(9, 10));
+	assert(bd.isColliding(QPoint(9, 10)) == true);
+	bd.remove(2);
+	assert(bd.isColliding(QPoint(5, 6)) == false);
+}

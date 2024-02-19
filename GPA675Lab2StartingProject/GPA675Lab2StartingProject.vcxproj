@@ -118,7 +118,6 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GPA675Lab2.cpp" />
-    <ClCompile Include="Iterator.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +127,6 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrowingPellet.h" />
-    <ClInclude Include="Iterator.h" />
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="PressedKeys.h" />
     <ClInclude Include="Snake.h" />

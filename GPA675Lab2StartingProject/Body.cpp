@@ -171,15 +171,16 @@ void Body::swap(size_t index0, size_t index1)
 
 	// Si voisins
 	if (index0 - index1 == 1 || index1 - index0 == 1) {
-	// i0 et i1 ne peuvent pas être nuls.
+		// i0 et i1 ne peuvent pas être nuls.
 #pragma warning(disable : 6011)
 #pragma warning(push)
-		if (i0->mNext == i1) { 
-			i0->mNext = i1->mNext; 
+		if (i0->mNext == i1) {
+			i0->mNext = i1->mNext;
 			i1->mNext = i0;
 			i1->mPrevious = i0->mPrevious;
 			i0->mPrevious = i1;
-		} else if (i0->mPrevious == i1) { 
+		}
+		else if (i0->mPrevious == i1) {
 			i1->mNext = i0->mNext;
 			i0->mNext = i1;
 			i0->mPrevious = i1->mPrevious;
@@ -208,16 +209,91 @@ void Body::swap(Body& otherBody)
 	std::swap(mTail, otherBody.mTail);
 }
 
+bool Body::isColliding(QPoint const& position)
+{
+	// TODO: Implémenter arène avec pointeurs sur chaque case.
+	for (auto& i : *this) {
+		if (i == position)
+			return true;
+	}
+	return false;
+}
+
+Body::Iterator Body::begin()
+{
+	return Body::Iterator(mHead);
+}
+
+Body::Iterator Body::end()
+{
+	return Body::Iterator(mTail);
+}
+
+Body::BodyItem::BodyItem()
+	: position{}, mNext{ nullptr }, mPrevious{ nullptr } {}
+
+Body::BodyItem::BodyItem(QPoint point, Body::BodyItem* cNext, Body::BodyItem* cPrevious)
+	: position{ point }, mNext{ cNext }, mPrevious{ cPrevious } {}
+
+Body::BodyItem::BodyItem(Body::BodyItem&& obj) noexcept
+{
+	*this = std::move(obj);
+}
+
+Body::BodyItem& Body::BodyItem::operator=(Body::BodyItem&& obj) noexcept
+{
+	if (this != &obj)
+	{
+		position = obj.position;
+		mPrevious = obj.mPrevious;
+		mNext = obj.mNext;
+
+		if (mPrevious)
+			mPrevious->mNext = this;
+		if (mNext)
+			mNext->mPrevious = this;
+
+		obj.mPrevious = nullptr;
+		obj.mNext = nullptr;
+	}
+	return *this;
+}
+
+Body::BodyItem::~BodyItem() {
+	delete mNext;
+	mPrevious = nullptr;
+	mNext = nullptr;
+}
+
+Body::Iterator& Body::Iterator::operator++() { // pre-incrementation
+	if (mRefBodyItem) {
+		mRefBodyItem = mRefBodyItem->mNext;
+	}
+	return *this;
+}
+
+Body::Iterator Body::Iterator::operator++(int) { // post-incrementation
+	Iterator temp(*this);
+	++(*this);
+	return temp;
+}
+
+bool Body::Iterator::operator==(Iterator const& other) const {
+	return mRefBodyItem == other.mRefBodyItem;
+}
+
+bool Body::Iterator::operator!=(Iterator const& other) const {
+	return !operator==(other);
+}
+
 Body::BodyItem* Body::operator[](int val)
 {
 	if (val >= mSize)
 		throw new std::exception("Position hors champs");
 
-	auto* temp{ mHead };
-	for (size_t i{}; i < val; ++i) {
-		if (temp->mNext) {
-			temp = temp->mNext;
-		}
-	}
-	return temp;
+	auto it{ this->begin() };
+	for (size_t i{}; i < val; ++i)
+		it++;
+
+	return it.getData();
 }

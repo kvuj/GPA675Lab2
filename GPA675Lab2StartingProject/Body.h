@@ -13,6 +13,9 @@
 class Body
 {
 public:
+	class Iterator;
+	class BodyItem;
+
 	Body();
 	~Body();
 
@@ -38,39 +41,20 @@ public:
 	bool isColliding(QPoint const& position);
 	void draw(QPainter& painter);
 
+	Body::Iterator begin();
+	Body::Iterator end();
+
 private:
 	class BodyItem
 	{
 	public:
-		BodyItem() : position{}, mNext{ nullptr }, mPrevious{ nullptr } {}
-		BodyItem(QPoint point, BodyItem* cNext = nullptr, BodyItem* cPrevious = nullptr)
-			: position{ point }, mNext{ cNext }, mPrevious{ cPrevious } {}
+		BodyItem();
+		BodyItem(QPoint point, BodyItem* cNext = nullptr, BodyItem* cPrevious = nullptr);
 
-		BodyItem(BodyItem&& obj) noexcept { *this = std::move(obj); };
-		BodyItem& operator=(BodyItem&& obj) noexcept
-		{
-			if (this != &obj)
-			{
-				position = obj.position;
-				mPrevious = obj.mPrevious;
-				mNext = obj.mNext;
+		BodyItem(BodyItem&& obj) noexcept;
+		BodyItem& operator=(BodyItem&& obj) noexcept;
 
-				if (mPrevious)
-					mPrevious->mNext = this;
-				if (mNext)
-					mNext->mPrevious = this;
-
-				obj.mPrevious = nullptr;
-				obj.mNext = nullptr;
-			}
-			return *this;
-		};
-
-		~BodyItem() {
-			delete mNext;
-			mPrevious = nullptr;
-			mNext = nullptr;
-		};
+		~BodyItem();
 
 		QPoint data() const { return position; }
 		BodyItem* next() const { return mNext; }
@@ -78,6 +62,28 @@ private:
 
 		QPoint position;
 		BodyItem* mNext, * mPrevious;
+	};
+
+	class Iterator
+	{
+	public:
+		Iterator() : Iterator(nullptr) {};
+		Iterator(Body::BodyItem* refBodyItem) : mRefBodyItem{ refBodyItem } {};
+		Iterator(Iterator const&) = default;
+		Iterator& operator = (Iterator const&) = default;
+		~Iterator() = default;
+
+		BodyItem* getData() { return mRefBodyItem; }
+
+		Iterator& operator++();
+		Iterator operator++(int);
+		bool operator==(Iterator const& other) const;
+		bool operator!=(Iterator const& other) const;
+
+		QPoint& operator*() { return mRefBodyItem->position; }
+		QPoint* operator->() { return &(mRefBodyItem->position); }
+	private:
+		BodyItem* mRefBodyItem;
 	};
 
 	size_t mSize;

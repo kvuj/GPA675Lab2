@@ -76,12 +76,6 @@
     <ClCompile Include="Body.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="BodyItem.cpp">
-      <Filter>Source Files\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Iterator.cpp">
-      <Filter>Source Files\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="Tests.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
@@ -121,12 +115,6 @@
       <Filter>Header Files\Game Engine</Filter>
     </ClInclude>
     <ClInclude Include="Body.h">
-      <Filter>Header Files\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="BodyItem.h">
-      <Filter>Header Files\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Iterator.h">
       <Filter>Header Files\Tools</Filter>
     </ClInclude>
     <ClInclude Include="PressedKeys.h">
