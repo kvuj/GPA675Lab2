@@ -299,6 +299,13 @@ Body::Iterator& Body::Iterator::operator--()
 	return *this;
 }
 
+Body::Iterator Body::Iterator::operator--(int)
+{
+	Iterator temp(*this);
+	--(*this);
+	return temp;
+}
+
 bool Body::Iterator::operator==(Iterator const& other) const {
 	return mRefBodyItem == other.mRefBodyItem;
 }

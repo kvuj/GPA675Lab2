@@ -79,6 +79,7 @@ private:
 		Iterator& operator++();
 		Iterator operator++(int);
 		Iterator& operator--();
+		Iterator operator--(int);
 
 		bool operator==(Iterator const& other) const;
 		bool operator!=(Iterator const& other) const;
