@@ -211,6 +211,23 @@ void Body::swap(Body& otherBody)
 
 void Body::rotate(int indexFrom)
 {
+	// TODO: nombres négatifs
+	
+	if (mSize == 1)
+		return;
+
+	// On fait un cercle.
+	mHead->mPrevious = mTail;
+	mTail->mNext = mHead;
+
+	// On ajuste la tête et la queue.
+	auto* i{ (*this)[indexFrom] };
+	mHead = i;
+	mTail = i->mPrevious;
+
+	// Les nullptr
+	i->mPrevious->mNext = nullptr;
+	i->mPrevious = nullptr;
 }
 
 bool Body::isColliding(QPoint const& position)
@@ -243,10 +260,14 @@ Body::Iterator Body::end()
 }
 
 Body::BodyItem::BodyItem()
-	: position{}, mNext{ nullptr }, mPrevious{ nullptr } {}
+	: position{}, mNext{ nullptr }, mPrevious{ nullptr }
+{
+}
 
 Body::BodyItem::BodyItem(QPoint point, Body::BodyItem* cNext, Body::BodyItem* cPrevious)
-	: position{ point }, mNext{ cNext }, mPrevious{ cPrevious } {}
+	: position{ point }, mNext{ cNext }, mPrevious{ cPrevious }
+{
+}
 
 Body::BodyItem::BodyItem(Body::BodyItem&& obj) noexcept
 {
@@ -272,20 +293,23 @@ Body::BodyItem& Body::BodyItem::operator=(Body::BodyItem&& obj) noexcept
 	return *this;
 }
 
-Body::BodyItem::~BodyItem() {
+Body::BodyItem::~BodyItem()
+{
 	delete mNext;
 	mPrevious = nullptr;
 	mNext = nullptr;
 }
 
-Body::Iterator& Body::Iterator::operator++() { // pre-incrementation
+Body::Iterator& Body::Iterator::operator++()
+{ // pre-incrementation
 	if (mRefBodyItem) {
 		mRefBodyItem = mRefBodyItem->mNext;
 	}
 	return *this;
 }
 
-Body::Iterator Body::Iterator::operator++(int) { // post-incrementation
+Body::Iterator Body::Iterator::operator++(int)
+{ // post-incrementation
 	Iterator temp(*this);
 	++(*this);
 	return temp;
@@ -306,11 +330,13 @@ Body::Iterator Body::Iterator::operator--(int)
 	return temp;
 }
 
-bool Body::Iterator::operator==(Iterator const& other) const {
+bool Body::Iterator::operator==(Iterator const& other) const
+{
 	return mRefBodyItem == other.mRefBodyItem;
 }
 
-bool Body::Iterator::operator!=(Iterator const& other) const {
+bool Body::Iterator::operator!=(Iterator const& other) const
+{
 	return !operator==(other);
 }
 
