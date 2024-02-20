@@ -97,6 +97,9 @@
     <ClCompile Include="SnakeKeyboardController.cpp">
       <Filter>Source Files\Controls</Filter>
     </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynamicEntity.h">
@@ -146,5 +149,13 @@
     <QtMoc Include="GPA675Lab2.h">
       <Filter>Header Files\Game Engine</Filter>
     </QtMoc>
+    <QtMoc Include="Menu.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Menu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>
