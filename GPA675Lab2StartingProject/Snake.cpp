@@ -16,6 +16,21 @@ QColor Snake::bodyColor()
 	return mBodyColor;
 }
 
+bool Snake::isAlive()
+{
+	return mAlive;
+}
+
+void Snake::draw(QPainter& painter)
+{
+	mBody.draw(painter);
+}
+
+bool Snake::isColliding(const QPoint& position)
+{
+	return mBody.isColliding(position);
+}
+
 QString Snake::name()
 {
 	return mName;

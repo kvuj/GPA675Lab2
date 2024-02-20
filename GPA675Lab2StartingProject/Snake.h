@@ -10,7 +10,8 @@ class Snake : public DynamicEntity
 {
 public:
 	using SpeedType = double;
-	enum Direction : uint8_t {
+	enum Direction : uint8_t
+	{
 		toUp = 0,
 		toRight = 1,
 		toDown = 2,
@@ -20,12 +21,12 @@ public:
 	Snake(Game* board);
 	~Snake() = default;
 
-	bool isValid() override = 0;
-	bool isAlive() override = 0;
-	void ticPrepare(qreal elapsedTime) override =0;
-	void ticExecute() override=0;
-	void draw(QPainter& painter) override=0;
-	bool isColliding(const QPointF* position) override=0;
+	bool isValid() override;
+	bool isAlive() override;
+	void ticPrepare(qreal elapsedTime) override;
+	void ticExecute() override;
+	void draw(QPainter& painter) override;
+	bool isColliding(const QPoint& position) override;
 
 	QString name();
 	int score();

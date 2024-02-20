@@ -16,7 +16,7 @@ public:
 	void setPosition(QPoint const& position) { mPosition = position; }
 
 	void draw(QPainter& painter) override;
-	bool isColliding(const QPointF* position) override;
+	bool isColliding(const QPoint& position) override;
 
 protected:
 	QPoint mPosition;

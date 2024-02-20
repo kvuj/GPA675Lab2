@@ -3,11 +3,10 @@
 
 void StaticEntity::draw(QPainter& painter)
 {
-	
+
 }
 
-bool StaticEntity::isColliding(const QPointF* position)
+bool StaticEntity::isColliding(const QPoint& position)
 {
-	
-	return false;
+	return position == mPosition;
 }
