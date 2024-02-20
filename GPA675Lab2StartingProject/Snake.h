@@ -9,6 +9,8 @@
 class Snake : public DynamicEntity
 {
 public:
+	using SpeedType = double;
+
 	Snake(Game* board);
 	~Snake() = default;
 
@@ -17,10 +19,12 @@ public:
 	bool isReverseProhibited();
 	void setColors(QColor head, QColor body);
 	void adjustScore(int score);
+	void setSpeed(SpeedType speed);
 
 private:
 	Body mBody;
 	QString mName;
+	SpeedType mSpeed;
 	int mScore;
 	size_t mSizeToGrow;
 	QColor mHeadColor;

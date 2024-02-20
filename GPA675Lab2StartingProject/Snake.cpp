@@ -1,7 +1,7 @@
 #include "Snake.h"
 
 Snake::Snake(Game* board)
-	: DynamicEntity(board), mReverseProhibited{ true }, mScore{}, mSizeToGrow{ 100 }
+	: DynamicEntity(board), mReverseProhibited{ true }, mScore{}, mSizeToGrow{ 100 }, mSpeed{ 1.0 }
 {
 
 }
@@ -30,4 +30,9 @@ void Snake::setColors(QColor head, QColor body)
 void Snake::adjustScore(int score)
 {
 	mScore = score;
+}
+
+void Snake::setSpeed(SpeedType speed)
+{
+	mSpeed = speed;
 }
