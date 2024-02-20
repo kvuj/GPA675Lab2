@@ -2,8 +2,8 @@
 #include <algorithm>
 #include <exception>
 
-Body::Body()
-	: mSize{ 0 }, mHead{ nullptr }, mTail{ nullptr }
+Body::Body(QColor color, qreal radius)
+	: mSize{ 0 }, mHead{ nullptr }, mTail{ nullptr }, mColor(color), mRadius{ radius }
 {
 }
 
@@ -209,6 +209,10 @@ void Body::swap(Body& otherBody)
 	std::swap(mTail, otherBody.mTail);
 }
 
+void Body::rotate(int indexFrom)
+{
+}
+
 bool Body::isColliding(QPoint const& position)
 {
 	// TODO: Implémenter arène avec pointeurs sur chaque case.
@@ -217,6 +221,15 @@ bool Body::isColliding(QPoint const& position)
 			return true;
 	}
 	return false;
+}
+
+void Body::draw(QPainter& painter)
+{
+	painter.setPen(Qt::NoPen);
+	painter.setBrush(mColor);
+
+	for (auto it{ this->end() }; it != this->begin(); --it)
+		painter.drawEllipse(QRect(*it, QSize(mRadius, mRadius)));
 }
 
 Body::Iterator Body::begin()
@@ -276,6 +289,14 @@ Body::Iterator Body::Iterator::operator++(int) { // post-incrementation
 	Iterator temp(*this);
 	++(*this);
 	return temp;
+}
+
+Body::Iterator& Body::Iterator::operator--()
+{
+	if (mRefBodyItem) {
+		mRefBodyItem = mRefBodyItem->mPrevious;
+	}
+	return *this;
 }
 
 bool Body::Iterator::operator==(Iterator const& other) const {

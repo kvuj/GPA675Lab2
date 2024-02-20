@@ -4,6 +4,7 @@
 
 #include <QPoint>
 #include <QPainter>
+#include <qtypes.h>
 
 #define BODY_SIMPLE_SWAP 1
 
@@ -16,7 +17,7 @@ public:
 	class Iterator;
 	class BodyItem;
 
-	Body();
+	Body(QColor color = Qt::blue, qreal radius = 50.0);
 	~Body();
 
 	bool isEmpty() const;
@@ -77,6 +78,8 @@ private:
 
 		Iterator& operator++();
 		Iterator operator++(int);
+		Iterator& operator--();
+
 		bool operator==(Iterator const& other) const;
 		bool operator!=(Iterator const& other) const;
 
@@ -88,6 +91,9 @@ private:
 
 	size_t mSize;
 	BodyItem* mHead, * mTail;
+	QColor mColor;
+	qreal mRadius;
+
 	BodyItem* operator[](int);
 };
 
