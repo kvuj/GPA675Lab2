@@ -9,10 +9,17 @@
 class Snake : public DynamicEntity
 {
 public:
-	Snake() = default;
+	Snake(Game* board);
 	~Snake() = default;
 
+	QColor headColor();
+	QColor bodyColor();
+	bool isReverseProhibited();
+	void setColors(QColor head, QColor body);
+	void adjustScore(int score);
+
 private:
+	Body mBody;
 	QString mName;
 	int mScore;
 	size_t mSizeToGrow;
