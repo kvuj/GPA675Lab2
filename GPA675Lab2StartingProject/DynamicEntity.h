@@ -8,6 +8,7 @@
 class DynamicEntity : public Entity {
 public:
 	DynamicEntity(Game* board);
+	
 };
 
 #endif // DYNAMICENTITY_H

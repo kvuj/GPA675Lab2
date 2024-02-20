@@ -15,9 +15,13 @@ public:
 	void setColor(QColor const& color) { mColor = color; }
 	void setPosition(QPoint const& position) { mPosition = position; }
 
+	void draw(QPainter& painter) override;
+	bool isColliding(const QPointF* position) override;
+
 protected:
 	QPoint mPosition;
 	QColor mColor;
+	qreal mRadius;
 };
 
 #endif //STATIC_ENTITY_H

@@ -20,6 +20,13 @@ public:
 	Snake(Game* board);
 	~Snake() = default;
 
+	bool isValid() override = 0;
+	bool isAlive() override = 0;
+	void ticPrepare(qreal elapsedTime) override =0;
+	void ticExecute() override=0;
+	void draw(QPainter& painter) override=0;
+	bool isColliding(const QPointF* position) override=0;
+
 	QString name();
 	int score();
 	size_t bodyLength();

@@ -17,12 +17,12 @@ public:
 	void setDead() { mAlive = false; }
 	double age() const { return mAge; }
 
-	virtual bool isValid() const = 0;
-	virtual bool isAlive() const { return mAlive; }
+	virtual bool isValid() = 0;
+	virtual bool isAlive() = 0;
 	virtual void ticPrepare(qreal elapsedTime);
 	virtual void ticExecute();
-	virtual void draw(QPainter& painter) const = 0;
-	virtual bool isColliding(const QPointF* position) const = 0;
+	virtual void draw(QPainter& painter)= 0;
+	virtual bool isColliding(const QPointF* position)= 0;
 
 private:
 	Game* mBoard; // Faire attention que cet object ne soit pas détruit avant cette classe.

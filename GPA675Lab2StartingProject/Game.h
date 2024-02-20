@@ -59,7 +59,11 @@ private:
     static std::array<QColor, 2> mBackgroundColors; // Les couleurs définissant le fond de la scène. 
 
     // Liste des entités de jeu, utilisées pour gérer les éléments de jeu supplémentaires.
-    std::list<std::shared_ptr<Entity>> mEntities;
+    //Utilisation de shared pointer interdite. 
+    //utilisatino d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
+    std::list<Entity*> mEntities;
+
+
     //
     // Restreint la position fournie dans la scène.
     // 
