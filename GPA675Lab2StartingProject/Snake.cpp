@@ -1,9 +1,15 @@
 #include "Snake.h"
 
 Snake::Snake(Game* board)
-	: DynamicEntity(board), mReverseProhibited{ true }, mScore{}, mSizeToGrow{ 100 }, mSpeed{ 1.0 }
+	: DynamicEntity(board)
+	, mReverseProhibited{ true }
+	, mScore{}
+	, mSizeToGrow{}
+	, mSpeed{ 1.0 }
+	, mHeadDirection{ Direction::toUp }
+	, mElapsedTimeTotal{}
+	, mMovementAmount{}
 {
-
 }
 
 QColor Snake::headColor()
@@ -28,15 +34,25 @@ bool Snake::isAlive()
 
 void Snake::ticPrepare(qreal elapsedTime)
 {
+	mElapsedTimeTotal += elapsedTime;
 }
 
 void Snake::ticExecute()
 {
+	if (mElapsedTimeTotal < (1.0 / mSpeed))
+		return;
+
+	mElapsedTimeTotal -= 1.0 / mSpeed;
+
+	if (mHeadDirection == Direction::toUp) goUp();
+	else if (mHeadDirection == Direction::toRight) goRight();
+	else if (mHeadDirection == Direction::toDown) goDown();
+	else if (mHeadDirection == Direction::toLeft) goLeft();
 }
 
 void Snake::draw(QPainter& painter)
 {
-	mBody.draw(painter);
+	mBody.draw(painter, mHeadColor, mBodyColor);
 }
 
 bool Snake::isColliding(const QPoint& position)
@@ -90,12 +106,57 @@ void Snake::adjustScore(int score)
 	mScore = score;
 }
 
+void Snake::goUp()
+{
+	mBody.addFirst(mBody.first() += QPoint(0, 1));
+	if (!mSizeToGrow) {
+		mBody.removeLast();
+		mSizeToGrow--;
+	}
+}
+
+void Snake::goRight()
+{
+	mBody.addFirst(mBody.first() += QPoint(1, 0));
+	if (!mSizeToGrow) {
+		mBody.removeLast();
+		mSizeToGrow--;
+	}
+}
+
+void Snake::goDown()
+{
+	mBody.addFirst(mBody.first() += QPoint(0, -1));
+	if (!mSizeToGrow) {
+		mBody.removeLast();
+		mSizeToGrow--;
+	}
+}
+
+void Snake::goLeft()
+{
+	mBody.addFirst(mBody.first() += QPoint(-1, 0));
+	if (!mSizeToGrow) {
+		mBody.removeLast();
+		mSizeToGrow--;
+	}
+}
+
+void Snake::goToward(Direction dir)
+{
+	mHeadDirection = dir;
+}
+
 void Snake::grow(size_t size)
 {
-	//mBody.addLast();
+	mSizeToGrow += size;
 }
 
 void Snake::shrink(size_t size)
 {
-	mBody.removeLast();
+	for (size_t i{}; i < size; i++) {
+		if (mBody.size() <= 0)
+			break;
+		mBody.removeLast();
+	}
 }

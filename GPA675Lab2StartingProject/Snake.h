@@ -39,19 +39,34 @@ public:
 	void setSpeed(SpeedType speed);
 	void setColors(QColor head, QColor body);
 	void adjustScore(int score);
+	
+	void turnRight();
+	void turnLeft();
+	void goUp();
+	void goRight();
+	void goDown();
+	void goLeft();
+	void goToward(Direction dir);
 
+	// À appeler avant un tic
 	void grow(size_t size = 1);
 	void shrink(size_t size = 1);
 
 private:
+	// Données membres ajustées pour éviter du padding de
+	// structure.
+
 	Body mBody;
 	QString mName;
 	SpeedType mSpeed;
-	int mScore;
 	size_t mSizeToGrow;
 	QColor mHeadColor;
 	QColor mBodyColor;
+	int mScore;
 	bool mReverseProhibited;
+	uint8_t mMovementAmount;
+	Direction mHeadDirection;
+	qreal mElapsedTimeTotal;
 };
 
 #endif //SNAKE_H
