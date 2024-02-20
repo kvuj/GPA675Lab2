@@ -12,7 +12,9 @@ GPA675Lab2::GPA675Lab2()
     , mElapsedTimer()
     , mPressedKeys()
     , mGame(mWindowSize)
+    , mMenu()
 {
+    mMenu.show();
     // Configuration de la barre de titre de l'application
     setWindowTitle("Snake++");
     //setWindowIcon(...)

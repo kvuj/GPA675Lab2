@@ -8,6 +8,7 @@
 
 #include "Game.h"
 #include "Entity.h"
+#include "Menu.h"
 
 // 
 // Classe GPA675Lab2
@@ -71,6 +72,7 @@ private:
     PressedKeys mPressedKeys;       // Structure pour gérer l'état des touches du clavier pressées.
 
     Game mGame;                     // Instance de l'engin de jeu gérant la logique et l'état du jeu.
+    Menu mMenu;
 };
 
 
