@@ -3,7 +3,7 @@
 #include <exception>
 
 Body::Body(QColor color, qreal radius)
-	: mSize{ 0 }, mHead{ nullptr }, mTail{ nullptr }, mColor(color), mRadius{ radius }
+	: mSize{ 0 }, mHead{ nullptr }, mTail{ nullptr }, mRadius{ radius }
 {
 }
 
@@ -240,12 +240,14 @@ bool Body::isColliding(QPoint const& position)
 	return false;
 }
 
-void Body::draw(QPainter& painter)
+void Body::draw(QPainter& painter, QColor head, QColor body)
 {
 	painter.setPen(Qt::NoPen);
-	painter.setBrush(mColor);
+	painter.setBrush(head);
+	painter.drawEllipse(QRect(mHead->position, QSize(mRadius, mRadius)));
 
-	for (auto it{ this->end() }; it != this->begin(); --it)
+	painter.setBrush(body);
+	for (auto it{ --(this->end()) }; it != this->begin(); --it)
 		painter.drawEllipse(QRect(*it, QSize(mRadius, mRadius)));
 }
 

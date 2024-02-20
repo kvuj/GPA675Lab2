@@ -40,7 +40,7 @@ public:
 	void swap(Body& otherBody);
 	void rotate(int indexFrom);
 	bool isColliding(QPoint const& position);
-	void draw(QPainter& painter);
+	void draw(QPainter& painter, QColor head, QColor body);
 
 	Body::Iterator begin();
 	Body::Iterator end();
@@ -92,7 +92,6 @@ private:
 
 	size_t mSize;
 	BodyItem* mHead, * mTail;
-	QColor mColor;
 	qreal mRadius;
 
 	BodyItem* operator[](int);
