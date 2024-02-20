@@ -31,14 +31,14 @@
 class Pellet : public StaticEntity
 {
 public:
-	Pellet() =default ; 
-	~Pellet()=default;
+	Pellet() = default;
+	~Pellet() = default;
 	int score() const { return mScore; }
 	void setScore(int score) { mScore = score; }
 	virtual void applyEffectOnSnake(Snake& snake);
 private:
 	int mScore;
-	
+
 
 };
 #endif //PELLET_H

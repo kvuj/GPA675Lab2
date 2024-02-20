@@ -16,9 +16,22 @@ QColor Snake::bodyColor()
 	return mBodyColor;
 }
 
+bool Snake::isValid()
+{
+	return mBody.size();
+}
+
 bool Snake::isAlive()
 {
 	return mAlive;
+}
+
+void Snake::ticPrepare(qreal elapsedTime)
+{
+}
+
+void Snake::ticExecute()
+{
 }
 
 void Snake::draw(QPainter& painter)
