@@ -102,10 +102,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AcceleratingPellet.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="GrowingPellet.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeKeyboardAbsoluteController.cpp" />
@@ -122,6 +124,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AcceleratingPellet.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DynamicEntity.h" />
@@ -129,6 +132,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrowingPellet.h" />
     <QtMoc Include="Menu.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="PressedKeys.h" />
     <ClInclude Include="Snake.h" />

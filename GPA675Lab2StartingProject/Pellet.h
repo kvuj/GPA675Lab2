@@ -39,6 +39,5 @@ public:
 private:
 	int mScore;
 
-
 };
 #endif //PELLET_H

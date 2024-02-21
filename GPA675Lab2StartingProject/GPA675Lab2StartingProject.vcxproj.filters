@@ -45,6 +45,18 @@
     <Filter Include="Source Files\Controls">
       <UniqueIdentifier>{500c8484-5a69-4384-b26e-78d7512ed9e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Dynamic">
+      <UniqueIdentifier>{757c9bd9-0d1f-4aa7-b9e7-6a4f8d2504fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Static">
+      <UniqueIdentifier>{0d05857c-a2f9-44fc-b878-ac128a929a09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Dynamic">
+      <UniqueIdentifier>{8d0e9dc9-b6d7-46b0-b477-532e53e516bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entities\Static">
+      <UniqueIdentifier>{40784d82-09c1-4d3a-9ff9-b9fea7db5bab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GPA675Lab2.qrc">
@@ -55,16 +67,7 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Snake.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="DynamicEntity.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="Entity.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticEntity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="GPA675Lab2.cpp">
@@ -78,12 +81,6 @@
     </ClCompile>
     <ClCompile Include="Tests.cpp">
       <Filter>Source Files\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="Pellet.cpp">
-      <Filter>Source Files\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="GrowingPellet.cpp">
-      <Filter>Source Files\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Controller.cpp">
       <Filter>Source Files\Controls</Filter>
@@ -100,17 +97,29 @@
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AcceleratingPellet.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicEntity.cpp">
+      <Filter>Source Files\Entities\Dynamic</Filter>
+    </ClCompile>
+    <ClCompile Include="GrowingPellet.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Pellet.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Snake.cpp">
+      <Filter>Source Files\Entities\Dynamic</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticEntity.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DynamicEntity.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="Snake.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="StaticEntity.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
@@ -126,12 +135,6 @@
     <ClInclude Include="Tests.h">
       <Filter>Header Files\Tools</Filter>
     </ClInclude>
-    <ClInclude Include="Pellet.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="GrowingPellet.h">
-      <Filter>Header Files\Entities</Filter>
-    </ClInclude>
     <ClInclude Include="Controller.h">
       <Filter>Header Files\Controls</Filter>
     </ClInclude>
@@ -143,6 +146,27 @@
     </ClInclude>
     <ClInclude Include="SnakeKeyboardRelativeController.h">
       <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="DynamicEntity.h">
+      <Filter>Header Files\Entities\Dynamic</Filter>
+    </ClInclude>
+    <ClInclude Include="GrowingPellet.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Pellet.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>Header Files\Entities\Dynamic</Filter>
+    </ClInclude>
+    <ClInclude Include="StaticEntity.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="AcceleratingPellet.h">
+      <Filter>Header Files\Entities\Static</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
