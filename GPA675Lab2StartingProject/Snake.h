@@ -24,9 +24,9 @@ public:
 		toLeft = 3
 	};
 
-	Snake(Game* board, Controller controller);
+	Snake(Game* board, Controller* controller);
 	Snake(Game* board, PressedKeys const& pressedKeys);
-	~Snake() = default;
+	~Snake();
 
 	bool isValid() override;
 	bool isAlive() override;
@@ -77,7 +77,7 @@ private:
 	uint8_t mMovementAmount;
 	Direction mHeadDirection;
 	qreal mElapsedTimeTotal;
-	Controller mController;
+	Controller* mController;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;

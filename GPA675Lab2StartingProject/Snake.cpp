@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(Game* board, Controller controller)
+Snake::Snake(Game* board, Controller* controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -19,8 +19,13 @@ Snake::Snake(Game* board, Controller controller)
 }
 
 Snake::Snake(Game* board, PressedKeys const& pressedKeys)
-	: Snake(board, SnakeKeyboardAbsoluteController(*this, { Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
+	: Snake(board, new SnakeKeyboardAbsoluteController(*this, { Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
 {
+}
+
+Snake::~Snake()
+{
+	delete mController;
 }
 
 QColor Snake::headColor() const
@@ -96,7 +101,7 @@ bool Snake::isReverseProhibited() const
 
 Controller& Snake::controller()
 {
-	return mController;
+	return *mController;
 }
 
 void Snake::setName(const QString& name)
