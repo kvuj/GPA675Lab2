@@ -6,6 +6,7 @@
 #include "Body.h"
 
 #include <array>
+#include <functional>
 
 class Snake : public DynamicEntity
 {
