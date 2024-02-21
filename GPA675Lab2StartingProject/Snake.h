@@ -22,7 +22,7 @@ public:
 	Snake(Game* board);
 	~Snake() = default;
 
-	bool isValid() override ;
+	bool isValid() override;
 	bool isAlive() override;
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
@@ -41,7 +41,7 @@ public:
 	void setSpeed(SpeedType speed);
 	void setColors(QColor head, QColor body);
 	void adjustScore(int score);
-	
+
 	void turnRight();
 	void turnLeft();
 	void goUp();

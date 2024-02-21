@@ -49,7 +49,7 @@ void Snake::ticExecute()
 
 	mElapsedTimeTotal -= 1.0 / mSpeed;
 
-	LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)];
+	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 	return;
 }
 
