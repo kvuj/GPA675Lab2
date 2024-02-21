@@ -11,7 +11,7 @@ class Game;
 class Entity
 {
 public:
-	Entity(Game* board) : mBoard(board), mAge(0), mAlive(true) {}
+	Entity(Game& board) : mBoard(board), mAge(0), mAlive(true) {}
 	virtual ~Entity() = default;
 
 	void setDead() { mAlive = false; }
@@ -25,7 +25,7 @@ public:
 	virtual bool isColliding(const QPoint& position) = 0;
 
 protected:
-	Game* mBoard; // Faire attention que cet object ne soit pas détruit avant cette classe.
+	Game& mBoard;
 	double mAge;
 	bool mAlive;
 };
