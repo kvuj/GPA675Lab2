@@ -178,6 +178,7 @@ void Snake::goLeft()
 	}
 }
 
+// TODO: Arriere + devant;
 void Snake::goToward(Direction dir)
 {
 	mHeadDirection = dir;

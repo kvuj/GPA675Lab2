@@ -10,6 +10,8 @@
 #include <array>
 #include <functional>
 
+#include <qnamespace.h>
+
 class Snake : public DynamicEntity
 {
 public:
