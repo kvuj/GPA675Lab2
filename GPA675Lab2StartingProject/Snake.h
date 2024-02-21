@@ -2,8 +2,10 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
-#include "DynamicEntity.h"
 #include "Body.h"
+#include "Controller.h"
+#include "DynamicEntity.h"
+#include "SnakeKeyboardAbsoluteController.h"
 
 #include <array>
 #include <functional>
@@ -37,6 +39,7 @@ public:
 	QColor headColor() const;
 	QColor bodyColor()const;
 	bool isReverseProhibited()const;
+	Controller& controller();
 	void setName(const QString& name);
 	void reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed);
 	void setSpeed(SpeedType speed);
@@ -45,19 +48,20 @@ public:
 
 	void turnRight();
 	void turnLeft();
-	void goUp();
-	void goRight();
-	void goDown();
-	void goLeft();
 	void goToward(Direction dir);
 
 	// À appeler avant un tic
 	void grow(size_t size = 1);
 	void shrink(size_t size = 1);
 
+	void increaseSpeed(SpeedType amount);
+	void decreaseSpeed(SpeedType amount);
+	void accelerate(SpeedType percentMore);
+	void decelerate(SpeedType percentLess);
+
 private:
 	// Données membres ajustées pour éviter du padding de
-	// structure.
+	// structure. Ne pas changer l'ordre.
 
 	Body mBody;
 	QString mName;
@@ -70,12 +74,18 @@ private:
 	uint8_t mMovementAmount;
 	Direction mHeadDirection;
 	qreal mElapsedTimeTotal;
+	Controller mController;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;
 	const std::array<Direction, 4> LUTOppositeDirection;
 	const std::array<QPoint, 4> LUTDirectionDisplacement;
 	const std::array<void(Snake::*)(), 4> LUTDirectionAction;
+
+	void goUp();
+	void goRight();
+	void goDown();
+	void goLeft();
 };
 
 #endif //SNAKE_H

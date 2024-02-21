@@ -1,5 +1,5 @@
 #pragma once
-#ifdef SNAKEKEYBOARDABSOLUTECONTROLLER_H
+#ifndef SNAKEKEYBOARDABSOLUTECONTROLLER_H
 #define SNAKEKEYBOARDABSOLUTECONTROLLER_H
 
 #include "Snake.h"
@@ -7,8 +7,10 @@
 
 class SnakeKeyboardAbsoluteController : public SnakeKeyboardController
 {
-	public:
-		
+public:
+	SnakeKeyboardAbsoluteController(Snake& snake);
+	~SnakeKeyboardAbsoluteController() = default;
+	void control() override;
 };
 
 #endif // !SNAKEKEYBOARDABSOLUTECONTROLLER_H

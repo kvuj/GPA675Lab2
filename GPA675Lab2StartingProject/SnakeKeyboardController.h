@@ -1,15 +1,14 @@
 #pragma once
 #ifndef SNAKEKEYBOARDCONTROLLER_H
 #define SNAKEKEYBOARDCONTROLLER_H
+
 #include "Controller.h"
 
 class SnakeKeyboardController : public Controller
-
 {
-	public:
+public:
 	SnakeKeyboardController(Snake& snake);
-	virtual ~SnakeKeyboardController() = default;
-	virtual void control() override;
+	~SnakeKeyboardController() = default;
 };
 
 #endif //SNAKEKEYBOARDCONTROLLER_H

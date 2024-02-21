@@ -2,16 +2,16 @@
 #ifndef CONTROLLER_H	
 #define CONTROLLER_H
 
-#include "Snake.h"
+class Snake;
+
 class Controller
 {
-	public:
-		Controller(Snake& snake);
-		virtual ~Controller() = default;
-		virtual void control();
-
-	private:
-		Snake& mControlledSnake;
+public:
+	Controller(Snake& snake) : mControllerSnake{ snake } {}
+	virtual ~Controller();
+	virtual void control();
+private:
+	Snake& mControllerSnake;
 };
 
 #endif //CONTROLLER_H

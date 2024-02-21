@@ -6,11 +6,10 @@
 #include "SnakeKeyboardController.h"
 class SnakeKeyboardRelativeController : public SnakeKeyboardController
 {
-    public:
-        SnakeKeyboardRelativeController(Snake& snake) = delete;
-        virtual ~SnakeKeyboardRelativeController() = default;
-        virtual void control() override;
-  
+public:
+	SnakeKeyboardRelativeController(Snake& snake);
+	~SnakeKeyboardRelativeController() = default;
+	void control() override;
 };
 
 #endif // !SnakeKeyboardRelativeController_H
