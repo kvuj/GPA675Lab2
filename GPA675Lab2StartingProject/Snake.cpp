@@ -13,16 +13,16 @@ Snake::Snake(Game* board)
 	, LUTTurnRightDirection{ Direction::toRight, Direction::toDown, Direction::toLeft, Direction::toUp }
 	, LUTOppositeDirection{ Direction::toDown, Direction::toLeft, Direction::toUp, Direction::toRight }
 	, LUTDirectionDisplacement{ QPoint(0, 1), QPoint(1, 0), QPoint(0, -1), QPoint(-1, 0) }
-	, LUTDirectionAction{ goUp, goRight, goDown, goLeft }
+	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
 {
 }
 
-QColor Snake::headColor()
+QColor Snake::headColor() const
 {
 	return mHeadColor;
 }
 
-QColor Snake::bodyColor()
+QColor Snake::bodyColor() const
 {
 	return mBodyColor;
 }
@@ -50,6 +50,7 @@ void Snake::ticExecute()
 	mElapsedTimeTotal -= 1.0 / mSpeed;
 
 	LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)];
+	return;
 }
 
 void Snake::draw(QPainter& painter)
@@ -67,22 +68,22 @@ QString Snake::name()
 	return mName;
 }
 
-int Snake::score()
+int Snake::score()const
 {
 	return mScore;
 }
 
-size_t Snake::bodyLength()
+size_t Snake::bodyLength() const
 {
 	return mBody.size();
 }
 
-Snake::SpeedType Snake::speed()
+Snake::SpeedType Snake::speed() const
 {
 	return mSpeed;
 }
 
-bool Snake::isReverseProhibited()
+bool Snake::isReverseProhibited() const
 {
 	return mReverseProhibited;
 }

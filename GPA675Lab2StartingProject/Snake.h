@@ -22,7 +22,7 @@ public:
 	Snake(Game* board);
 	~Snake() = default;
 
-	bool isValid() override;
+	bool isValid() override ;
 	bool isAlive() override;
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
@@ -30,12 +30,12 @@ public:
 	bool isColliding(const QPoint& position) override;
 
 	QString name();
-	int score();
-	size_t bodyLength();
-	SpeedType speed();
-	QColor headColor();
-	QColor bodyColor();
-	bool isReverseProhibited();
+	int score() const;
+	size_t bodyLength()const;
+	SpeedType speed()const;
+	QColor headColor() const;
+	QColor bodyColor()const;
+	bool isReverseProhibited()const;
 	void setName(const QString& name);
 	void reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed);
 	void setSpeed(SpeedType speed);
