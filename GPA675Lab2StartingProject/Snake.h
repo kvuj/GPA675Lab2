@@ -22,7 +22,8 @@ public:
 		toLeft = 3
 	};
 
-	Snake(Game* board);
+	Snake(Game* board, Controller controller);
+	Snake(Game* board, PressedKeys const& pressedKeys);
 	~Snake() = default;
 
 	bool isValid() override;
@@ -34,11 +35,11 @@ public:
 
 	QString name();
 	int score() const;
-	size_t bodyLength()const;
-	SpeedType speed()const;
+	size_t bodyLength() const;
+	SpeedType speed() const;
 	QColor headColor() const;
-	QColor bodyColor()const;
-	bool isReverseProhibited()const;
+	QColor bodyColor() const;
+	bool isReverseProhibited() const;
 	Controller& controller();
 	void setName(const QString& name);
 	void reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed);

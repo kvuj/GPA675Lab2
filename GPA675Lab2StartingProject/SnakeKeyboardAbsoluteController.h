@@ -8,7 +8,7 @@
 class SnakeKeyboardAbsoluteController : public SnakeKeyboardController
 {
 public:
-	SnakeKeyboardAbsoluteController(Snake& snake);
+	SnakeKeyboardAbsoluteController(Snake& snake, SavedKeys savedKeys, PressedKeys const& pressedKeys);
 	~SnakeKeyboardAbsoluteController() = default;
 	void control() override;
 };

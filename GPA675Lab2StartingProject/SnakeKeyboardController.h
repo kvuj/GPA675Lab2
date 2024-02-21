@@ -7,7 +7,7 @@
 class SnakeKeyboardController : public Controller
 {
 public:
-	SnakeKeyboardController(Snake& snake);
+	SnakeKeyboardController(Snake& snake, SavedKeys savedKeys, PressedKeys const& pressedKeys);
 	~SnakeKeyboardController() = default;
 };
 

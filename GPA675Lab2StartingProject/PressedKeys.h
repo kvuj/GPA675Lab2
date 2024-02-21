@@ -19,6 +19,7 @@
 // dynamiquement, en fonction des actions de l'utilisateur, tout en permettant un accès itératif
 // efficace aux éléments pour le traitement des entrées.
 using PressedKeys = std::vector<Qt::Key>;
+using SavedKeys = std::vector<Qt::Key>;
 
 
 

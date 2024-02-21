@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(Game* board)
+Snake::Snake(Game* board, Controller controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -14,7 +14,12 @@ Snake::Snake(Game* board)
 	, LUTOppositeDirection{ Direction::toDown, Direction::toLeft, Direction::toUp, Direction::toRight }
 	, LUTDirectionDisplacement{ QPoint(0, 1), QPoint(1, 0), QPoint(0, -1), QPoint(-1, 0) }
 	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
-	, mController{ SnakeKeyboardAbsoluteController(*this) }
+	, mController{ controller }
+{
+}
+
+Snake::Snake(Game* board, PressedKeys const& pressedKeys)
+	: Snake(board, SnakeKeyboardAbsoluteController(*this, { Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
 {
 }
 

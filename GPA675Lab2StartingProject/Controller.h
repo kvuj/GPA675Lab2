@@ -4,14 +4,21 @@
 
 class Snake;
 
+#include "PressedKeys.h"
+
 class Controller
 {
 public:
-	Controller(Snake& snake) : mControllerSnake{ snake } {}
-	virtual ~Controller();
+	Controller(Snake& snake, SavedKeys savedKeys, PressedKeys const& pressedKeys)
+		: mControllerSnake{ snake }, mSavedKeys{ savedKeys }, mPressedKeys{ pressedKeys }
+	{
+	}
+	~Controller() = default;
 	virtual void control();
-private:
+protected:
 	Snake& mControllerSnake;
+	PressedKeys const& mPressedKeys;
+	SavedKeys mSavedKeys;
 };
 
 #endif //CONTROLLER_H
