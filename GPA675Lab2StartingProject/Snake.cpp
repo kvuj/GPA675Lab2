@@ -9,6 +9,11 @@ Snake::Snake(Game* board)
 	, mHeadDirection{ Direction::toUp }
 	, mElapsedTimeTotal{}
 	, mMovementAmount{}
+	, LUTTurnLeftDirection{ Direction::toLeft, Direction::toUp, Direction::toRight, Direction::toDown }
+	, LUTTurnRightDirection{ Direction::toRight, Direction::toDown, Direction::toLeft, Direction::toUp }
+	, LUTOppositeDirection{ Direction::toDown, Direction::toLeft, Direction::toUp, Direction::toRight }
+	, LUTDirectionDisplacement{ QPoint(0, 1), QPoint(1, 0), QPoint(0, -1), QPoint(-1, 0) }
+	, LUTDirectionAction{ goUp, goRight, goDown, goLeft }
 {
 }
 
@@ -44,10 +49,7 @@ void Snake::ticExecute()
 
 	mElapsedTimeTotal -= 1.0 / mSpeed;
 
-	if (mHeadDirection == Direction::toUp) goUp();
-	else if (mHeadDirection == Direction::toRight) goRight();
-	else if (mHeadDirection == Direction::toDown) goDown();
-	else if (mHeadDirection == Direction::toLeft) goLeft();
+	LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)];
 }
 
 void Snake::draw(QPainter& painter)
@@ -90,6 +92,12 @@ void Snake::setName(const QString& name)
 	mName = name;
 }
 
+void Snake::reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed)
+{
+	// TODO
+	mBody.clear();
+}
+
 void Snake::setSpeed(SpeedType speed)
 {
 	mSpeed = speed;
@@ -106,9 +114,19 @@ void Snake::adjustScore(int score)
 	mScore = score;
 }
 
+void Snake::turnRight()
+{
+	mHeadDirection = LUTTurnRightDirection[mHeadDirection];
+}
+
+void Snake::turnLeft()
+{
+	mHeadDirection = LUTTurnLeftDirection[mHeadDirection];
+}
+
 void Snake::goUp()
 {
-	mBody.addFirst(mBody.first() += QPoint(0, 1));
+	mBody.addFirst(mBody.first() += LUTDirectionDisplacement[0]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
 		mSizeToGrow--;
@@ -117,7 +135,7 @@ void Snake::goUp()
 
 void Snake::goRight()
 {
-	mBody.addFirst(mBody.first() += QPoint(1, 0));
+	mBody.addFirst(mBody.first() += LUTDirectionDisplacement[1]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
 		mSizeToGrow--;
@@ -126,7 +144,7 @@ void Snake::goRight()
 
 void Snake::goDown()
 {
-	mBody.addFirst(mBody.first() += QPoint(0, -1));
+	mBody.addFirst(mBody.first() += LUTDirectionDisplacement[2]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
 		mSizeToGrow--;
@@ -135,7 +153,7 @@ void Snake::goDown()
 
 void Snake::goLeft()
 {
-	mBody.addFirst(mBody.first() += QPoint(-1, 0));
+	mBody.addFirst(mBody.first() += LUTDirectionDisplacement[3]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
 		mSizeToGrow--;

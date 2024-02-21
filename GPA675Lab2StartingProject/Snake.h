@@ -5,6 +5,7 @@
 #include "DynamicEntity.h"
 #include "Body.h"
 
+#include <array>
 
 class Snake : public DynamicEntity
 {
@@ -36,6 +37,7 @@ public:
 	QColor bodyColor();
 	bool isReverseProhibited();
 	void setName(const QString& name);
+	void reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed);
 	void setSpeed(SpeedType speed);
 	void setColors(QColor head, QColor body);
 	void adjustScore(int score);
@@ -67,6 +69,12 @@ private:
 	uint8_t mMovementAmount;
 	Direction mHeadDirection;
 	qreal mElapsedTimeTotal;
+
+	const std::array<Direction, 4> LUTTurnLeftDirection;
+	const std::array<Direction, 4> LUTTurnRightDirection;
+	const std::array<Direction, 4> LUTOppositeDirection;
+	const std::array<QPoint, 4> LUTDirectionDisplacement;
+	const std::array<void(Snake::*)(), 4> LUTDirectionAction;
 };
 
 #endif //SNAKE_H
