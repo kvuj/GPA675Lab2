@@ -17,7 +17,7 @@ public:
 	class Iterator;
 	class BodyItem;
 
-	Body(QColor color = Qt::blue, qreal radius = 50.0);
+	Body(qreal radius = 50.0);
 	~Body();
 
 	bool isEmpty() const;

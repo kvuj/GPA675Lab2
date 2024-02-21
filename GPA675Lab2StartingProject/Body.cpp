@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <exception>
 
-Body::Body(QColor color, qreal radius)
+Body::Body(qreal radius)
 	: mSize{ 0 }, mHead{ nullptr }, mTail{ nullptr }, mRadius{ radius }
 {
 }
