@@ -57,7 +57,6 @@ void Snake::ticExecute()
 	mElapsedTimeTotal -= 1.0 / mSpeed;
 
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
-	return;
 }
 
 void Snake::draw(QPainter& painter)
@@ -135,12 +134,12 @@ void Snake::adjustScore(int score)
 
 void Snake::turnRight()
 {
-	mHeadDirection = LUTTurnRightDirection[mHeadDirection];
+	mHeadDirection = static_cast<Direction>((static_cast<uint8_t>(mHeadDirection) + 1) % 4);
 }
 
 void Snake::turnLeft()
 {
-	mHeadDirection = LUTTurnLeftDirection[mHeadDirection];
+	mHeadDirection = static_cast<Direction>((static_cast<uint8_t>(mHeadDirection) - 1 + 4) % 4);
 }
 
 void Snake::goUp()
