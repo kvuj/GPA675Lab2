@@ -48,8 +48,9 @@ public:
 	// > painter QPainter à utiliser pour le dessin, configuré avec le contexte graphique approprié.
 	void draw(QPainter& painter);
 
-	//void addEntity(Entity* entity);
-	//void clearAllEntities();
+	void addEntity(Entity* entity);
+	std::list<Entity*>& entities();
+	void clearAllEntities();
 
 private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.

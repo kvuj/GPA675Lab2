@@ -1,27 +1,32 @@
 #include "Snake.h"
 
-Snake::Snake(Game& board, std::unique_ptr<Controller> controller)
+Snake::Snake(Game& board, Controller* controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
 	, mSizeToGrow{}
-	, mSpeed{ 1.0 }
+	, mSpeed{ 50.0 }
 	, mHeadDirection{ Direction::toUp }
 	, mElapsedTimeTotal{}
 	, mMovementAmount{}
 	, LUTTurnLeftDirection{ Direction::toLeft, Direction::toUp, Direction::toRight, Direction::toDown }
 	, LUTTurnRightDirection{ Direction::toRight, Direction::toDown, Direction::toLeft, Direction::toUp }
 	, LUTOppositeDirection{ Direction::toDown, Direction::toLeft, Direction::toUp, Direction::toRight }
-	, LUTDirectionDisplacement{ QPoint(0, 1), QPoint(1, 0), QPoint(0, -1), QPoint(-1, 0) }
+	, LUTDirectionDisplacement{ QPoint(0, -1), QPoint(1, 0), QPoint(0, 1), QPoint(-1, 0) }
 	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
 	, mController{ std::move(controller) }
 {
 }
 
 Snake::Snake(Game& board, PressedKeys const& pressedKeys)
-	: Snake(board, std::make_unique<Controller>(SnakeKeyboardAbsoluteController(*this,
-		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys)))
+	: Snake(board, new SnakeKeyboardAbsoluteController(*this,
+		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
 {
+}
+
+Snake::~Snake()
+{
+	delete mController;
 }
 
 QColor Snake::headColor() const

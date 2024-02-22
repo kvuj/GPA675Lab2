@@ -1,4 +1,5 @@
 #include "GPA675Lab2.h"
+#include "Snake.h"
 
 #include <QDebug>
 #include <QKeyEvent>
