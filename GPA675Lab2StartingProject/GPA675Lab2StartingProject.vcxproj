@@ -110,11 +110,18 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Snake.cpp" />
+    <ClCompile Include="SnakeBlockade.cpp" />
+    <ClCompile Include="SnakeGameScenario.cpp" />
+    <ClCompile Include="SnakeGameState.cpp" />
     <ClCompile Include="SnakeKeyboardAbsoluteController.cpp" />
     <ClCompile Include="SnakeKeyboardController.cpp" />
     <ClCompile Include="SnakeKeyboardRelativeController.cpp" />
+    <ClCompile Include="SnakeOrigin.cpp" />
+    <ClCompile Include="Snakify.cpp" />
+    <ClCompile Include="State.cpp" />
     <ClCompile Include="StaticEntity.cpp" />
     <ClCompile Include="Tests.cpp" />
+    <ClCompile Include="Transition.cpp" />
     <QtRcc Include="GPA675Lab2.qrc" />
     <QtMoc Include="GPA675Lab2.h" />
     <ClCompile Include="Body.cpp" />
@@ -131,6 +138,12 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GrowingPellet.h" />
+    <ClInclude Include="SnakeBlockade.h" />
+    <ClInclude Include="SnakeGameScenario.h" />
+    <ClInclude Include="SnakeGameState.h" />
+    <ClInclude Include="SnakeOrigin.h" />
+    <ClInclude Include="Snakify.h" />
+    <ClInclude Include="Transition.h" />
     <QtMoc Include="Menu.h" />
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Pellet.h" />
@@ -139,6 +152,7 @@
     <ClInclude Include="SnakeKeyboardAbsoluteController.h" />
     <ClInclude Include="SnakeKeyboardController.h" />
     <ClInclude Include="SnakeKeyboardRelativeController.h" />
+    <ClInclude Include="State.h" />
     <ClInclude Include="StaticEntity.h" />
     <ClInclude Include="Tests.h" />
   </ItemGroup>

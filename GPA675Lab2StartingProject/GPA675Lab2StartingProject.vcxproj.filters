@@ -57,6 +57,12 @@
     <Filter Include="Header Files\Entities\Static">
       <UniqueIdentifier>{40784d82-09c1-4d3a-9ff9-b9fea7db5bab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{ceb16b49-819d-4c64-89b7-ac69cac23fb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\State">
+      <UniqueIdentifier>{09550a6a-c2fb-4c26-8d65-85deec64d28f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="GPA675Lab2.qrc">
@@ -94,9 +100,6 @@
     <ClCompile Include="SnakeKeyboardController.cpp">
       <Filter>Source Files\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="AcceleratingPellet.cpp">
       <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
@@ -117,6 +120,30 @@
     </ClCompile>
     <ClCompile Include="StaticEntity.cpp">
       <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeBlockade.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeGameScenario.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeOrigin.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakify.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeGameState.cpp">
+      <Filter>Source Files\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,13 +195,34 @@
     <ClInclude Include="AcceleratingPellet.h">
       <Filter>Header Files\Entities\Static</Filter>
     </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeGameState.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeGameScenario.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeOrigin.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeBlockade.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakify.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="GPA675Lab2.h">
       <Filter>Header Files\Game Engine</Filter>
     </QtMoc>
     <QtMoc Include="Menu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\State</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
