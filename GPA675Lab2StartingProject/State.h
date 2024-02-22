@@ -16,7 +16,7 @@ public:
 	virtual bool isValid() = 0;
 	virtual void entering() = 0;
 	virtual void exiting() = 0;
-	virtual void tic() = 0;
+	virtual void tic(float elapsedTime) = 0;
 
 
 protected:
