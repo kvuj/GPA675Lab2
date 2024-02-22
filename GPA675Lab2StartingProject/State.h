@@ -2,8 +2,10 @@
 #ifndef	State_H
 #define State_H
 
-#include "Transition.h"
+//#include "Transition.h"
 #include <vector>
+class Transition;
+
 
 class State
 {
@@ -18,7 +20,7 @@ public:
 
 
 protected:
-	std::vector<Transition*> mTransitions;
+	std::vector< Transition* > mTransitions;
 
 	
 };

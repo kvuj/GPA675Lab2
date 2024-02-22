@@ -7,6 +7,8 @@ public:
 
 private:
 	std::vector<State*> mStates;
+	State* mInitialState;
+
 
 };
 
