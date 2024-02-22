@@ -14,7 +14,7 @@ public:
 	{
 	}
 	~Controller() = default;
-	virtual void control();
+	virtual void control() = 0;
 protected:
 	Snake& mControllerSnake;
 	PressedKeys const& mPressedKeys;

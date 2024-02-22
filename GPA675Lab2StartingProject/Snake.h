@@ -25,14 +25,15 @@ public:
 		toLeft = 3
 	};
 
-	Snake(Game& board, std::unique_ptr<Controller> controller);
+	Snake(Game& board, Controller* controller);
 	Snake(Game& board, PressedKeys const& pressedKeys);
+	~Snake();
 
 	bool isValid() override;
 	bool isAlive() override;
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
-	void draw(QPainter& painter) override;
+	void draw(QPainter& painter, size_t gridSize) override;
 	bool isColliding(const QPoint& position) override;
 
 	QString name();
@@ -77,7 +78,7 @@ private:
 	uint8_t mMovementAmount;
 	Direction mHeadDirection;
 	qreal mElapsedTimeTotal;
-	std::unique_ptr<Controller> mController;
+	Controller* mController;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;

@@ -40,7 +40,7 @@ public:
 	void swap(Body& otherBody);
 	void rotate(int indexFrom);
 	bool isColliding(QPoint const& position);
-	void draw(QPainter& painter, QColor head, QColor body);
+	void draw(QPainter& painter, QColor head, QColor body, size_t gridSize);
 
 	Body::Iterator begin();
 	Body::Iterator end();

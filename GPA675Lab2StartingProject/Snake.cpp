@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(Game& board, std::unique_ptr<Controller> controller)
+Snake::Snake(Game& board, Controller* controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -12,16 +12,23 @@ Snake::Snake(Game& board, std::unique_ptr<Controller> controller)
 	, LUTTurnLeftDirection{ Direction::toLeft, Direction::toUp, Direction::toRight, Direction::toDown }
 	, LUTTurnRightDirection{ Direction::toRight, Direction::toDown, Direction::toLeft, Direction::toUp }
 	, LUTOppositeDirection{ Direction::toDown, Direction::toLeft, Direction::toUp, Direction::toRight }
-	, LUTDirectionDisplacement{ QPoint(0, 1), QPoint(1, 0), QPoint(0, -1), QPoint(-1, 0) }
+	, LUTDirectionDisplacement{ QPoint(0, -1), QPoint(1, 0), QPoint(0, 1), QPoint(-1, 0) }
 	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
 	, mController{ std::move(controller) }
+	, mHeadColor{Qt::red}
+	, mBodyColor{Qt::white}
 {
 }
 
 Snake::Snake(Game& board, PressedKeys const& pressedKeys)
-	: Snake(board, std::make_unique<Controller>(SnakeKeyboardAbsoluteController(*this,
-		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys)))
+	: Snake(board, new SnakeKeyboardAbsoluteController(*this,
+		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
 {
+}
+
+Snake::~Snake()
+{
+	delete mController;
 }
 
 QColor Snake::headColor() const
@@ -46,7 +53,8 @@ bool Snake::isAlive()
 
 void Snake::ticPrepare(qreal elapsedTime)
 {
-	mElapsedTimeTotal += elapsedTime;
+	if (elapsedTime > 0)
+		mElapsedTimeTotal += elapsedTime;
 }
 
 void Snake::ticExecute()
@@ -54,16 +62,17 @@ void Snake::ticExecute()
 	if (mElapsedTimeTotal < (1.0 / mSpeed))
 		return;
 
-	mElapsedTimeTotal -= 1.0 / mSpeed;
+	mElapsedTimeTotal -= (1.0 / mSpeed);
 
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 }
 
-void Snake::draw(QPainter& painter)
+void Snake::draw(QPainter& painter, size_t gridSize)
 {
-	mBody.draw(painter, mHeadColor, mBodyColor);
+	mBody.draw(painter, mHeadColor, mBodyColor, gridSize);
 }
 
+// Retire la queue?
 bool Snake::isColliding(const QPoint& position)
 {
 	return mBody.isColliding(position);
@@ -147,6 +156,8 @@ void Snake::goUp()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[0]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
@@ -156,6 +167,8 @@ void Snake::goRight()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[1]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
@@ -165,6 +178,8 @@ void Snake::goDown()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[2]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
@@ -174,13 +189,19 @@ void Snake::goLeft()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[3]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
 
-// TODO: Arriere + devant;
 void Snake::goToward(Direction dir)
 {
+	if (mHeadDirection - 2 == dir
+		|| mHeadDirection + 2 == dir) {
+		mBody.clear();
+		mAlive = false;
+	}
 	mHeadDirection = dir;
 }
 

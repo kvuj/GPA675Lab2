@@ -9,6 +9,7 @@
 #include <QPointF>
 #include <QColor>
 
+#include "Arena.h"
 #include "PressedKeys.h"
 #include "Entity.h"
 
@@ -47,8 +48,9 @@ public:
 	// > painter QPainter à utiliser pour le dessin, configuré avec le contexte graphique approprié.
 	void draw(QPainter& painter);
 
-	//void addEntity(Entity* entity);
-	//void clearAllEntities();
+	void addEntity(Entity* entity);
+	std::list<Entity*>& entities();
+	void clearAllEntities();
 
 private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
@@ -63,6 +65,7 @@ private:
 	//Utilisation de shared pointer interdite. 
 	//utilisatino d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
 	std::list<Entity*> mEntities;
+	Arena arena;
 
 
 	//
