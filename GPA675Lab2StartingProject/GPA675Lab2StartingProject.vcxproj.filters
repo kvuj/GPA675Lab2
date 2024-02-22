@@ -151,6 +151,9 @@
     <ClCompile Include="GameTransition.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="Arena.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -227,6 +230,9 @@
     </ClInclude>
     <ClInclude Include="GameTransition.h">
       <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Arena.h">
+      <Filter>Header Files\Game Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

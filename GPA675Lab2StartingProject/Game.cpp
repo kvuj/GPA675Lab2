@@ -13,6 +13,7 @@ Game::Game(QSize const& size)
     , mSpeed{ 500.0 }
     , mColor(Qt::blue)
     , mTotalElapsedTime{ 0.0 }
+    , arena{Arena(size.width(),size.height(),100, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255)))}
 {
 }
 
@@ -25,10 +26,7 @@ void Game::process(qreal elapsedTime, PressedKeys const& keys)
 
 void Game::draw(QPainter& painter)
 {
-    painter.fillRect(QRect(QPoint(0, 0), mSize), 
-                     blendColorsHsl(mBackgroundColors[0], mBackgroundColors[1], std::cos(mTotalElapsedTime * 1.25) * 0.5 + 0.5));
-    
-    painter.setPen(Qt::NoPen);
+    arena.draw(painter);
     painter.setBrush(mColor);
     painter.drawEllipse(QRectF(mPosition, QSize(mRadius, mRadius)));
 

@@ -103,6 +103,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AcceleratingPellet.cpp" />
+    <ClCompile Include="Arena.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="GameTransition.cpp" />
@@ -134,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AcceleratingPellet.h" />
+    <ClInclude Include="Arena.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="DynamicEntity.h" />
