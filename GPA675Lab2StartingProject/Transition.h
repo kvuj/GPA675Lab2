@@ -7,11 +7,7 @@
 
 class Transition
 {
-	public:
-		Transition() =default;
-		virtual ~Transition() = default;
-	private:
-		State* mNextState;
+	
 
 };
 

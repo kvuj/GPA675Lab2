@@ -105,7 +105,9 @@
     <ClCompile Include="AcceleratingPellet.cpp" />
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
+    <ClCompile Include="GameTransition.cpp" />
     <ClCompile Include="GrowingPellet.cpp" />
+    <ClCompile Include="KeyboardTransition.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="Pellet.cpp" />
@@ -137,7 +139,9 @@
     <ClInclude Include="DynamicEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GrowingPellet.h" />
+    <ClInclude Include="KeyboardTransition.h" />
     <ClInclude Include="SnakeBlockade.h" />
     <ClInclude Include="SnakeGameScenario.h" />
     <ClInclude Include="SnakeGameState.h" />

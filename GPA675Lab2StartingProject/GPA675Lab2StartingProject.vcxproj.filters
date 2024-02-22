@@ -145,6 +145,12 @@
     <ClCompile Include="SnakeGameState.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
+    <ClCompile Include="KeyboardTransition.cpp">
+      <Filter>Source Files\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTransition.cpp">
+      <Filter>Source Files\Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -215,6 +221,12 @@
     </ClInclude>
     <ClInclude Include="Snakify.h">
       <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardTransition.h">
+      <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTransition.h">
+      <Filter>Header Files\Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
