@@ -15,7 +15,7 @@ public:
 	void setColor(QColor const& color) { mColor = color; }
 	void setPosition(QPoint const& position) { mPosition = position; }
 
-	void draw(QPainter& painter) override;
+	void draw(QPainter& painter, size_t gridSize) override;
 	bool isColliding(const QPoint& position) override;
 
 protected:

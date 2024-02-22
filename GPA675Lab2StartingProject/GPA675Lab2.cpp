@@ -21,7 +21,7 @@ GPA675Lab2::GPA675Lab2()
 	//setWindowIcon(...)
 
 	auto* ptr{ new Snake(mGame, mPressedKeys) };
-	ptr->reset({ 150, 150 }, Snake::Direction::toUp, 50, 50.0);
+	ptr->reset({ 5, 5 }, Snake::Direction::toDown, 5, 2);
 	mGame.addEntity(ptr);
 
 	// Configuration générale : taille et focus

@@ -33,7 +33,7 @@ public:
 	bool isAlive() override;
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
-	void draw(QPainter& painter) override;
+	void draw(QPainter& painter, size_t gridSize) override;
 	bool isColliding(const QPoint& position) override;
 
 	QString name();

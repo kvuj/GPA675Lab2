@@ -5,7 +5,7 @@ Snake::Snake(Game& board, Controller* controller)
 	, mReverseProhibited{ true }
 	, mScore{}
 	, mSizeToGrow{}
-	, mSpeed{ 50.0 }
+	, mSpeed{ 1.0 }
 	, mHeadDirection{ Direction::toUp }
 	, mElapsedTimeTotal{}
 	, mMovementAmount{}
@@ -15,6 +15,8 @@ Snake::Snake(Game& board, Controller* controller)
 	, LUTDirectionDisplacement{ QPoint(0, -1), QPoint(1, 0), QPoint(0, 1), QPoint(-1, 0) }
 	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
 	, mController{ std::move(controller) }
+	, mHeadColor{Qt::red}
+	, mBodyColor{Qt::white}
 {
 }
 
@@ -65,9 +67,9 @@ void Snake::ticExecute()
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 }
 
-void Snake::draw(QPainter& painter)
+void Snake::draw(QPainter& painter, size_t gridSize)
 {
-	mBody.draw(painter, mHeadColor, mBodyColor);
+	mBody.draw(painter, mHeadColor, mBodyColor, gridSize);
 }
 
 // Retire la queue?

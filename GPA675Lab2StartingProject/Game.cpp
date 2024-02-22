@@ -13,7 +13,7 @@ Game::Game(QSize const& size)
     , mSpeed{ 500.0 }
     , mColor(Qt::blue)
     , mTotalElapsedTime{ 0.0 }
-    , arena{Arena(size.width(),size.height(),100, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255)))}
+    , arena{Arena(size.width(),size.height(),1000, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255)))}
 {
 }
 
@@ -41,7 +41,7 @@ void Game::draw(QPainter& painter)
 	painter.setBrush(mColor);
 
 	for (auto& i : mEntities) {
-		i->draw(painter);
+		i->draw(painter,arena.getGridSize());
 	}
 }
 

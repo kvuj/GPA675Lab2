@@ -240,15 +240,15 @@ bool Body::isColliding(QPoint const& position)
 	return false;
 }
 
-void Body::draw(QPainter& painter, QColor head, QColor body)
+void Body::draw(QPainter& painter, QColor head, QColor body, size_t gridSize)
 {
 	painter.setPen(Qt::NoPen);
 	painter.setBrush(head);
-	painter.drawEllipse(QRect(mHead->position, QSize(mRadius, mRadius)));
+	painter.fillRect(QRect(QPoint(mHead->position.x() * gridSize , mHead->position.y() * gridSize), QSize(gridSize, gridSize)), head);
 
 	painter.setBrush(body);
-	for (auto it{ --(this->end()) }; it != this->begin(); --it)
-		painter.drawEllipse(QRect(*it, QSize(mRadius, mRadius)));
+	for (auto it{ (this->end()) }; it != this->begin(); --it)
+		painter.fillRect(QRect(QPoint((*it).x() * gridSize, (*it).y() * gridSize), QSize(gridSize, gridSize)), body);
 }
 
 Body::Iterator Body::begin()

@@ -21,7 +21,7 @@ public:
 	virtual bool isAlive() = 0;
 	virtual void ticPrepare(qreal elapsedTime) = 0;
 	virtual void ticExecute() = 0;
-	virtual void draw(QPainter& painter) = 0;
+	virtual void draw(QPainter& painter, size_t gridSize) = 0;
 	virtual bool isColliding(const QPoint& position) = 0;
 
 protected:
