@@ -109,6 +109,7 @@
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="GameTransition.cpp" />
     <ClCompile Include="GrowingPellet.cpp" />
+    <ClCompile Include="HomeState.cpp" />
     <ClCompile Include="KeyboardTransition.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GrowingPellet.h" />
+    <ClInclude Include="HomeState.h" />
     <ClInclude Include="KeyboardTransition.h" />
     <ClInclude Include="SnakeBlockade.h" />
     <ClInclude Include="SnakeGameScenario.h" />

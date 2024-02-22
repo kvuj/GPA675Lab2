@@ -7,6 +7,11 @@
 
 class SnakeGameState :public State
 {
+	public:
+	
+	virtual ~SnakeGameState()=0;
+
+	virtual void draw(QPainter &painter) =0;
 	
 
 };
