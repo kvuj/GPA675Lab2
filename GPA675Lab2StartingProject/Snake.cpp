@@ -51,7 +51,8 @@ bool Snake::isAlive()
 
 void Snake::ticPrepare(qreal elapsedTime)
 {
-	mElapsedTimeTotal += elapsedTime;
+	if (elapsedTime > 0)
+		mElapsedTimeTotal += elapsedTime;
 }
 
 void Snake::ticExecute()
@@ -59,7 +60,7 @@ void Snake::ticExecute()
 	if (mElapsedTimeTotal < (1.0 / mSpeed))
 		return;
 
-	mElapsedTimeTotal -= 1.0 / mSpeed;
+	mElapsedTimeTotal -= (1.0 / mSpeed);
 
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 }
@@ -69,6 +70,7 @@ void Snake::draw(QPainter& painter)
 	mBody.draw(painter, mHeadColor, mBodyColor);
 }
 
+// Retire la queue?
 bool Snake::isColliding(const QPoint& position)
 {
 	return mBody.isColliding(position);
@@ -152,6 +154,8 @@ void Snake::goUp()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[0]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
@@ -161,6 +165,8 @@ void Snake::goRight()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[1]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
@@ -170,6 +176,8 @@ void Snake::goDown()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[2]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
@@ -179,13 +187,19 @@ void Snake::goLeft()
 	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[3]);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
+	}
+	else {
 		mSizeToGrow--;
 	}
 }
 
-// TODO: Arriere + devant;
 void Snake::goToward(Direction dir)
 {
+	if (mHeadDirection - 2 == dir
+		|| mHeadDirection + 2 == dir) {
+		mBody.clear();
+		mAlive = false;
+	}
 	mHeadDirection = dir;
 }
 
