@@ -8,29 +8,21 @@ std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 
 SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	: mSize(size)
-	, mRadius{ 50.0 }
-	, mPosition(size.width() / 2, size.height() / 2)
-	, mSpeed{ 500.0 }
 	, mColor(Qt::blue)
-	, mTotalElapsedTime{ 0.0 }
 	, mArena{ Arena(size.width(), size.height(), 100, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
 {
 }
 
+// TODO, check collisions, et au debut met le reste du corps avec pointeurs
 void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 {
-	mTotalElapsedTime += elapsedTime;
-	mPosition += getKeyboardDirection(keys) * mSpeed * elapsedTime;
-	constrainPosition();
 	auto grid{ mArena.getGrid() };
 
-	for (auto& i : mEntities) {
+	for (auto& i : mEntities)
 		i->ticPrepare(elapsedTime);
-	}
 
-	for (auto& i : mEntities) {
+	for (auto& i : mEntities)
 		i->ticExecute();
-	}
 
 	// On fait les collisions
 	int headPos{}, tailPos{};
@@ -42,6 +34,12 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 		if (!ptr || !(ptr->hasMoved()))
 			continue;
 
+		if (ent->getPosition().x() >= mArena.getArenaWidthInBlocks() || ent->getPosition().x() < 0 ||
+			ent->getPosition().y() >= mArena.getArenaHeightInBlocks() || ent->getPosition().y() < 0) {
+			ent->setDead();
+			continue;
+		}
+
 		tailPos = ptr->getTailPosition().x() + (ptr->getTailPosition().y() * mArena.getArenaWidthInBlocks());
 		grid[tailPos] = nullptr;
 		if (grid[headPos])
@@ -49,7 +47,7 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 		else
 			grid[headPos] = ptr;
 	}
-	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); });
+	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); }); // TODO retire du tableau de pointeurs
 }
 
 void SnakeGameEngine::draw(QPainter& painter)
@@ -86,34 +84,9 @@ void SnakeGameEngine::clearAllEntities()
 	memset(&(mArena.getGrid()[0]), 0, sizeof(Entity*) * mArena.getBlockSideSize());
 }
 
-void SnakeGameEngine::constrainPosition()
+Arena& SnakeGameEngine::arena()
 {
-	mPosition.setX(std::clamp(mPosition.x(), 0.0, static_cast<qreal>(mSize.width() - mRadius - 1)));
-	mPosition.setY(std::clamp(mPosition.y(), 0.0, static_cast<qreal>(mSize.height() - mRadius - 1)));
-}
-
-QPointF SnakeGameEngine::getKeyboardDirection(PressedKeys const& keys)
-{
-	static QPointF const towardUpDirection(0.0, -1.0);
-	static QPointF const towardDownDirection(0.0, 1.0);
-	static QPointF const towardRightDirection(1.0, 0.0);
-	static QPointF const towardLeftDirection(-1.0, 0.0);
-
-	QPointF direction;
-
-	for (auto key : keys) {
-		if (key == Qt::Key_W) direction += towardUpDirection;
-		if (key == Qt::Key_A) direction += towardLeftDirection;
-		if (key == Qt::Key_S) direction += towardDownDirection;
-		if (key == Qt::Key_D) direction += towardRightDirection;
-	}
-
-	// normalize the direction
-	if (direction.x() != 0.0 && direction.y() != 0.0) {
-		direction /= std::sqrt(direction.x() * direction.x() + direction.y() * direction.y());
-	}
-
-	return direction;
+	return mArena;
 }
 
 QColor SnakeGameEngine::blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio)

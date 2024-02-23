@@ -8,7 +8,7 @@
 class DynamicEntity : public Entity {
 public:
 	DynamicEntity(SnakeGameEngine& board);
-	
+	virtual ~DynamicEntity() = default;
 };
 
 #endif // DYNAMICENTITY_H

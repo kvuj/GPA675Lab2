@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(SnakeGameEngine& board, Controller* controller)
+Snake::Snake(SnakeGameEngine& board, Arena& arena, Controller* controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -18,17 +18,22 @@ Snake::Snake(SnakeGameEngine& board, Controller* controller)
 	, mHeadColor{ Qt::red }
 	, mBodyColor{ Qt::white }
 	, mHasMoved{}
+	, mArena{ arena }
 {
 }
 
-Snake::Snake(SnakeGameEngine& board, PressedKeys const& pressedKeys)
-	: Snake(board, new SnakeKeyboardAbsoluteController(*this,
+Snake::Snake(SnakeGameEngine& board, Arena& arena, PressedKeys const& pressedKeys)
+	: Snake(board, arena, new SnakeKeyboardAbsoluteController(*this,
 		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
 {
 }
 
 Snake::~Snake()
 {
+	auto grid{ mArena.getGrid() };
+	for (auto& part : mBody) {
+		grid[part.x() + (part.y() * sqrt(grid.size()))] = nullptr;
+	}
 	delete mController;
 }
 
@@ -64,6 +69,9 @@ void Snake::ticExecute()
 		mHasMoved = false;
 		return;
 	}
+
+	if (!mAlive)
+		return;
 
 	mElapsedTimeTotal -= (1.0 / mSpeed);
 
@@ -203,7 +211,9 @@ void Snake::goToward(Direction dir)
 {
 	if (mHeadDirection - 2 == dir
 		|| mHeadDirection + 2 == dir) {
+		auto temp{ mBody.first() };
 		mBody.clear();
+		mBody.addFirst(temp); // Pour simplifier la logique dans le process()
 		mAlive = false;
 	}
 	mHeadDirection = dir;

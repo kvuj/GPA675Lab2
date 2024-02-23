@@ -21,7 +21,8 @@ private:
 public:
 	Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundColor, QColor gridColor);
 	void draw(QPainter& painter);
-	size_t getBlockSideSize();
-	size_t getArenaWidthInBlocks();
+	size_t getBlockSideSize() const;
+	size_t getArenaHeightInBlocks() const;
+	size_t getArenaWidthInBlocks() const;
 	std::vector<Entity*>& getGrid();
 };

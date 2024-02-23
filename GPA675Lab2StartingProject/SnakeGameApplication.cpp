@@ -20,7 +20,7 @@ SnakeGameApplication::SnakeGameApplication()
 	setWindowTitle("Snake++");
 	//setWindowIcon(...)
 
-	auto* ptr{ new Snake(mGame, mPressedKeys) };
+	auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
 	ptr->reset({ 5, 5 }, Snake::Direction::toDown, 5, 2);
 	mGame.addEntity(ptr);
 

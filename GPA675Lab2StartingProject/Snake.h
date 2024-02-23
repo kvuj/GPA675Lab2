@@ -2,12 +2,14 @@
 #ifndef SNAKE_H
 #define SNAKE_H
 
+#include "Arena.h"
 #include "Body.h"
 #include "Controller.h"
 #include "DynamicEntity.h"
 #include "SnakeKeyboardAbsoluteController.h"
 
 #include <array>
+#include <cmath>
 #include <functional>
 #include <memory>
 
@@ -26,8 +28,8 @@ public:
 		toLeft = 3
 	};
 
-	Snake(SnakeGameEngine& board, Controller* controller);
-	Snake(SnakeGameEngine& board, PressedKeys const& pressedKeys);
+	Snake(SnakeGameEngine& board, Arena& arena, Controller* controller);
+	Snake(SnakeGameEngine& board, Arena& arena, PressedKeys const& pressedKeys);
 	~Snake();
 
 	bool isValid() override;
@@ -88,6 +90,7 @@ private:
 	qreal mElapsedTimeTotal;
 	Controller* mController;
 	bool mHasMoved;
+	Arena mArena;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;

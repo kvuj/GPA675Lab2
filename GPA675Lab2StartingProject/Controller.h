@@ -13,7 +13,7 @@ public:
 		: mControllerSnake{ snake }, mSavedKeys{ savedKeys }, mPressedKeys{ pressedKeys }
 	{
 	}
-	~Controller() = default;
+	virtual ~Controller() = default;
 	virtual void control() = 0;
 protected:
 	Snake& mControllerSnake;

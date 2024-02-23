@@ -34,12 +34,17 @@ void Arena::draw(QPainter& painter)
 	painter.setPen(Qt::NoPen);
 }
 
-size_t Arena::getBlockSideSize()
+size_t Arena::getBlockSideSize() const
 {
 	return mGridSize;
 }
 
-size_t Arena::getArenaWidthInBlocks()
+size_t Arena::getArenaHeightInBlocks() const
+{
+	return mGridHeight;
+}
+
+size_t Arena::getArenaWidthInBlocks() const
 {
 	return mGridWidth;
 }

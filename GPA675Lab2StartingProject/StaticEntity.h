@@ -7,6 +7,9 @@
 class StaticEntity : public Entity
 {
 public:
+	// TODO: StaticEntity constructeur
+	virtual ~StaticEntity() = default;
+
 	// Accesseurs inline
 	QColor color() const { return mColor; }
 	QPoint position() const { return mPosition; }

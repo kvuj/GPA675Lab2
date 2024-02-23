@@ -53,38 +53,19 @@ public:
 	void addEntity(Entity* entity);
 	std::list<Entity*>& entities();
 	void clearAllEntities();
+	Arena& arena();
 
 private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
-	qreal mRadius;      // Rayon des éléments de jeu, en pixels, utilisé pour leur rendu.
-	QPointF mPosition;  // Position actuelle de l'élément principal de jeu, en pixels, en coordonnées du canvas.
-	qreal mSpeed;       // Vitesse de l'élément principal du jeu, en pixels par seconde.
 	QColor mColor;      // Couleur de l'élément principal de jeu, utilisée lors du rendu.
-	qreal mTotalElapsedTime; // Temps écoulé depuis le début du jeu, en secondes.
 	static std::array<QColor, 2> mBackgroundColors; // Les couleurs définissant le fond de la scène. 
 
 	// Liste des entités de jeu, utilisées pour gérer les éléments de jeu supplémentaires.
-	//Utilisation de shared pointer interdite. 
-	//utilisatino d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
+	// Utilisation de shared pointer interdite. 
+	// Utilisatino d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
 	std::list<Entity*> mEntities;
 	Arena mArena;
 
-
-	//
-	// Restreint la position fournie dans la scène.
-	// 
-	// Cette fonction ajuste la position pour s'assurer qu'elle reste dans la zone prédéterminée, 
-	// les limites de l'espace de jeu.
-	// 
-	// Si la position dépasse les limites, elle est modifiée pour la ramener à l'intérieur de la 
-	// zone autorisée. 
-	// 
-	// Cela peut impliquer la modification des coordonnées X et/ou Y de la position pour refléter 
-	// la contrainte appliquée.
-	void constrainPosition();
-
-	// Fonctions utilitaires
-	static QPointF getKeyboardDirection(PressedKeys const& keys);
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
 };
 
