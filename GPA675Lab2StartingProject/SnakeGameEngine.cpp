@@ -7,13 +7,13 @@ std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.68, 0.7, 0.3) };
 
 SnakeGameEngine::SnakeGameEngine(QSize const& size)
-    : mSize(size) 
-    , mRadius{ 50.0 } 
-    , mPosition(size.width() / 2, size.height() / 2) 
-    , mSpeed{ 500.0 }
-    , mColor(Qt::blue)
-    , mTotalElapsedTime{ 0.0 }
-    , arena{Arena(size.width(),size.height(),1000, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255)))}
+	: mSize(size)
+	, mRadius{ 50.0 }
+	, mPosition(size.width() / 2, size.height() / 2)
+	, mSpeed{ 500.0 }
+	, mColor(Qt::blue)
+	, mTotalElapsedTime{ 0.0 }
+	, mArena{ Arena(size.width(), size.height(), 100, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
 {
 }
 
@@ -22,32 +22,55 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 	mTotalElapsedTime += elapsedTime;
 	mPosition += getKeyboardDirection(keys) * mSpeed * elapsedTime;
 	constrainPosition();
-
+	auto grid{ mArena.getGrid() };
 
 	for (auto& i : mEntities) {
 		i->ticPrepare(elapsedTime);
 	}
 
-	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); });
-
 	for (auto& i : mEntities) {
 		i->ticExecute();
 	}
+
+	// On fait les collisions
+	int headPos{}, tailPos{};
+	Snake* ptr{};
+	for (auto& ent : mEntities) {
+		headPos = ent->getPosition().x() + (ent->getPosition().y() * mArena.getArenaWidthInBlocks());
+		ptr = reinterpret_cast<Snake*>(ent);
+
+		if (!ptr || !(ptr->hasMoved()))
+			continue;
+
+		tailPos = ptr->getTailPosition().x() + (ptr->getTailPosition().y() * mArena.getArenaWidthInBlocks());
+		grid[tailPos] = nullptr;
+		if (grid[headPos])
+			ptr->setDead();
+		else
+			grid[headPos] = ptr;
+	}
+	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); });
 }
 
 void SnakeGameEngine::draw(QPainter& painter)
 {
-	arena.draw(painter);
+	mArena.draw(painter);
 	painter.setBrush(mColor);
 
 	for (auto& i : mEntities) {
-		i->draw(painter,arena.getGridSize());
+		i->draw(painter, mArena.getBlockSideSize());
 	}
 }
 
 void SnakeGameEngine::addEntity(Entity* entity)
 {
 	mEntities.push_back(entity);
+	auto* ptr = reinterpret_cast<Snake*>(entity);
+	if (!ptr)
+		return;
+
+	for (auto& e : ptr->getBody())
+		mArena.getGrid()[e.x() + (e.y() * mArena.getArenaWidthInBlocks())] = ptr;
 }
 
 std::list<Entity*>& SnakeGameEngine::entities()
@@ -60,6 +83,7 @@ void SnakeGameEngine::clearAllEntities()
 	for (auto& i : mEntities)
 		delete i;
 	mEntities.clear();
+	memset(&(mArena.getGrid()[0]), 0, sizeof(Entity*) * mArena.getBlockSideSize());
 }
 
 void SnakeGameEngine::constrainPosition()

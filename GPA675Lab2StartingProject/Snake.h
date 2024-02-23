@@ -12,6 +12,7 @@
 #include <memory>
 
 #include <qnamespace.h>
+#include <QPoint>
 
 class Snake : public DynamicEntity
 {
@@ -63,6 +64,13 @@ public:
 	void accelerate(SpeedType percentMore);
 	void decelerate(SpeedType percentLess);
 
+	bool hasMoved();
+	void setMoved(bool flag);
+
+	QPoint getPosition() override;
+	QPoint getTailPosition();
+	Body& getBody();
+
 private:
 	// Données membres ajustées pour éviter du padding de
 	// structure. Ne pas changer l'ordre.
@@ -79,6 +87,7 @@ private:
 	Direction mHeadDirection;
 	qreal mElapsedTimeTotal;
 	Controller* mController;
+	bool mHasMoved;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;

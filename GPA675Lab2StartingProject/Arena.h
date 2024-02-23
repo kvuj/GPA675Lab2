@@ -3,6 +3,8 @@
 #include <QPointF>
 #include <QColor>
 
+#include "Entity.h"
+
 class Arena
 {
 private:
@@ -14,10 +16,12 @@ private:
 	size_t mGridSize;
 	QColor mBackgroundColor;
 	QColor mGridColor;
+	std::vector<Entity*> mGrid;
 
 public:
 	Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundColor, QColor gridColor);
 	void draw(QPainter& painter);
-	size_t getGridSize();
-
+	size_t getBlockSideSize();
+	size_t getArenaWidthInBlocks();
+	std::vector<Entity*>& getGrid();
 };

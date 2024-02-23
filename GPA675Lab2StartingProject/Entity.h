@@ -23,6 +23,7 @@ public:
 	virtual void ticExecute() = 0;
 	virtual void draw(QPainter& painter, size_t gridSize) = 0;
 	virtual bool isColliding(const QPoint& position) = 0;
+	virtual QPoint getPosition() = 0;
 
 protected:
 	SnakeGameEngine& mBoard;

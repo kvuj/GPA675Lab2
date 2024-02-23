@@ -15,8 +15,9 @@ Snake::Snake(SnakeGameEngine& board, Controller* controller)
 	, LUTDirectionDisplacement{ QPoint(0, -1), QPoint(1, 0), QPoint(0, 1), QPoint(-1, 0) }
 	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
 	, mController{ std::move(controller) }
-	, mHeadColor{Qt::red}
-	, mBodyColor{Qt::white}
+	, mHeadColor{ Qt::red }
+	, mBodyColor{ Qt::white }
+	, mHasMoved{}
 {
 }
 
@@ -59,11 +60,14 @@ void Snake::ticPrepare(qreal elapsedTime)
 
 void Snake::ticExecute()
 {
-	if (mElapsedTimeTotal < (1.0 / mSpeed))
+	if (mElapsedTimeTotal < (1.0 / mSpeed)) {
+		mHasMoved = false;
 		return;
+	}
 
 	mElapsedTimeTotal -= (1.0 / mSpeed);
 
+	mHasMoved = true;
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 }
 
@@ -237,4 +241,29 @@ void Snake::accelerate(SpeedType percentMore)
 void Snake::decelerate(SpeedType percentLess)
 {
 	mSpeed -= (percentLess / 100.0) * mSpeed;
+}
+
+bool Snake::hasMoved()
+{
+	return mHasMoved;
+}
+
+void Snake::setMoved(bool flag)
+{
+	mHasMoved = flag;
+}
+
+QPoint Snake::getPosition()
+{
+	return mBody.first();
+}
+
+QPoint Snake::getTailPosition()
+{
+	return mBody.last();
+}
+
+Body& Snake::getBody()
+{
+	return mBody;
 }

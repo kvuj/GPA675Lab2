@@ -3,6 +3,7 @@
 #define GAME_H
 
 #include <array>
+#include <cmath>
 #include <list>
 #include <memory>
 #include <QSize>
@@ -12,6 +13,7 @@
 #include "Arena.h"
 #include "PressedKeys.h"
 #include "Entity.h"
+#include "Snake.h"
 
 class QPainter;
 
@@ -65,7 +67,7 @@ private:
 	//Utilisation de shared pointer interdite. 
 	//utilisatino d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
 	std::list<Entity*> mEntities;
-	Arena arena;
+	Arena mArena;
 
 
 	//
