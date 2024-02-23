@@ -107,12 +107,15 @@
     <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameTransition.cpp" />
+    <ClCompile Include="GamingState.cpp" />
     <ClCompile Include="GrowingPellet.cpp" />
     <ClCompile Include="HomeState.cpp" />
     <ClCompile Include="KeyboardTransition.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Obstacle.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeBlockade.cpp" />
@@ -143,6 +146,9 @@
     <ClInclude Include="DynamicEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FiniteStateMachine.h" />
+    <ClInclude Include="GameOverState.h" />
+    <ClInclude Include="GamingState.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="SnakeGameEngine.h" />
     <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GrowingPellet.h" />
