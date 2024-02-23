@@ -58,7 +58,7 @@ protected:
 
    
 
-private slots:
+public slots:
     // 
     // Slot appelé à chaque tic du timer.
     // 

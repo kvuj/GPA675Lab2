@@ -4,23 +4,25 @@
 #include <QMainWindow>
 #include "ui_Menu.h"
 
-#include <QGraphicsRectItem>
 
+#include <QPushButton>
 
 
 class Menu : public QMainWindow
 {
 	Q_OBJECT
 
-public:
 
-protected:
 
-private slots:
-	
+    public:
+        Menu(QWidget* parent = nullptr);
 
-private:
-	
+    private slots:
+        void Exit();
+        void Start();
+
+	private:
+
 };
 
 #endif // MENU_H

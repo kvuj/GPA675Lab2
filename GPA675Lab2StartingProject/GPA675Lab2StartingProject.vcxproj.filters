@@ -118,9 +118,6 @@
     <ClCompile Include="StaticEntity.cpp">
       <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.cpp">
-      <Filter>Source Files\State</Filter>
-    </ClCompile>
     <ClCompile Include="State.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
@@ -159,6 +156,9 @@
     </ClCompile>
     <ClCompile Include="HomeState.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\Tools</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,7 +252,7 @@
       <Filter>Header Files\Game Engine</Filter>
     </QtMoc>
     <QtMoc Include="Menu.h">
-      <Filter>Header Files\State</Filter>
+      <Filter>Header Files\Tools</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
