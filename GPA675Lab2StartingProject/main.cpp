@@ -1,4 +1,4 @@
-#include "GPA675Lab2.h"
+#include "SnakeGameApplication.h"
 #include "Tests.h"
 
 #include <QtWidgets/QApplication>
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication application(argc, argv);
-    GPA675Lab2 window;
+    SnakeGameApplication window;
     window.show();
     return application.exec();
 }

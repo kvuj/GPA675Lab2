@@ -1,12 +1,12 @@
-#include "Game.h"
+#include "SnakeGameEngine.h"
 
 #include <QPainter>
 
-std::array<QColor, 2> Game::mBackgroundColors{
+std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.55, 0.5, 0.1),
 	QColor::fromHslF(0.68, 0.7, 0.3) };
 
-Game::Game(QSize const& size)
+SnakeGameEngine::SnakeGameEngine(QSize const& size)
     : mSize(size) 
     , mRadius{ 50.0 } 
     , mPosition(size.width() / 2, size.height() / 2) 
@@ -17,7 +17,7 @@ Game::Game(QSize const& size)
 {
 }
 
-void Game::process(qreal elapsedTime, PressedKeys const& keys)
+void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 {
 	mTotalElapsedTime += elapsedTime;
 	mPosition += getKeyboardDirection(keys) * mSpeed * elapsedTime;
@@ -35,7 +35,7 @@ void Game::process(qreal elapsedTime, PressedKeys const& keys)
 	}
 }
 
-void Game::draw(QPainter& painter)
+void SnakeGameEngine::draw(QPainter& painter)
 {
 	arena.draw(painter);
 	painter.setBrush(mColor);
@@ -45,30 +45,30 @@ void Game::draw(QPainter& painter)
 	}
 }
 
-void Game::addEntity(Entity* entity)
+void SnakeGameEngine::addEntity(Entity* entity)
 {
 	mEntities.push_back(entity);
 }
 
-std::list<Entity*>& Game::entities()
+std::list<Entity*>& SnakeGameEngine::entities()
 {
 	return mEntities;
 }
 
-void Game::clearAllEntities()
+void SnakeGameEngine::clearAllEntities()
 {
 	for (auto& i : mEntities)
 		delete i;
 	mEntities.clear();
 }
 
-void Game::constrainPosition()
+void SnakeGameEngine::constrainPosition()
 {
 	mPosition.setX(std::clamp(mPosition.x(), 0.0, static_cast<qreal>(mSize.width() - mRadius - 1)));
 	mPosition.setY(std::clamp(mPosition.y(), 0.0, static_cast<qreal>(mSize.height() - mRadius - 1)));
 }
 
-QPointF Game::getKeyboardDirection(PressedKeys const& keys)
+QPointF SnakeGameEngine::getKeyboardDirection(PressedKeys const& keys)
 {
 	static QPointF const towardUpDirection(0.0, -1.0);
 	static QPointF const towardDownDirection(0.0, 1.0);
@@ -92,7 +92,7 @@ QPointF Game::getKeyboardDirection(PressedKeys const& keys)
 	return direction;
 }
 
-QColor Game::blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio)
+QColor SnakeGameEngine::blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio)
 {
 	assert(color1Ratio >= 0.0 && color1Ratio <= 1.0);
 

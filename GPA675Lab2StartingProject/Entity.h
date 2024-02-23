@@ -5,13 +5,13 @@
 #include <QPainter>
 #include <QPointF>
 
-class Game;
+class SnakeGameEngine;
 
 
 class Entity
 {
 public:
-	Entity(Game& board) : mBoard(board), mAge(0), mAlive(true) {}
+	Entity(SnakeGameEngine& board) : mBoard(board), mAge(0), mAlive(true) {}
 	virtual ~Entity() = default;
 
 	void setDead() { mAlive = false; }
@@ -25,7 +25,7 @@ public:
 	virtual bool isColliding(const QPoint& position) = 0;
 
 protected:
-	Game& mBoard;
+	SnakeGameEngine& mBoard;
 	double mAge;
 	bool mAlive;
 };

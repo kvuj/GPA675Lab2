@@ -6,17 +6,17 @@
 #include <QTimer>
 #include <QElapsedTimer>
 
-#include "Game.h"
+#include "SnakeGameEngine.h"
 #include "Entity.h"
 #include "Menu.h"
 
 // 
-// Classe GPA675Lab2
+// Classe SnakeGameApplication
 // Classe principale pour le projet de laboratoire du cours GPA675.
 // 
 // Cette classe hérite de QWidget et constitue le point d'entrée principal de l'application.
 // Elle gère les événements clés, l'affichage du widget et la boucle de simulation du jeu.
-class GPA675Lab2 : public QWidget
+class SnakeGameApplication : public QWidget
 {
     Q_OBJECT
 
@@ -24,11 +24,11 @@ public:
     // 
     // Constructeur par défaut.
     // Initialise la fenêtre, configure le timer et prépare l'environnement du jeu.
-    GPA675Lab2();
+    SnakeGameApplication();
     // 
     // Destructeur par défaut.
     // Nettoie les ressources utilisées par l'application. L'implémentation par défaut est suffisante.
-    ~GPA675Lab2() override = default;
+    ~SnakeGameApplication() override = default;
 
 protected:
     // 
@@ -71,7 +71,7 @@ private:
     QElapsedTimer mElapsedTimer;    // Chronomètre pour mesurer les intervalles de temps entre les tics.
     PressedKeys mPressedKeys;       // Structure pour gérer l'état des touches du clavier pressées.
 
-    Game mGame;                     // Instance de l'engin de jeu gérant la logique et l'état du jeu.
+    SnakeGameEngine mGame;                     // Instance de l'engin de jeu gérant la logique et l'état du jeu.
     Menu mMenu;
 };
 

@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(Game& board, Controller* controller)
+Snake::Snake(SnakeGameEngine& board, Controller* controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -20,7 +20,7 @@ Snake::Snake(Game& board, Controller* controller)
 {
 }
 
-Snake::Snake(Game& board, PressedKeys const& pressedKeys)
+Snake::Snake(SnakeGameEngine& board, PressedKeys const& pressedKeys)
 	: Snake(board, new SnakeKeyboardAbsoluteController(*this,
 		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
 {

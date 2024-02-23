@@ -76,10 +76,10 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="GPA675Lab2.cpp">
+    <ClCompile Include="SnakeGameApplication.cpp">
       <Filter>Source Files\GameEngine</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
+    <ClCompile Include="SnakeGameEngine.cpp">
       <Filter>Source Files\GameEngine</Filter>
     </ClCompile>
     <ClCompile Include="Tests.cpp">
@@ -165,7 +165,7 @@
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Game.h">
+    <ClInclude Include="SnakeGameEngine.h">
       <Filter>Header Files\Game Engine</Filter>
     </ClInclude>
     <ClInclude Include="Body.h">
@@ -248,7 +248,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="GPA675Lab2.h">
+    <QtMoc Include="SnakeGameApplication.h">
       <Filter>Header Files\Game Engine</Filter>
     </QtMoc>
     <QtMoc Include="Menu.h">

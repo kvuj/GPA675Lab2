@@ -1,4 +1,4 @@
-#include "GPA675Lab2.h"
+#include "SnakeGameApplication.h"
 #include "Snake.h"
 
 #include <QDebug>
@@ -6,7 +6,7 @@
 #include <QPainter>
 
 
-GPA675Lab2::GPA675Lab2()
+SnakeGameApplication::SnakeGameApplication()
 	: QWidget(nullptr)
 	, mWindowSize(1024, 1024)
 	, mTimer()
@@ -30,11 +30,11 @@ GPA675Lab2::GPA675Lab2()
 
 	// Configuration de la boucle générale via l'objet 'timer'.
 	mTimer.setSingleShot(true);
-	connect(&mTimer, &QTimer::timeout, this, &GPA675Lab2::tic);
+	connect(&mTimer, &QTimer::timeout, this, &SnakeGameApplication::tic);
 	mTimer.start();
 }
 
-void GPA675Lab2::keyPressEvent(QKeyEvent* event)
+void SnakeGameApplication::keyPressEvent(QKeyEvent* event)
 {
 	if (!event->isAutoRepeat()) {
 		mPressedKeys.push_back(static_cast<Qt::Key>(event->key()));
@@ -49,7 +49,7 @@ void GPA675Lab2::keyPressEvent(QKeyEvent* event)
 	}
 }
 
-void GPA675Lab2::keyReleaseEvent(QKeyEvent* event)
+void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
 {
 	if (!event->isAutoRepeat()) {
 		auto it = std::find(mPressedKeys.begin(), mPressedKeys.end(), event->key());
@@ -67,7 +67,7 @@ void GPA675Lab2::keyReleaseEvent(QKeyEvent* event)
 	}
 }
 
-void GPA675Lab2::paintEvent(QPaintEvent* event)
+void SnakeGameApplication::paintEvent(QPaintEvent* event)
 {
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
@@ -75,7 +75,7 @@ void GPA675Lab2::paintEvent(QPaintEvent* event)
 	mGame.draw(painter);
 }
 
-void GPA675Lab2::tic()
+void SnakeGameApplication::tic()
 {
 	double elapsedTime{ mElapsedTimer.restart() / 1.0e3 };
 

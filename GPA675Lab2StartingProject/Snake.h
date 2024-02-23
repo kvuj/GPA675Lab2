@@ -25,8 +25,8 @@ public:
 		toLeft = 3
 	};
 
-	Snake(Game& board, Controller* controller);
-	Snake(Game& board, PressedKeys const& pressedKeys);
+	Snake(SnakeGameEngine& board, Controller* controller);
+	Snake(SnakeGameEngine& board, PressedKeys const& pressedKeys);
 	~Snake();
 
 	bool isValid() override;

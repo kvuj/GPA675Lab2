@@ -7,7 +7,7 @@
 
 class DynamicEntity : public Entity {
 public:
-	DynamicEntity(Game& board);
+	DynamicEntity(SnakeGameEngine& board);
 	
 };
 

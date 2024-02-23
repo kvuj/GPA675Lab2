@@ -128,11 +128,11 @@
     <ClCompile Include="Tests.cpp" />
     <ClCompile Include="Transition.cpp" />
     <QtRcc Include="GPA675Lab2.qrc" />
-    <QtMoc Include="GPA675Lab2.h" />
+    <QtMoc Include="SnakeGameApplication.h" />
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Entity.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GPA675Lab2.cpp" />
+    <ClCompile Include="SnakeGameEngine.cpp" />
+    <ClCompile Include="SnakeGameApplication.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +143,7 @@
     <ClInclude Include="DynamicEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FiniteStateMachine.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="SnakeGameEngine.h" />
     <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GrowingPellet.h" />
     <ClInclude Include="HomeState.h" />

@@ -3,7 +3,7 @@
 #define SnakeGameState_H
 
 #include "state.h"
-#include "Game.h"
+#include "SnakeGameEngine.h"
 
 class SnakeGameState :public State
 {

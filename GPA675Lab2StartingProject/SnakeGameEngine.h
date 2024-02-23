@@ -16,23 +16,23 @@
 class QPainter;
 
 // 
-// Classe Game
+// Classe SnakeGameEngine
 // Classe représentant l'engin de jeu pour gérer la logique et l'affichage du jeu.
 // 
 // Cette classe encapsule l'état du jeu, y compris la position, la vitesse et l'apparence des éléments de jeu,
 // et fournit des méthodes pour leur mise à jour et leur rendu.
-class Game
+class SnakeGameEngine
 {
 public:
 	// 
-	// Constructeur de la classe Game.
+	// Constructeur de la classe SnakeGameEngine.
 	// Initialise l'état du jeu avec une taille spécifiée, configurant les paramètres par défaut pour les éléments du jeu.
 	// 
 	// > size Taille du canvas de jeu, généralement correspondant à la taille de la fenêtre de l'application.
-	Game(QSize const& size);
+	SnakeGameEngine(QSize const& size);
 	// 
 	// Destructeur par défaut.
-	~Game() = default;
+	~SnakeGameEngine() = default;
 
 	// 
 	// Traite la logique du jeu pour un seul pas de simulation.
