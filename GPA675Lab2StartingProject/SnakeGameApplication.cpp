@@ -13,12 +13,10 @@ SnakeGameApplication::SnakeGameApplication()
 	, mElapsedTimer()
 	, mPressedKeys()
 	, mGame(mWindowSize)
-	, mMenu()
 {
-	mMenu.show();
+	
 	// Configuration de la barre de titre de l'application
 	setWindowTitle("Snake++");
-	//setWindowIcon(...)
 
 	auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
 	ptr->reset({ 5, 5 }, Snake::Direction::toDown, 5, 2);
@@ -33,6 +31,7 @@ SnakeGameApplication::SnakeGameApplication()
 	connect(&mTimer, &QTimer::timeout, this, &SnakeGameApplication::tic);
 	mTimer.start();
 }
+
 
 void SnakeGameApplication::keyPressEvent(QKeyEvent* event)
 {

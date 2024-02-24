@@ -8,7 +8,7 @@
 
 #include "SnakeGameEngine.h"
 #include "Entity.h"
-#include "Menu.h"
+
 
 // 
 // Classe SnakeGameApplication
@@ -29,6 +29,8 @@ public:
     // Destructeur par défaut.
     // Nettoie les ressources utilisées par l'application. L'implémentation par défaut est suffisante.
     ~SnakeGameApplication() override = default;
+
+    
 
 protected:
     // 
@@ -65,6 +67,7 @@ public slots:
     // Met à jour l'état du jeu et déclenche un rafraîchissement de l'affichage.
     void tic();
 
+
 private:
     QSize const mWindowSize;        // Taille immuable de la fenêtre de l'application.
     QTimer mTimer;                  // Timer pour gérer la boucle de simulation à intervalles réguliers.
@@ -72,7 +75,6 @@ private:
     PressedKeys mPressedKeys;       // Structure pour gérer l'état des touches du clavier pressées.
 
     SnakeGameEngine mGame;                     // Instance de l'engin de jeu gérant la logique et l'état du jeu.
-    Menu mMenu;
 };
 
 

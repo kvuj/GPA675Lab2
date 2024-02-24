@@ -1,4 +1,4 @@
-#include "SnakeGameApplication.h"
+#include "Menu.h"
 #include "Tests.h"
 
 #include <QtWidgets/QApplication>
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication application(argc, argv);
-    SnakeGameApplication window;
+    Menu window;
     window.show();
     return application.exec();
 }
