@@ -51,6 +51,7 @@ public:
 	void reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed);
 	void setSpeed(SpeedType speed);
 	void setColors(QColor head, QColor body);
+	void setController(Controller* ptr);
 	void adjustScore(int score);
 
 	void turnRight();

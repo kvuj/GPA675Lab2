@@ -131,10 +131,11 @@ void Snake::reset(QPoint headPosition, Direction headDirection, size_t bodyLengt
 	mBody.addFirst(headPosition);
 
 	for (size_t i{}; i < bodyLength - 1; i++) {
-		mBody.addLast(mBody.last() + LUTDirectionDisplacement[static_cast<uint8_t>(headDirection)]);
+		mBody.addLast(mBody.last() - LUTDirectionDisplacement[static_cast<uint8_t>(headDirection)]);
 	}
 
 	mSpeed = initialSpeed;
+	mHeadDirection = headDirection;
 }
 
 void Snake::setSpeed(SpeedType speed)
@@ -146,6 +147,11 @@ void Snake::setColors(QColor head, QColor body)
 {
 	mHeadColor = head;
 	mBodyColor = body;
+}
+
+void Snake::setController(Controller* ptr)
+{
+	mController = ptr;
 }
 
 void Snake::adjustScore(int score)
