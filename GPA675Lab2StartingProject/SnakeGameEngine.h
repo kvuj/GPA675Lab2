@@ -62,7 +62,7 @@ private:
 
 	// Liste des entités de jeu, utilisées pour gérer les éléments de jeu supplémentaires.
 	// Utilisation de shared pointer interdite. 
-	// Utilisatino d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
+	// Utilisation d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
 	std::list<Entity*> mEntities;
 	Arena mArena;
 

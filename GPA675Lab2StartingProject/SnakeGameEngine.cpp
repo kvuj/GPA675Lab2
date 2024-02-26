@@ -51,7 +51,7 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 		else
 			grid[headPos] = ptr;
 	}
-	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); }); 
+	mEntities.remove_if([](Entity* en) { if (!(en->isAlive())) { delete en; return true; } else return false; });
 	// Se retire du tableau de pointeurs avec le destructeur
 }
 
