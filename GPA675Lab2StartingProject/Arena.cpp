@@ -2,18 +2,23 @@
 
 
 Arena::Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundColor, QColor gridColor) :
-	mWidth{ width },
-	mHeight{ height },
-	mBackgroundColor{ backgroundColor },
-	mGridColor{ gridColor },
-	mGridSize{ static_cast <size_t>(sqrt(floor(static_cast <double>(width * height) / static_cast <double>(gridAmount)))) },
-	mGrid(gridAmount)
+	Arena(width,height,sqrt(gridAmount), sqrt(gridAmount), backgroundColor, gridColor)
+{
+}
+
+Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGrid, QColor backgroundColor, QColor gridColor) :
+mWidth{ width },
+mHeight{ height },
+mBackgroundColor{ backgroundColor },
+mGridColor{ gridColor },
+mGridHeight(heightOfGrid),
+mGridWidth{widthOfGrid},
+mGridSize{ static_cast <size_t>(sqrt(floor(static_cast <double>(width * height) / static_cast <double>(pow(std::max(widthOfGrid,heightOfGrid),2))))) },
+mGrid(widthOfGrid*heightOfGrid) 
 {
 	mSizeOfArena = QSize(QSize(width, height));
-	mGridHeight = static_cast <size_t>(floor(static_cast <double>(height) / static_cast <double>(mGridSize)));
-	mGridWidth = static_cast <size_t>(floor(static_cast <double>(width) / static_cast <double>(mGridSize)));
 
-	memset(&(mGrid[0]), 0, sizeof(Entity*) * gridAmount);
+	memset(&(mGrid[0]), 0, sizeof(Entity*) * widthOfGrid * heightOfGrid);
 }
 
 void Arena::draw(QPainter& painter)

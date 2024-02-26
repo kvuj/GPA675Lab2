@@ -9,7 +9,7 @@ std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	: mSize(size)
 	, mColor(Qt::blue)
-	, mArena{ Arena(size.width(), size.height(), 100, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
+	, mArena{ Arena(size.width(), size.height(), 11,15, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
 {
 }
 
