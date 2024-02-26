@@ -13,6 +13,10 @@ SnakeGameEngine::SnakeGameEngine(QSize const& size)
 {
 }
 
+SnakeGameEngine::~SnakeGameEngine()
+{
+}
+
 void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 {
 	auto grid{ mArena.getGrid() };

@@ -23,8 +23,7 @@ Snake::Snake(SnakeGameEngine& board, Arena& arena, Controller* controller)
 }
 
 Snake::Snake(SnakeGameEngine& board, Arena& arena, PressedKeys const& pressedKeys)
-	: Snake(board, arena, new SnakeKeyboardAbsoluteController(*this,
-		{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, pressedKeys))
+	: Snake(board, arena, nullptr)
 {
 }
 
@@ -32,7 +31,9 @@ Snake::~Snake()
 {
 	auto grid{ mArena.getGrid() };
 	for (auto& part : mBody) {
-		grid[part.x() + (part.y() * sqrt(grid.size()))] = nullptr;
+		size_t pos{ part.x() + (part.y() * static_cast<size_t>(sqrt(grid.size()))) };
+		if (pos < grid.size())
+			grid[pos] = nullptr;
 	}
 	delete mController;
 }
@@ -115,7 +116,7 @@ bool Snake::isReverseProhibited() const
 	return mReverseProhibited;
 }
 
-Controller& Snake::controller()
+Snake::Controller& Snake::controller()
 {
 	return *mController;
 }

@@ -4,6 +4,7 @@
 
 #include "Snake.h"
 #include "SnakeKeyboardController.h"
+#include "PressedKeys.h"
 
 class SnakeKeyboardRelativeController : public SnakeKeyboardController
 {

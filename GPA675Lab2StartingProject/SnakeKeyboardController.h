@@ -2,9 +2,9 @@
 #ifndef SNAKEKEYBOARDCONTROLLER_H
 #define SNAKEKEYBOARDCONTROLLER_H
 
-#include "Controller.h"
+#include "Snake.h"
 
-class SnakeKeyboardController : public Controller
+class SnakeKeyboardController : public Snake::Controller
 {
 public:
 	SnakeKeyboardController(Snake& snake, SavedKeys savedKeys, PressedKeys const& pressedKeys);

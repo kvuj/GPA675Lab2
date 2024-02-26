@@ -85,9 +85,6 @@
     <ClCompile Include="Tests.cpp">
       <Filter>Source Files\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="Controller.cpp">
-      <Filter>Source Files\Controls</Filter>
-    </ClCompile>
     <ClCompile Include="SnakeKeyboardRelativeController.cpp">
       <Filter>Source Files\Controls</Filter>
     </ClCompile>
@@ -185,9 +182,6 @@
     </ClInclude>
     <ClInclude Include="Tests.h">
       <Filter>Header Files\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>Header Files\Controls</Filter>
     </ClInclude>
     <ClInclude Include="SnakeKeyboardAbsoluteController.h">
       <Filter>Header Files\Controls</Filter>

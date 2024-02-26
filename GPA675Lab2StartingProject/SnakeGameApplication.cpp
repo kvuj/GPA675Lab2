@@ -1,4 +1,5 @@
 #include "SnakeGameApplication.h"
+#include "SnakeKeyboardAbsoluteController.h"
 #include "SnakeKeyboardRelativeController.h"
 #include "Snake.h"
 
@@ -83,12 +84,16 @@ void SnakeGameApplication::setGameType(GameType type)
 void SnakeGameApplication::prepareGame()
 {
 	if (mType == GameType::Origin) {
-
+		// TODO...
 	}
 	else if (mType == GameType::Blockade) {
 		auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
 		auto* ptr2{ new Snake(mGame, mGame.arena(), nullptr) };
-		ptr2->setController(new SnakeKeyboardAbsoluteController(*ptr2, { Qt::Key_J, Qt::Key_K }, mPressedKeys));
+
+		// TODO: Configurable
+		ptr->setController(new SnakeKeyboardAbsoluteController(*ptr,
+			{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, mPressedKeys));
+		ptr2->setController(new SnakeKeyboardRelativeController(*ptr2, { Qt::Key_J, Qt::Key_K }, mPressedKeys));
 		ptr->reset({ 5, 5 }, Snake::Direction::toDown, 3, 2);
 		ptr2->reset({ 7, 5 }, Snake::Direction::toDown, 3, 2);
 		mGame.addEntity(ptr);

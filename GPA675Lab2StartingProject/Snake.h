@@ -4,9 +4,8 @@
 
 #include "Arena.h"
 #include "Body.h"
-#include "Controller.h"
 #include "DynamicEntity.h"
-#include "SnakeKeyboardAbsoluteController.h"
+#include "PressedKeys.h"
 
 #include <array>
 #include <cmath>
@@ -27,6 +26,8 @@ public:
 		toDown = 2,
 		toLeft = 3
 	};
+
+	class Controller;
 
 	Snake(SnakeGameEngine& board, Arena& arena, Controller* controller);
 	Snake(SnakeGameEngine& board, Arena& arena, PressedKeys const& pressedKeys);
@@ -73,6 +74,21 @@ public:
 	QPoint getPosition() override;
 	QPoint getTailPosition();
 	Body& getBody();
+
+	class Controller
+	{
+	public:
+		Controller(Snake& snake, SavedKeys savedKeys, PressedKeys const& pressedKeys)
+			: mControllerSnake{ snake }, mSavedKeys{ savedKeys }, mPressedKeys{ pressedKeys }
+		{
+		}
+		virtual ~Controller() = default;
+		virtual void control() = 0;
+	protected:
+		Snake& mControllerSnake;
+		PressedKeys const& mPressedKeys;
+		SavedKeys mSavedKeys;
+	};
 
 private:
 	// Données membres ajustées pour éviter du padding de

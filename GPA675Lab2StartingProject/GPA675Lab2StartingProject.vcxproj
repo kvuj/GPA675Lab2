@@ -104,7 +104,6 @@
   <ItemGroup>
     <ClCompile Include="AcceleratingPellet.cpp" />
     <ClCompile Include="Arena.cpp" />
-    <ClCompile Include="Controller.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="GameOverState.cpp" />
@@ -142,7 +141,6 @@
     <ClInclude Include="AcceleratingPellet.h" />
     <ClInclude Include="Arena.h" />
     <ClInclude Include="Body.h" />
-    <ClInclude Include="Controller.h" />
     <ClInclude Include="DynamicEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FiniteStateMachine.h" />

@@ -34,7 +34,7 @@ public:
 	SnakeGameEngine(QSize const& size);
 	// 
 	// Destructeur par défaut.
-	~SnakeGameEngine() = default;
+	~SnakeGameEngine();
 
 	// 
 	// Traite la logique du jeu pour un seul pas de simulation.
