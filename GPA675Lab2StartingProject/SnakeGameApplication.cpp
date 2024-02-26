@@ -1,4 +1,5 @@
 #include "SnakeGameApplication.h"
+#include "SnakeKeyboardRelativeController.h"
 #include "Snake.h"
 
 #include <QDebug>
@@ -14,13 +15,17 @@ SnakeGameApplication::SnakeGameApplication()
 	, mPressedKeys()
 	, mGame(mWindowSize)
 {
-	
+
 	// Configuration de la barre de titre de l'application
 	setWindowTitle("Snake++");
 
 	auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
-	ptr->reset({ 5, 5 }, Snake::Direction::toDown, 5, 2);
+	auto* ptr2{ new Snake(mGame, mGame.arena(), nullptr) };
+	ptr2->setController(new SnakeKeyboardAbsoluteController(*ptr2, { Qt::Key_J, Qt::Key_K }, mPressedKeys));
+	ptr->reset({ 5, 5 }, Snake::Direction::toDown, 3, 2);
+	ptr2->reset({ 7, 5 }, Snake::Direction::toDown, 3, 2);
 	mGame.addEntity(ptr);
+	mGame.addEntity(ptr2);
 
 	// Configuration générale : taille et focus
 	setFixedSize(mWindowSize);

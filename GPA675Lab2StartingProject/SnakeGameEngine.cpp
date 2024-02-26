@@ -13,7 +13,6 @@ SnakeGameEngine::SnakeGameEngine(QSize const& size)
 {
 }
 
-// TODO, check collisions, et au debut met le reste du corps avec pointeurs
 void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 {
 	auto grid{ mArena.getGrid() };
@@ -31,9 +30,11 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 		headPos = ent->getPosition().x() + (ent->getPosition().y() * mArena.getArenaWidthInBlocks());
 		ptr = reinterpret_cast<Snake*>(ent);
 
+		// Ce qui suit est seulement pour les serpents
 		if (!ptr || !(ptr->hasMoved()))
 			continue;
 
+		// Si hors grille, à supprimer
 		if (ent->getPosition().x() >= mArena.getArenaWidthInBlocks() || ent->getPosition().x() < 0 ||
 			ent->getPosition().y() >= mArena.getArenaHeightInBlocks() || ent->getPosition().y() < 0) {
 			ent->setDead();
@@ -41,13 +42,17 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 		}
 
 		tailPos = ptr->getTailPosition().x() + (ptr->getTailPosition().y() * mArena.getArenaWidthInBlocks());
+		
+		// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
+		// les collisions.
 		grid[tailPos] = nullptr;
 		if (grid[headPos])
 			ptr->setDead();
 		else
 			grid[headPos] = ptr;
 	}
-	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); }); // TODO retire du tableau de pointeurs
+	mEntities.remove_if([](Entity* en) { return !(en->isAlive()); }); 
+	// Se retire du tableau de pointeurs avec le destructeur
 }
 
 void SnakeGameEngine::draw(QPainter& painter)
