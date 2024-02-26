@@ -232,7 +232,6 @@ void Body::rotate(int indexFrom)
 
 bool Body::isColliding(QPoint const& position)
 {
-	// TODO: Implémenter arène avec pointeurs sur chaque case.
 	for (auto& i : *this) {
 		if (i == position)
 			return true;

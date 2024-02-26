@@ -84,7 +84,7 @@ void Snake::draw(QPainter& painter, size_t gridSize)
 	mBody.draw(painter, mHeadColor, mBodyColor, gridSize);
 }
 
-// Retire la queue?
+[[deprecated("You shouldn't check collisions this way. Use the grid of pointers in the arena")]]
 bool Snake::isColliding(const QPoint& position)
 {
 	return mBody.isColliding(position);
