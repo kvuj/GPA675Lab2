@@ -212,7 +212,7 @@ void Body::swap(Body& otherBody)
 void Body::rotate(int indexFrom)
 {
 	// TODO: nombres négatifs
-	
+
 	if (mSize == 1)
 		return;
 
@@ -244,10 +244,11 @@ void Body::draw(QPainter& painter, QColor head, QColor body, size_t gridSize)
 {
 	painter.setPen(Qt::NoPen);
 	painter.setBrush(head);
-	painter.fillRect(QRect(QPoint(mHead->position.x() * gridSize , mHead->position.y() * gridSize), QSize(gridSize, gridSize)), head);
+	painter.fillRect(QRect(QPoint(mHead->position.x() * gridSize, mHead->position.y() * gridSize), QSize(gridSize, gridSize)), head);
 
 	painter.setBrush(body);
-	for (auto it{ (this->end()) }; it != this->begin(); --it)
+	// Seulement le corps
+	for (Body::Iterator it((*this)[mSize - 1]); it != begin(); --it)
 		painter.fillRect(QRect(QPoint((*it).x() * gridSize, (*it).y() * gridSize), QSize(gridSize, gridSize)), body);
 }
 
@@ -258,7 +259,7 @@ Body::Iterator Body::begin()
 
 Body::Iterator Body::end()
 {
-	return Body::Iterator(mTail);
+	return Body::Iterator(nullptr);
 }
 
 Body::BodyItem::BodyItem()
