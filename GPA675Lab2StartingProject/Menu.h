@@ -2,6 +2,7 @@
 #ifndef MENU_H
 #define MENU_H
 #include <QMainWindow>
+#include <QComboBox>
 #include "ui_Menu.h"
 
 
@@ -13,20 +14,20 @@ class Menu : public QMainWindow
 {
 	Q_OBJECT
 
-    public:
-        Menu(QWidget* parent = nullptr);
-        // Créer les widgets du GUI
-    
-    private slots:
-        void Exit();
-        void Start();
+public:
+	Menu(QWidget* parent = nullptr);
+	// Créer les widgets du GUI
 
-    signals:
+private slots:
+	void Exit();
+	void Start();
+
+signals:
 
 
-	private:
-        SnakeGameApplication* mGame;
-        QComboBox* mConfigurationComboBox;
+private:
+	SnakeGameApplication* mGame;
+	QComboBox* mConfigurationComboBox;
 
 };
 

@@ -215,8 +215,7 @@ void Snake::goLeft()
 
 void Snake::goToward(Direction dir)
 {
-	if (mHeadDirection - 2 == dir
-		|| mHeadDirection + 2 == dir) {
+	if (mReverseProhibited && (mHeadDirection - 2 == dir || mHeadDirection + 2 == dir)) {
 		auto temp{ mBody.first() };
 		mBody.clear();
 		mBody.addFirst(temp); // Pour simplifier la logique dans le process()

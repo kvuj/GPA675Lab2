@@ -4,7 +4,7 @@
 #include <QLabel>
 #include <qcombobox.h>
 
-Menu::Menu( QWidget* parent) 
+Menu::Menu(QWidget* parent)
 	: QMainWindow(parent)
 {
 	// Créer les boutons Exit et Start
@@ -19,17 +19,17 @@ Menu::Menu( QWidget* parent)
 	mConfigurationComboBox->addItem("Snakify");
 
 	mGame = new SnakeGameApplication;
-	
+
 	// Créer un layout vertical
 	QVBoxLayout* layout = new QVBoxLayout;
 
 	// Ajouter les boutons au layout
 
-    layout->addWidget(configurationLabel);
-    layout->addWidget(mConfigurationComboBox);
+	layout->addWidget(configurationLabel);
+	layout->addWidget(mConfigurationComboBox);
 	layout->addWidget(startButton);
 	layout->addWidget(exitButton);
-	
+
 
 	// Créer un widget central pour la fenêtre
 	QWidget* centralWidget = new QWidget(this);
@@ -39,15 +39,12 @@ Menu::Menu( QWidget* parent)
 	setCentralWidget(centralWidget);
 
 	// Connecter les signaux des boutons aux slots de la classe
-	connect(exitButton, &QPushButton::clicked, this,&Menu::Exit  );
+	connect(exitButton, &QPushButton::clicked, this, &Menu::Exit);
 	connect(startButton, &QPushButton::clicked, this, &Menu::Start);
-
-	
 }
 
 void Menu::Exit()
 {
-	
 	close();
 }
 
@@ -55,7 +52,12 @@ void Menu::Start()
 {
 	// Récupérer le texte sélectionné dans le QComboBox
 	QString selectedText = mConfigurationComboBox->currentText();
-	//On lance le jeu avec la configuration sélectionnée
+	// On lance le jeu avec la configuration sélectionnée
+	if (selectedText == "SnakeOrigin")
+		mGame->setGameType(SnakeGameApplication::GameType::Origin);
+	else if (selectedText == "SnakeBlockade")
+		mGame->setGameType(SnakeGameApplication::GameType::Blockade);
+
 	mGame->show();
 	close();
 }

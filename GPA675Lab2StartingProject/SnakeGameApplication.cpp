@@ -14,18 +14,12 @@ SnakeGameApplication::SnakeGameApplication()
 	, mElapsedTimer()
 	, mPressedKeys()
 	, mGame(mWindowSize)
+	, mType{ GameType::Origin }
 {
 
 	// Configuration de la barre de titre de l'application
 	setWindowTitle("Snake++");
-
-	auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
-	auto* ptr2{ new Snake(mGame, mGame.arena(), nullptr) };
-	ptr2->setController(new SnakeKeyboardAbsoluteController(*ptr2, { Qt::Key_J, Qt::Key_K }, mPressedKeys));
-	ptr->reset({ 5, 5 }, Snake::Direction::toDown, 3, 2);
-	ptr2->reset({ 7, 5 }, Snake::Direction::toDown, 3, 2);
-	mGame.addEntity(ptr);
-	mGame.addEntity(ptr2);
+	prepareGame();
 
 	// Configuration générale : taille et focus
 	setFixedSize(mWindowSize);
@@ -77,6 +71,29 @@ void SnakeGameApplication::paintEvent(QPaintEvent* event)
 	painter.setRenderHint(QPainter::Antialiasing);
 
 	mGame.draw(painter);
+}
+
+void SnakeGameApplication::setGameType(GameType type)
+{
+	mType = type;
+	mGame.clearAllEntities();
+	prepareGame();
+}
+
+void SnakeGameApplication::prepareGame()
+{
+	if (mType == GameType::Origin) {
+
+	}
+	else if (mType == GameType::Blockade) {
+		auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
+		auto* ptr2{ new Snake(mGame, mGame.arena(), nullptr) };
+		ptr2->setController(new SnakeKeyboardAbsoluteController(*ptr2, { Qt::Key_J, Qt::Key_K }, mPressedKeys));
+		ptr->reset({ 5, 5 }, Snake::Direction::toDown, 3, 2);
+		ptr2->reset({ 7, 5 }, Snake::Direction::toDown, 3, 2);
+		mGame.addEntity(ptr);
+		mGame.addEntity(ptr2);
+	}
 }
 
 void SnakeGameApplication::tic()
