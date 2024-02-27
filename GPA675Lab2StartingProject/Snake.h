@@ -104,9 +104,9 @@ private:
 	bool mReverseProhibited;
 	uint8_t mMovementAmount;
 	Direction mHeadDirection;
+	bool mHasMoved;
 	qreal mElapsedTimeTotal;
 	Controller* mController;
-	bool mHasMoved;
 	Arena mArena;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;

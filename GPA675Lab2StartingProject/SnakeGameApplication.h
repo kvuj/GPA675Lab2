@@ -37,6 +37,8 @@ public:
 	};
 
 	void setGameType(GameType type);
+	void setKeyboardType1(std::vector<Qt::Key> keys1);
+	void setKeyboardType2(std::vector<Qt::Key> keys2);
 
 protected:
 	// 
@@ -84,6 +86,8 @@ private:
 
 	SnakeGameEngine mGame;          // Instance de l'engin de jeu gérant la logique et l'état du jeu.
 	GameType mType;
+
+	std::vector<Qt::Key> keys1, keys2;
 };
 
 

@@ -81,21 +81,41 @@ void SnakeGameApplication::setGameType(GameType type)
 	prepareGame();
 }
 
+void SnakeGameApplication::setKeyboardType1(std::vector<Qt::Key> keys1)
+{
+	this->keys1 = keys1;
+}
+
+void SnakeGameApplication::setKeyboardType2(std::vector<Qt::Key> keys2)
+{
+	this->keys2 = keys2;
+}
+
 void SnakeGameApplication::prepareGame()
 {
 	if (mType == GameType::Origin) {
 		// TODO...
 	}
 	else if (mType == GameType::Blockade) {
-		auto* ptr{ new Snake(mGame, mGame.arena(), mPressedKeys) };
-		auto* ptr2{ new Snake(mGame, mGame.arena(), nullptr) };
+		auto ar{ mGame.arena() };
+		auto* ptr{ new Snake(mGame, ar, mPressedKeys) };
+		auto* ptr2{ new Snake(mGame, ar, nullptr) };
 
-		// TODO: Configurable
-		ptr->setController(new SnakeKeyboardAbsoluteController(*ptr,
-			{ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A }, mPressedKeys));
-		ptr2->setController(new SnakeKeyboardRelativeController(*ptr2, { Qt::Key_J, Qt::Key_K }, mPressedKeys));
-		ptr->reset({ 5, 5 }, Snake::Direction::toDown, 3, 2);
-		ptr2->reset({ 7, 5 }, Snake::Direction::toDown, 3, 2);
+		if (keys1.size() == 4)
+			ptr->setController(new SnakeKeyboardAbsoluteController(*ptr, keys1, mPressedKeys));
+		else
+			ptr->setController(new SnakeKeyboardRelativeController(*ptr, keys1, mPressedKeys));
+
+		if (keys2.size() == 4)
+			ptr2->setController(new SnakeKeyboardAbsoluteController(*ptr2, keys2, mPressedKeys));
+		else
+			ptr2->setController(new SnakeKeyboardRelativeController(*ptr2, keys2, mPressedKeys));
+
+
+		ptr->reset({ static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
+			Snake::Direction::toUp, 3, 2);
+		ptr2->reset({ static_cast<int>((ar.getArenaWidthInBlocks() * 2) / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
+			Snake::Direction::toUp, 3, 2);
 		mGame.addEntity(ptr);
 		mGame.addEntity(ptr2);
 	}

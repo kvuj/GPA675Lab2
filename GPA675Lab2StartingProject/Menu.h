@@ -27,8 +27,9 @@ signals:
 
 private:
 	SnakeGameApplication* mGame;
-	QComboBox* mConfigurationComboBox;
-
+	QComboBox* mGameType;
+	QComboBox* mKeyboardPlayer1;
+	QComboBox* mKeyboardPlayer2;
 };
 
 #endif // MENU_H
