@@ -44,12 +44,12 @@ size_t Arena::getBlockSideSize() const
 	return mGridSize;
 }
 
-size_t Arena::getArenaHeightInBlocks() const
+int Arena::getArenaHeightInBlocks() const
 {
 	return mGridHeight;
 }
 
-size_t Arena::getArenaWidthInBlocks() const
+int Arena::getArenaWidthInBlocks() const
 {
 	return mGridWidth;
 }

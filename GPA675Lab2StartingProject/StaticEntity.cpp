@@ -1,8 +1,7 @@
-
 #include "StaticEntity.h"
 
 StaticEntity::StaticEntity(Arena& board, QColor color, QPoint position)
-	: Entity(board)
+	: Entity(board), mElapsedTimeTotal{}
 {
 }
 
@@ -22,4 +21,19 @@ void StaticEntity::draw(QPainter& painter)
 bool StaticEntity::isColliding(const QPoint& position)
 {
 	return position == mPosition;
+}
+
+void StaticEntity::ticPrepare(qreal elapsedTime)
+{
+	if (elapsedTime > 0)
+		mElapsedTimeTotal += elapsedTime;
+}
+
+void StaticEntity::ticExecute()
+{
+	if (mElapsedTimeTotal < 1.0)
+		return;
+
+	mElapsedTimeTotal -= 1.0;
+	mAge++;
 }

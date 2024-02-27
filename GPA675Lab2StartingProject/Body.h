@@ -44,6 +44,7 @@ public:
 
 	Body::Iterator begin();
 	Body::Iterator end();
+	Body::Iterator endMinusOne();
 
 private:
 	class BodyItem

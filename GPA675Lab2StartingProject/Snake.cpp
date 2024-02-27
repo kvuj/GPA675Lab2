@@ -74,9 +74,35 @@ void Snake::ticExecute()
 		return;
 
 	mElapsedTimeTotal -= (1.0 / mSpeed);
+	mAge++;
 
-	mHasMoved = true;
+
+	// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
+	// les collisions.
+	auto newTailPos = getTailPosition().x() + (getTailPosition().y() * mBoard.getArenaWidthInBlocks());
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
+	auto newHeadPos = getPosition().x() + (getPosition().y() * mBoard.getArenaWidthInBlocks());
+
+	if (newHeadPos < 0) {
+		setDead();
+		return;
+	}
+
+	mBoard.getGrid()[newTailPos] = nullptr;
+	if (mBoard.getGrid()[newHeadPos]) {
+		setDead();
+	}
+	else {
+		mBoard.getGrid()[newHeadPos] = this;
+	}
+
+	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
+	// Si hors grille, à supprimer
+	if (xPos >= mBoard.getArenaWidthInBlocks() || xPos < 0 ||
+		yPos >= mBoard.getArenaHeightInBlocks() || yPos < 0) {
+		setDead();
+	}
+	mHasMoved = true;
 }
 
 void Snake::draw(QPainter& painter)

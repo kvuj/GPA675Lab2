@@ -30,6 +30,7 @@ QPoint Body::first() const
 	throw new std::exception("Pointeur invalide");
 
 }
+
 QPoint Body::last() const
 {
 	if (mHead)
@@ -259,6 +260,11 @@ Body::Iterator Body::begin()
 Body::Iterator Body::end()
 {
 	return Body::Iterator(nullptr);
+}
+
+Body::Iterator Body::endMinusOne()
+{
+	return Body::Iterator(mTail);
 }
 
 Body::BodyItem::BodyItem()

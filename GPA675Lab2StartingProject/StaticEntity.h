@@ -22,9 +22,13 @@ public:
 	void draw(QPainter& painter) override;
 	bool isColliding(const QPoint& position) override;
 
+	void ticPrepare(qreal elapsedTime) override;
+	void ticExecute() override;
+
 protected:
 	QPoint mPosition;
 	QColor mColor;
+	qreal mElapsedTimeTotal;
 };
 
 #endif //STATIC_ENTITY_H
