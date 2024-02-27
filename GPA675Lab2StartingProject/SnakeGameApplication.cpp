@@ -97,27 +97,7 @@ void SnakeGameApplication::prepareGame()
 		// TODO...
 	}
 	else if (mType == GameType::Blockade) {
-		auto ar{ mGame.arena() };
-		auto* ptr{ new Snake(mGame.arena(), mPressedKeys) };
-		auto* ptr2{ new Snake(mGame.arena(), nullptr) };
-
-		if (keys1.size() == 4)
-			ptr->setController(new SnakeKeyboardAbsoluteController(*ptr, keys1, mPressedKeys));
-		else
-			ptr->setController(new SnakeKeyboardRelativeController(*ptr, keys1, mPressedKeys));
-
-		if (keys2.size() == 4)
-			ptr2->setController(new SnakeKeyboardAbsoluteController(*ptr2, keys2, mPressedKeys));
-		else
-			ptr2->setController(new SnakeKeyboardRelativeController(*ptr2, keys2, mPressedKeys));
-
-
-		ptr->reset({ static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
-			Snake::Direction::toUp, 3, 2);
-		ptr2->reset({ static_cast<int>((ar.getArenaWidthInBlocks() * 2) / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
-			Snake::Direction::toUp, 3, 2);
-		mGame.addEntity(ptr);
-		mGame.addEntity(ptr2);
+		mScenario = new SnakeBlockade(mGame, keys1, keys2, mPressedKeys);
 	}
 }
 

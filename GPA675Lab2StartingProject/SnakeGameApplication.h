@@ -7,6 +7,10 @@
 #include <QElapsedTimer>
 
 #include "SnakeGameEngine.h"
+#include "SnakeGameScenario.h"
+#include "SnakeBlockade.h"
+#include "SnakeOrigin.h"
+#include "Snakify.h"
 #include "Entity.h"
 
 
@@ -86,7 +90,7 @@ private:
 
 	SnakeGameEngine mGame;          // Instance de l'engin de jeu gérant la logique et l'état du jeu.
 	GameType mType;
-
+	SnakeGameScenario  *mScenario;
 	std::vector<Qt::Key> keys1, keys2;
 };
 
