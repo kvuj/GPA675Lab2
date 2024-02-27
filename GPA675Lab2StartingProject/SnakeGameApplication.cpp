@@ -94,7 +94,7 @@ void SnakeGameApplication::setKeyboardType2(std::vector<Qt::Key> keys2)
 void SnakeGameApplication::prepareGame()
 {
 	if (mType == GameType::Origin) {
-		// TODO...
+		mScenario = new SnakeOrigin(mGame, keys1, mPressedKeys);
 	}
 	else if (mType == GameType::Blockade) {
 		mScenario = new SnakeBlockade(mGame, keys1, keys2, mPressedKeys);
