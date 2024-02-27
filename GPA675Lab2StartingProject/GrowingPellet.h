@@ -6,13 +6,10 @@
 
 class GrowingPellet : public Pellet
 {
-	public:
-		GrowingPellet() = default;
-		~GrowingPellet() = default;
-		void applyEffectOnSnake(Snake& snake)override;
-	private:
-		int mScore;
-		QColor mColor = QColor(0, 255, 0);
+public:
+	GrowingPellet(SnakeGameEngine& board, QPoint position);
+	~GrowingPellet() = default;
+	void applyEffectOnSnake(Snake& snake) override;
 };
 
 #endif //GROWING_PELLET_H

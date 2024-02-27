@@ -4,17 +4,14 @@
 
 #include "Pellet.h"
 #include "Snake.h"
-
+#include "SnakeGameEngine.h"
 
 class AcceleratingPellet : public Pellet
 {
-	public:
-		AcceleratingPellet() = default;
-		~AcceleratingPellet() = default;
-		void applyEffectOnSnake(Snake& snake) override;
-	private:
-		int mScore;
-		QColor mColor = QColor(255, 0, 255);
+public:
+	AcceleratingPellet(SnakeGameEngine& board, QPoint position);
+	~AcceleratingPellet() = default;
+	void applyEffectOnSnake(Snake& snake) override;
 };
 
 #endif //ACCELERATING_PELLET_H

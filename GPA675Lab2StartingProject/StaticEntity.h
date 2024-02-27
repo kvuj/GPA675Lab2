@@ -1,13 +1,14 @@
-
 #pragma once
 #ifndef STATIC_ENTITY_H
 #define STATIC_ENTITY_H
 
 #include "Entity.h"
+
 class StaticEntity : public Entity
 {
 public:
-	// TODO: StaticEntity constructeur
+	StaticEntity(SnakeGameEngine& board, QColor color, QPoint position);
+	StaticEntity(SnakeGameEngine& board, QPoint p);
 	virtual ~StaticEntity() = default;
 
 	// Accesseurs inline
@@ -24,7 +25,6 @@ public:
 protected:
 	QPoint mPosition;
 	QColor mColor;
-	qreal mRadius;
 };
 
 #endif //STATIC_ENTITY_H

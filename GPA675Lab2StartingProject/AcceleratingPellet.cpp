@@ -1,7 +1,10 @@
 #include "AcceleratingPellet.h"
 
+AcceleratingPellet::AcceleratingPellet(SnakeGameEngine& board, QPoint position)
+	: Pellet(board, QColor(255, 0, 0), position)
+{
+}
 
-//fait acceler le serpent de 10
 void AcceleratingPellet::applyEffectOnSnake(Snake& snake)
 {
 	snake.setSpeed(snake.speed() + 10);

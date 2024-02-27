@@ -21,6 +21,4 @@
 using PressedKeys = std::vector<Qt::Key>;
 using SavedKeys = std::vector<Qt::Key>;
 
-
-
 #endif //PRESSED_KEY_H
