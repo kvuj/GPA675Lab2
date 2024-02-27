@@ -1,5 +1,5 @@
 #include "DynamicEntity.h"
 
-DynamicEntity::DynamicEntity(SnakeGameEngine& board) : Entity(board) {}
+DynamicEntity::DynamicEntity(Arena& board) : Entity(board) {}
 
 

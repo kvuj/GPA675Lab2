@@ -9,7 +9,7 @@
 class AcceleratingPellet : public Pellet
 {
 public:
-	AcceleratingPellet(SnakeGameEngine& board, QPoint position);
+	AcceleratingPellet(Arena& board, QPoint position);
 	~AcceleratingPellet() = default;
 	void applyEffectOnSnake(Snake& snake) override;
 };

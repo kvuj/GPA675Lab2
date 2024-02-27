@@ -3,7 +3,7 @@
 #include <QPointF>
 #include <QColor>
 
-#include "Entity.h"
+class Entity;
 
 class Arena
 {

@@ -4,6 +4,7 @@
 
 #include <QPainter>
 #include <QPointF>
+#include "Arena.h"
 
 class SnakeGameEngine;
 
@@ -11,7 +12,7 @@ class SnakeGameEngine;
 class Entity
 {
 public:
-	Entity(SnakeGameEngine& board) : mBoard(board), mAge(0), mAlive(true) {}
+	Entity(Arena& board) : mBoard(board), mAge(0), mAlive(true) {}
 	virtual ~Entity() = default;
 
 	void setDead() { mAlive = false; }
@@ -21,12 +22,12 @@ public:
 	virtual bool isAlive() = 0;
 	virtual void ticPrepare(qreal elapsedTime) = 0;
 	virtual void ticExecute() = 0;
-	virtual void draw(QPainter& painter, size_t gridSize) = 0;
+	virtual void draw(QPainter& painter) = 0;
 	virtual bool isColliding(const QPoint& position) = 0;
 	virtual QPoint getPosition() = 0;
 
 protected:
-	SnakeGameEngine& mBoard;
+	Arena& mBoard;
 	double mAge;
 	bool mAlive;
 };

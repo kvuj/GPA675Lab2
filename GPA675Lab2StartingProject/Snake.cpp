@@ -1,6 +1,6 @@
 #include "Snake.h"
 
-Snake::Snake(SnakeGameEngine& board, Arena& arena, Controller* controller)
+Snake::Snake(Arena& board, Controller* controller)
 	: DynamicEntity(board)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -18,18 +18,17 @@ Snake::Snake(SnakeGameEngine& board, Arena& arena, Controller* controller)
 	, mHeadColor{ Qt::red }
 	, mBodyColor{ Qt::white }
 	, mHasMoved{}
-	, mArena{ arena }
 {
 }
 
-Snake::Snake(SnakeGameEngine& board, Arena& arena, PressedKeys const& pressedKeys)
-	: Snake(board, arena, nullptr)
+Snake::Snake(Arena& board, PressedKeys const& pressedKeys)
+	: Snake(board, nullptr)
 {
 }
 
 Snake::~Snake()
 {
-	auto grid{ mArena.getGrid() };
+	auto grid{ mBoard.getGrid() };
 	for (auto& part : mBody) {
 		size_t pos{ part.x() + (part.y() * static_cast<size_t>(sqrt(grid.size()))) };
 		if (pos < grid.size())
@@ -80,9 +79,9 @@ void Snake::ticExecute()
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 }
 
-void Snake::draw(QPainter& painter, size_t gridSize)
+void Snake::draw(QPainter& painter)
 {
-	mBody.draw(painter, mHeadColor, mBodyColor, gridSize);
+	mBody.draw(painter, mHeadColor, mBodyColor, this->mBoard.getBlockSideSize());
 }
 
 [[deprecated("You shouldn't check collisions this way. Use the grid of pointers in the arena")]]

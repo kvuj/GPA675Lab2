@@ -9,7 +9,7 @@
 class Pellet : public StaticEntity
 {
 public:
-	Pellet(SnakeGameEngine& board, QColor color, QPoint position);
+	Pellet(Arena& board, QColor color, QPoint position);
 	~Pellet() = default;
 	int score() const { return mScore; }
 	void setScore(int score) { mScore = score; }

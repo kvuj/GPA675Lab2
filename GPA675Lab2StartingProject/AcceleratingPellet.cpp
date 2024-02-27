@@ -1,6 +1,6 @@
 #include "AcceleratingPellet.h"
 
-AcceleratingPellet::AcceleratingPellet(SnakeGameEngine& board, QPoint position)
+AcceleratingPellet::AcceleratingPellet(Arena& board, QPoint position)
 	: Pellet(board, QColor(255, 0, 0), position)
 {
 }

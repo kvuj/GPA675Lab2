@@ -7,7 +7,7 @@
 class GrowingPellet : public Pellet
 {
 public:
-	GrowingPellet(SnakeGameEngine& board, QPoint position);
+	GrowingPellet(Arena& board, QPoint position);
 	~GrowingPellet() = default;
 	void applyEffectOnSnake(Snake& snake) override;
 };

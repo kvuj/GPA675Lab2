@@ -3,11 +3,11 @@
 #define DYNAMICENTITY_H
 
 #include "Entity.h" // Inclure la classe de base Entity
-
+#include "Arena.h"
 
 class DynamicEntity : public Entity {
 public:
-	DynamicEntity(SnakeGameEngine& board);
+	DynamicEntity(Arena& board);
 	virtual ~DynamicEntity() = default;
 };
 

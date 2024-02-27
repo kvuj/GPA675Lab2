@@ -1,6 +1,6 @@
 #include "GrowingPellet.h"
 
-GrowingPellet::GrowingPellet(SnakeGameEngine& board, QPoint position)
+GrowingPellet::GrowingPellet(Arena& board, QPoint position)
 	: Pellet(board, QColor(255, 0, 0), position)
 {
 }

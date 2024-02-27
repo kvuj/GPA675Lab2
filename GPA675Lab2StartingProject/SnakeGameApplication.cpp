@@ -98,8 +98,8 @@ void SnakeGameApplication::prepareGame()
 	}
 	else if (mType == GameType::Blockade) {
 		auto ar{ mGame.arena() };
-		auto* ptr{ new Snake(mGame, ar, mPressedKeys) };
-		auto* ptr2{ new Snake(mGame, ar, nullptr) };
+		auto* ptr{ new Snake(mGame.arena(), mPressedKeys) };
+		auto* ptr2{ new Snake(mGame.arena(), nullptr) };
 
 		if (keys1.size() == 4)
 			ptr->setController(new SnakeKeyboardAbsoluteController(*ptr, keys1, mPressedKeys));

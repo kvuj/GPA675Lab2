@@ -7,8 +7,8 @@
 class StaticEntity : public Entity
 {
 public:
-	StaticEntity(SnakeGameEngine& board, QColor color, QPoint position);
-	StaticEntity(SnakeGameEngine& board, QPoint p);
+	StaticEntity(Arena& board, QColor color, QPoint position);
+	StaticEntity(Arena& board, QPoint p);
 	virtual ~StaticEntity() = default;
 
 	// Accesseurs inline
@@ -19,7 +19,7 @@ public:
 	void setColor(QColor const& color) { mColor = color; }
 	void setPosition(QPoint const& position) { mPosition = position; }
 
-	void draw(QPainter& painter, size_t gridSize) override;
+	void draw(QPainter& painter) override;
 	bool isColliding(const QPoint& position) override;
 
 protected:

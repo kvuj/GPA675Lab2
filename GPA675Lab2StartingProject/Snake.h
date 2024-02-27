@@ -29,15 +29,15 @@ public:
 
 	class Controller;
 
-	Snake(SnakeGameEngine& board, Arena& arena, Controller* controller);
-	Snake(SnakeGameEngine& board, Arena& arena, PressedKeys const& pressedKeys);
+	Snake(Arena& board, Controller* controller);
+	Snake(Arena& board, PressedKeys const& pressedKeys);
 	~Snake();
 
 	bool isValid() override;
 	bool isAlive() override;
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
-	void draw(QPainter& painter, size_t gridSize) override;
+	void draw(QPainter& painter) override;
 	bool isColliding(const QPoint& position) override;
 
 	QString name();
@@ -107,7 +107,6 @@ private:
 	bool mHasMoved;
 	qreal mElapsedTimeTotal;
 	Controller* mController;
-	Arena mArena;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;
