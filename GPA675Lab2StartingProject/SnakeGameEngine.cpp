@@ -90,7 +90,7 @@ void SnakeGameEngine::clearAllEntities()
 	for (auto& i : mEntities)
 		delete i;
 	mEntities.clear();
-	memset(&(mArena.getGrid()[0]), 0, sizeof(Entity*) * mArena.getBlockSideSize());
+	memset(&(mArena.getGrid()[0]), 0, sizeof(mArena.getGrid()[0]) * mArena.getGrid().size());
 }
 
 Arena& SnakeGameEngine::arena()

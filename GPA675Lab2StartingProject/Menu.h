@@ -22,8 +22,6 @@ private slots:
 	void Exit();
 	void Start();
 
-signals:
-
 
 private:
 	SnakeGameApplication* mGame;
