@@ -22,8 +22,11 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 	for (auto& i : mEntities)
 		i->ticPrepare(elapsedTime);
 
-	for (auto& i : mEntities)
+	for (auto& i : mEntities) // TODO: Combiner avec tic prepare?
 		i->ticExecute();
+
+	for (auto& i : mEntities)
+		i->ticUpdateGrid();
 
 	mEntities.remove_if([](Entity* en) { if (!(en->isAlive())) { delete en; return true; } else return false; });
 	// Se retire du tableau de pointeurs avec le destructeur
@@ -42,13 +45,6 @@ void SnakeGameEngine::draw(QPainter& painter)
 void SnakeGameEngine::addEntity(Entity* entity)
 {
 	mEntities.push_back(entity);
-	auto* ptr = reinterpret_cast<Snake*>(entity);
-	if (!ptr)
-		return;
-
-	// On saute la tail pour éviter de regarder les collisions avec la queue.
-	for (auto it{ ptr->getBody().begin() }; it != ptr->getBody().endMinusOne(); it++)
-		mArena.getGrid()[(*it).x() + ((*it).y() * mArena.getArenaWidthInBlocks())] = ptr;
 }
 
 std::list<Entity*>& SnakeGameEngine::entities()

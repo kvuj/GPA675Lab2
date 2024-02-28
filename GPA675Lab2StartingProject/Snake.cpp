@@ -19,6 +19,7 @@ Snake::Snake(Arena& board, Controller* controller)
 	, mBodyColor{ Qt::white }
 	, mHasMoved{}
 {
+	addToGrid();
 }
 
 Snake::Snake(Arena& board, PressedKeys const& pressedKeys)
@@ -28,12 +29,7 @@ Snake::Snake(Arena& board, PressedKeys const& pressedKeys)
 
 Snake::~Snake()
 {
-	auto grid{ mBoard.getGrid() };
-	for (auto& part : mBody) {
-		size_t pos{ part.x() + (part.y() * static_cast<size_t>(sqrt(grid.size()))) };
-		if (pos < grid.size())
-			grid[pos] = nullptr;
-	}
+	clearGridIncludingTail();
 	delete mController;
 }
 
@@ -79,30 +75,33 @@ void Snake::ticExecute()
 
 	// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
 	// les collisions.
-	auto newTailPos = getTailPosition().x() + (getTailPosition().y() * mBoard.getArenaWidthInBlocks());
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
-	auto newHeadPos = getPosition().x() + (getPosition().y() * mBoard.getArenaWidthInBlocks());
-
-	if (newHeadPos < 0) {
-		setDead();
-		return;
-	}
-
-	mBoard.getGrid()[newTailPos] = nullptr;
-	if (mBoard.getGrid()[newHeadPos]) {
-		setDead();
-	}
-	else {
-		mBoard.getGrid()[newHeadPos] = this;
-	}
-
+	
 	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
+	auto newHeadPos = xPos + (yPos * mBoard.getArenaWidthInBlocks());
+	
 	// Si hors grille, à supprimer
 	if (xPos >= mBoard.getArenaWidthInBlocks() || xPos < 0 ||
 		yPos >= mBoard.getArenaHeightInBlocks() || yPos < 0) {
 		setDead();
+		return;
 	}
+
+	// On retire le serpent s'il y a de quoi.
+	if (mBoard.getGrid()[newHeadPos]) {
+		setDead();
+	}
+
 	mHasMoved = true;
+}
+
+void Snake::ticUpdateGrid()
+{
+	if (!mHasMoved || !mAlive)
+		return;
+
+	clearGridIncludingTail();
+	addToGrid();
 }
 
 void Snake::draw(QPainter& painter)
@@ -153,6 +152,7 @@ void Snake::setName(const QString& name)
 
 void Snake::reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed)
 {
+	clearGridExcludingTail();
 	mBody.clear();
 	mBody.addFirst(headPosition);
 
@@ -162,6 +162,7 @@ void Snake::reset(QPoint headPosition, Direction headDirection, size_t bodyLengt
 
 	mSpeed = initialSpeed;
 	mHeadDirection = headDirection;
+	addToGrid();
 }
 
 void Snake::setSpeed(SpeedType speed)
@@ -236,6 +237,34 @@ void Snake::goLeft()
 	}
 	else {
 		mSizeToGrow--;
+	}
+}
+
+void Snake::clearGridIncludingTail()
+{
+	for (auto& part : mBody) {
+		size_t pos{ part.x() + (part.y() * static_cast<size_t>(mBoard.getArenaWidthInBlocks()))};
+		if (pos < mBoard.getGrid().size())
+			mBoard.getGrid()[pos] = nullptr;
+	}
+}
+
+void Snake::clearGridExcludingTail()
+{
+	for (auto it{ mBody.begin() }; it != mBody.endMinusOne(); it++) {
+		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mBoard.getArenaWidthInBlocks())) };
+		if (pos < mBoard.getGrid().size())
+			mBoard.getGrid()[pos] = nullptr;
+	}
+}
+
+void Snake::addToGrid()
+{
+	// On saute la tail pour éviter de regarder les collisions avec la queue.
+	for (auto it{ mBody.begin() }; it != mBody.endMinusOne(); it++) {
+		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mBoard.getArenaWidthInBlocks())) };
+		if (pos < mBoard.getGrid().size())
+			mBoard.getGrid()[pos] = this;
 	}
 }
 

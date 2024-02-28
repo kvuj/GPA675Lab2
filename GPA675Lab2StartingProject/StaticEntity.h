@@ -24,6 +24,7 @@ public:
 
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
+	void ticUpdateGrid() override;
 
 protected:
 	QPoint mPosition;

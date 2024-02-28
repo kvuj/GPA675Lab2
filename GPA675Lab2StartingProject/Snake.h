@@ -37,6 +37,7 @@ public:
 	bool isAlive() override;
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
+	void ticUpdateGrid() override;
 	void draw(QPainter& painter) override;
 	bool isColliding(const QPoint& position) override;
 
@@ -118,6 +119,9 @@ private:
 	void goRight();
 	void goDown();
 	void goLeft();
+	void clearGridIncludingTail();
+	void clearGridExcludingTail();
+	void addToGrid();
 };
 
 #endif //SNAKE_H
