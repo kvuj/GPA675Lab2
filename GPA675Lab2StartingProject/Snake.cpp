@@ -195,40 +195,27 @@ void Snake::turnLeft()
 
 void Snake::goUp()
 {
-	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[0]);
-	if (!mSizeToGrow) {
-		mBody.removeLast();
+	go(mBody.first() + LUTDirectionDisplacement[0]);
 	}
-	else {
-		mSizeToGrow--;
-	}
-}
 
 void Snake::goRight()
 {
-	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[1]);
-	if (!mSizeToGrow) {
-		mBody.removeLast();
+	go(mBody.first() + LUTDirectionDisplacement[1]);
 	}
-	else {
-		mSizeToGrow--;
-	}
-}
 
 void Snake::goDown()
 {
-	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[2]);
-	if (!mSizeToGrow) {
-		mBody.removeLast();
+	go(mBody.first() + LUTDirectionDisplacement[2]);
 	}
-	else {
-		mSizeToGrow--;
-	}
-}
 
 void Snake::goLeft()
 {
-	mBody.addFirst(mBody.first() + LUTDirectionDisplacement[3]);
+	go(mBody.first() + LUTDirectionDisplacement[3]);
+}
+
+void Snake::go(QPoint pt)
+{
+	mBody.addFirst(pt);
 	if (!mSizeToGrow) {
 		mBody.removeLast();
 	}
@@ -267,6 +254,7 @@ void Snake::addToGrid()
 
 void Snake::goToward(Direction dir)
 {
+	// Oops, tu meurt
 	if (mReverseProhibited && (mHeadDirection - 2 == dir || mHeadDirection + 2 == dir)) {
 		auto temp{ mBody.first() };
 		mBody.clear();
