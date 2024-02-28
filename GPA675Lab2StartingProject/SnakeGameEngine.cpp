@@ -22,11 +22,8 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 	for (auto& i : mEntities)
 		i->ticPrepare(elapsedTime);
 
-	for (auto& i : mEntities) // TODO: Combiner avec tic prepare?
-		i->ticExecute();
-
 	for (auto& i : mEntities)
-		i->ticUpdateGrid();
+		i->ticExecute();
 
 	mEntities.remove_if([](Entity* en) { if (!(en->isAlive())) { delete en; return true; } else return false; });
 	// Se retire du tableau de pointeurs avec le destructeur

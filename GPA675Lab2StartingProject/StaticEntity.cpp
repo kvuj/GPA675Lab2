@@ -37,7 +37,3 @@ void StaticEntity::ticExecute()
 	mElapsedTimeTotal -= 1.0;
 	mAge++;
 }
-
-void StaticEntity::ticUpdateGrid()
-{
-}

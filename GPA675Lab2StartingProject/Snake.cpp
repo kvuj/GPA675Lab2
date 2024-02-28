@@ -57,10 +57,7 @@ void Snake::ticPrepare(qreal elapsedTime)
 {
 	if (elapsedTime > 0)
 		mElapsedTimeTotal += elapsedTime;
-}
 
-void Snake::ticExecute()
-{
 	if (mElapsedTimeTotal < (1.0 / mSpeed)) {
 		mHasMoved = false;
 		return;
@@ -76,10 +73,10 @@ void Snake::ticExecute()
 	// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
 	// les collisions.
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
-	
+
 	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
 	auto newHeadPos = xPos + (yPos * mBoard.getArenaWidthInBlocks());
-	
+
 	// Si hors grille, à supprimer
 	if (xPos >= mBoard.getArenaWidthInBlocks() || xPos < 0 ||
 		yPos >= mBoard.getArenaHeightInBlocks() || yPos < 0) {
@@ -95,7 +92,7 @@ void Snake::ticExecute()
 	mHasMoved = true;
 }
 
-void Snake::ticUpdateGrid()
+void Snake::ticExecute()
 {
 	if (!mHasMoved || !mAlive)
 		return;
