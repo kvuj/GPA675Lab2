@@ -6,11 +6,11 @@
 #include <random>
 #include <numeric>
 
-#include "Pellet.h"
+//#include "Pellet.h"
 
 class Entity;
 
-class Arena
+class Arena-
 {
 public:
 	Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundColor, QColor gridColor);
@@ -40,7 +40,7 @@ public:
 	/// </summary>
 	std::vector<int>& cellIndices();
 
-	void insertPellet(const Pellet& pell);
+	//void insertPellet(const Pellet& pell);
 
 private:
 	size_t mWidthPixels;
