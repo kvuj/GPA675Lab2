@@ -20,9 +20,9 @@ SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, Pre
 
 
 	ptr->reset({ static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
-		Snake::Direction::toUp, 3, 2);
+		Snake::Direction::toUp, 3, 1);
 	ptr2->reset({ static_cast<int>((ar.getArenaWidthInBlocks() * 2) / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
-		Snake::Direction::toUp, 3, 2);
+		Snake::Direction::toUp, 3, 1);
 	this->mGameEngine.addEntity(ptr);
 	this->mGameEngine.addEntity(ptr2);
 }

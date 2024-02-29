@@ -6,9 +6,11 @@
 #include <cmath>
 #include <list>
 #include <memory>
+#include <random>
 #include <QSize>
-#include <QPointF>
 #include <QColor>
+#include <QPoint>
+#include <QPainter>
 
 #include "Arena.h"
 #include "PressedKeys.h"
@@ -56,6 +58,15 @@ public:
 	void clearAllEntities();
 	Arena& arena();
 
+	enum pelletInsertionType : uint8_t
+	{
+		foreverRed = 1,
+		random = 2
+	};
+
+	void setPelletInsertionType(pelletInsertionType type);
+	void insertPelletIfNecessary();
+
 private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
 	QColor mColor;      // Couleur de l'élément principal de jeu, utilisée lors du rendu.
@@ -66,6 +77,8 @@ private:
 	// Utilisation d'un pointeur classique en implémentant toute les fonctions virtuelle présente dans les Entity
 	std::list<Entity*> mEntities;
 	Arena mArena;
+	pelletInsertionType mType;
+
 
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
 };

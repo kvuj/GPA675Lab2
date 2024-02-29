@@ -118,6 +118,11 @@ private:
 	void goRight();
 	void goDown();
 	void goLeft();
+	void go(QPoint pt);
+
+	void clearGridIncludingTail();
+	void clearGridExcludingTail();
+	void addToGrid();
 };
 
 #endif //SNAKE_H
