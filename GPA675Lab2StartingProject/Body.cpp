@@ -212,17 +212,24 @@ void Body::swap(Body& otherBody)
 
 void Body::rotate(int indexFrom)
 {
-	// TODO: nombres négatifs
-
-	if (mSize == 1)
+	if (mSize == 1 || indexFrom == 0)
 		return;
 
 	// On fait un cercle.
 	mHead->mPrevious = mTail;
 	mTail->mNext = mHead;
 
+	Body::BodyItem* i{};
+
 	// On ajuste la tête et la queue.
-	auto* i{ (*this)[indexFrom] };
+	if (indexFrom < 0) {
+		indexFrom = -indexFrom;
+		i = (*this)[mSize - indexFrom];
+	}
+	else {
+		i = (*this)[indexFrom];
+	}
+
 	mHead = i;
 	mTail = i->mPrevious;
 
