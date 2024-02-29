@@ -14,10 +14,11 @@ Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGri
 	, mGridHeight(heightOfGrid)
 	, mGridWidth{ widthOfGrid }
 	, mGridSize{ static_cast <size_t>(sqrt(floor(static_cast <double>(width * height) / static_cast <double>(pow(std::max(widthOfGrid, heightOfGrid), 2))))) }
-	, mGrid(widthOfGrid * heightOfGrid)
-	//, rd()
+	, mGrid(widthOfGrid* heightOfGrid)
 	, mEmptyCells(mGridHeight* mGridWidth)
 	, mCellIndices(mGridHeight* mGridWidth)
+	, mt{}
+	, pivot{ static_cast<int>(mGridHeight * mGridWidth) }
 {
 	mSizeOfArena = QSize(QSize(width, height));
 
@@ -67,4 +68,59 @@ int Arena::getArenaWidthInBlocks() const
 std::vector<Entity*>& Arena::getGrid()
 {
 	return mGrid;
+}
+
+std::vector<QPoint>& Arena::getEmptyCells()
+{
+	return mEmptyCells;
+}
+
+std::vector<int>& Arena::getCellIndices()
+{
+	return mCellIndices;
+}
+
+int Arena::generateRandomNumberInSize()
+{
+	std::uniform_int_distribution<> distrib(0, mGridWidth * mGridHeight);
+	return 0;
+}
+
+void Arena::insertInCellIndices(QPoint posToInsert)
+{
+	auto pos{ posToInsert.x() + (posToInsert.y() * mGridWidth) };
+	std::swap(mEmptyCells[mCellIndices[pos]], mEmptyCells[pivot - 1]);
+	std::swap(mCellIndices[pos], mCellIndices[pivot - 1]);
+	--pivot;
+}
+
+void Arena::deleteInCellIndices(QPoint posToDelete)
+{
+	auto pos{ posToDelete.x() + (posToDelete.y() * mGridWidth) };
+	auto posPivot{ mEmptyCells[pivot].x() + (mEmptyCells[pivot].y() * mGridWidth) };
+
+	if (mCellIndices[pos] != pivot) {
+		auto oldPointPos = mCellIndices[pos];
+		auto oldPointPivot = mCellIndices[posPivot];
+
+		std::swap(mCellIndices[oldPointPos], mCellIndices[oldPointPivot]);
+		std::swap(mEmptyCells[oldPointPos], mEmptyCells[oldPointPivot]);
+
+		std::swap(mCellIndices[posPivot], mCellIndices[pos]);
+		std::swap(mEmptyCells[posPivot], mEmptyCells[pos]);
+	}
+
+	std::swap(mEmptyCells[pivot], mEmptyCells[pos]);
+	std::swap(mCellIndices[pivot], mCellIndices[pos]);
+	++pivot;
+}
+
+std::vector<QPoint>& Arena::emptyCells()
+{
+	return mEmptyCells;
+}
+
+std::vector<int>& Arena::cellIndices()
+{
+	return mCellIndices;
 }

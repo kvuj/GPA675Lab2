@@ -22,13 +22,12 @@ private:
 	std::vector<Entity*> mGrid;
 
 	// Aléatoire
-	//std::random_device rd;
-	//std::mt19937 mt; // Pas besoin de mt19937 (5Kb!!!)
+	std::mt19937 mt;
 
 	// 2 Tableaux pour ajout aléatoire O(1)
-	// TODO: Envoyer ref aux serpents pour qu'ils le modifient
 	std::vector<QPoint> mEmptyCells;
 	std::vector<int> mCellIndices;
+	int pivot;
 
 public:
 	Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundColor, QColor gridColor);
@@ -38,4 +37,18 @@ public:
 	int getArenaHeightInBlocks() const;
 	int getArenaWidthInBlocks() const;
 	std::vector<Entity*>& getGrid();
+	std::vector<QPoint>& getEmptyCells();
+	std::vector<int>& getCellIndices();
+	int generateRandomNumberInSize();
+
+	/// <summary>
+	/// Insertion dans les tableaux pour l'insertion en O(1)
+	/// </summary>
+	void insertInCellIndices(QPoint posToInsert);
+	/// <summary>
+	/// Suppression dans les tableaux pour l'insertion en O(1)
+	/// </summary>
+	void deleteInCellIndices(QPoint posToDelete);
+	std::vector<QPoint>& emptyCells();
+	std::vector<int>& cellIndices();
 };

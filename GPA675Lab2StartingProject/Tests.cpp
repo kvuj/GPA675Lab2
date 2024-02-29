@@ -71,3 +71,31 @@ ADD_TEST(testLLCollision)
 	bd.remove(2);
 	assert(bd.isColliding(QPoint(5, 6)) == false);
 }
+
+ADD_TEST(testArenaDoubleArrays)
+{
+	Arena ar(500, 500, 6, 4, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
+	ar.insertInCellIndices(QPoint(2, 1));
+	ar.insertInCellIndices(QPoint(3, 1));
+	ar.insertInCellIndices(QPoint(4, 1));
+	ar.insertInCellIndices(QPoint(1, 1));
+	ar.deleteInCellIndices(QPoint(1, 1));
+	assert(ar.emptyCells()[21] == QPoint(4, 1));
+	assert(ar.cellIndices()[21] == 10);
+}
+
+ADD_TEST(testArenaDoubleArraysDelete)
+{
+	Arena ar(500, 500, 6, 4, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
+	ar.insertInCellIndices(QPoint(2, 1));
+	ar.insertInCellIndices(QPoint(3, 1));
+	ar.insertInCellIndices(QPoint(4, 1));
+	ar.insertInCellIndices(QPoint(1, 1));
+	ar.deleteInCellIndices(QPoint(2, 1));
+	assert(ar.emptyCells()[21] == QPoint(4, 1));
+	assert(ar.cellIndices()[21] == 10);
+	assert(ar.emptyCells()[23] == QPoint(1, 1));
+	assert(ar.cellIndices()[23] == 7);
+	assert(ar.emptyCells()[8] == QPoint(2, 1));
+	assert(ar.cellIndices()[8] == 8);
+}

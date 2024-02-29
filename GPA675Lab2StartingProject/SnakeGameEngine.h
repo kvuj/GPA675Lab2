@@ -60,12 +60,12 @@ public:
 
 	enum pelletInsertionType : uint8_t
 	{
-		foreverRed = 1,
-		random = 2
+		foreverRed = 1, // Toujours avoir une pastille rouge sur la partie
+		random = 2		// Ajout aléatoire après un délai (à configurer)
 	};
 
+	// À appeler avant le début de la partie.
 	void setPelletInsertionType(pelletInsertionType type);
-	void insertPelletIfNecessary();
 
 private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
@@ -81,6 +81,7 @@ private:
 
 
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
+	void insertPelletIfNecessary();
 };
 
 

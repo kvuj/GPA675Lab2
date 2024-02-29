@@ -6,6 +6,7 @@
 #include <functional>
 #include <vector>
 
+#include "Arena.h"
 #include "Body.h"
 
 // On ajoute un pointeur de la fonction au vecteur vec. Cela permet de

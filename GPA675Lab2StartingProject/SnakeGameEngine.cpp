@@ -72,7 +72,13 @@ void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
 
 void SnakeGameEngine::insertPelletIfNecessary()
 {
-	std::uniform_int_distribution<> distrib(1, 6);
+	switch (mType) {
+	case foreverRed:
+
+		break;
+	case random:
+		break;
+	}
 }
 
 QColor SnakeGameEngine::blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio)
