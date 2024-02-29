@@ -4,7 +4,6 @@
 
 #include "StaticEntity.h"
 #include "Snake.h"
-#include "SnakeGameEngine.h"
 
 class Pellet : public StaticEntity
 {

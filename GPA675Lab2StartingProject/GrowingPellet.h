@@ -16,8 +16,8 @@ public:
 	void applyEffectOnSnake(Snake& snake) override;
 	void isEaten() override;
 	bool isColliding(const QPoint& position) override;
-	bool isAlive() const { return true; }
-	bool isValid() const { return true; }
+
+
 private:
 	Body mBody;
 	

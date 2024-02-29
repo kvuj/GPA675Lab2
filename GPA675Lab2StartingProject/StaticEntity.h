@@ -27,6 +27,7 @@ public:
 	void ticPrepare(qreal elapsedTime) override;
 	void ticExecute() override;
 
+
 protected:
 	QPoint mPosition;
 	QColor mColor;

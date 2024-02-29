@@ -13,7 +13,7 @@ void GrowingPellet::applyEffectOnSnake(Snake& snake)
 void GrowingPellet::isEaten()
 {
 	mAlive = false;
-
+	mBody.clear();
 }
 bool GrowingPellet::isColliding(const QPoint& position)
 {

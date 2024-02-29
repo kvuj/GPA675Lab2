@@ -6,9 +6,6 @@
 #include <QPointF>
 #include "Arena.h"
 
-class SnakeGameEngine;
-
-
 class Entity
 {
 public:

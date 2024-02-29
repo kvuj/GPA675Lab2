@@ -17,7 +17,7 @@ void StaticEntity::draw(QPainter& painter)
 
 bool StaticEntity::isColliding(const QPoint& position)
 {
-	return position == mPosition;
+	return mBody.isColliding(position);
 }
 
 void StaticEntity::ticPrepare(qreal elapsedTime)
