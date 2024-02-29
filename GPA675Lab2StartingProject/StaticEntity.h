@@ -29,7 +29,7 @@ public:
 
 
 protected:
-	QPoint mPosition;
+	QPoint mPosition; // Pas besoin de body, on a seulement une position
 	QColor mColor;
 	qreal mElapsedTimeTotal;
 };
