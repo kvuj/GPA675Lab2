@@ -12,10 +12,7 @@ StaticEntity::StaticEntity(Arena& board, QPoint p)
 
 void StaticEntity::draw(QPainter& painter)
 {
-	size_t gridSize = mBoard.getBlockSideSize();
-	painter.setPen(Qt::NoPen);
-	painter.setBrush(mColor);
-	painter.fillRect(QRect(QPoint(mPosition.x() * gridSize, mPosition.y() * gridSize), QSize(gridSize, gridSize)), mColor);
+	mBody.draw(painter,mColor,mColor, this->mBoard.getBlockSideSize());
 }
 
 bool StaticEntity::isColliding(const QPoint& position)

@@ -3,6 +3,8 @@
 #define STATIC_ENTITY_H
 
 #include "Entity.h"
+#include "Body.h"
+
 
 class StaticEntity : public Entity
 {
@@ -29,6 +31,7 @@ protected:
 	QPoint mPosition;
 	QColor mColor;
 	qreal mElapsedTimeTotal;
+	Body mBody;
 };
 
 #endif //STATIC_ENTITY_H

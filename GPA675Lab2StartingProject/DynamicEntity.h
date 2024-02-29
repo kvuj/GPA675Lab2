@@ -5,7 +5,8 @@
 #include "Entity.h" // Inclure la classe de base Entity
 #include "Arena.h"
 
-class DynamicEntity : public Entity {
+class DynamicEntity : public Entity 
+{
 public:
 	DynamicEntity(Arena& board);
 	virtual ~DynamicEntity() = default;

@@ -3,7 +3,6 @@
 #define MENU_H
 #include <QMainWindow>
 #include <QComboBox>
-#include "ui_Menu.h"
 
 
 #include <QPushButton>

@@ -14,6 +14,7 @@
 #include "PressedKeys.h"
 #include "Entity.h"
 #include "Snake.h"
+#include "StaticEntity.h"
 
 class QPainter;
 

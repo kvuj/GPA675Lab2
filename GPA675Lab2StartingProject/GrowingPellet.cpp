@@ -5,7 +5,17 @@ GrowingPellet::GrowingPellet(Arena& board, QPoint position)
 {
 }
 
+
 void GrowingPellet::applyEffectOnSnake(Snake& snake)
 {
-	snake.grow(1);
+	snake.grow(getAmplitude());
+}
+void GrowingPellet::isEaten()
+{
+	mAlive = false;
+
+}
+bool GrowingPellet::isColliding(const QPoint& position)
+{
+	return mBody.isColliding(position);
 }

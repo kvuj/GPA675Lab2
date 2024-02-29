@@ -5,6 +5,7 @@ SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedK
 {
 	auto ar{ this->mGameEngine.arena() };
 	auto* ptr{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };
+	
 
 	if (keys.size() == 4)
 		ptr->setController(new SnakeKeyboardAbsoluteController(*ptr, keys, pressedKeysQt));
@@ -15,4 +16,6 @@ SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedK
 	ptr->reset({ static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
 		Snake::Direction::toUp, 3, 2);
 	this->mGameEngine.addEntity(ptr);
+	
+	
 }
