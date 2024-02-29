@@ -6,6 +6,8 @@
 #include <random>
 #include <numeric>
 
+#include "Pellet.h"
+
 class Entity;
 
 class Arena
@@ -20,7 +22,6 @@ public:
 	std::vector<Entity*>& getGrid();
 	std::vector<QPoint>& getEmptyCells();
 	std::vector<int>& getCellIndices();
-	int generateRandomNumberInSize();
 
 	/// <summary>
 	/// Insertion dans les tableaux pour l'insertion en O(1)
@@ -39,6 +40,8 @@ public:
 	/// </summary>
 	std::vector<int>& cellIndices();
 
+	void insertPellet(const Pellet& pell);
+
 private:
 	size_t mWidthPixels;
 	size_t mHeightPixels;
@@ -56,4 +59,7 @@ private:
 	std::vector<QPoint> mEmptyCells;
 	std::vector<int> mCellIndices;
 	int pivot;
+
+
+	int generateRandomNumberInSize();
 };
