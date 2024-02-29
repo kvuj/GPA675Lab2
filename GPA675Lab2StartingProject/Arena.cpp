@@ -7,26 +7,25 @@ Arena::Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundCo
 }
 
 Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGrid, QColor backgroundColor, QColor gridColor)
-	:mWidth{ width }
-	, mHeight{ height }
+	: mWidthPixels{ width }
+	, mHeightPixels{ height }
 	, mBackgroundColor{ backgroundColor }
 	, mGridColor{ gridColor }
-	, mGridHeight(heightOfGrid)
-	, mGridWidth{ widthOfGrid }
-	, mGridSize{ static_cast <size_t>(sqrt(floor(static_cast <double>(width * height) / static_cast <double>(pow(std::max(widthOfGrid, heightOfGrid), 2))))) }
+	, mGridHeightInBlocks(heightOfGrid)
+	, mGridWidthInBlocks{ widthOfGrid }
+	, mBlockSideSizePixels{ static_cast <size_t>(sqrt(floor(static_cast <double>(width * height) / static_cast <double>(pow(std::max(widthOfGrid, heightOfGrid), 2))))) }
 	, mGrid(widthOfGrid* heightOfGrid)
-	, mEmptyCells(mGridHeight* mGridWidth)
-	, mCellIndices(mGridHeight* mGridWidth)
+	, mEmptyCells(mGridHeightInBlocks* mGridWidthInBlocks)
+	, mCellIndices(mGridHeightInBlocks* mGridWidthInBlocks)
 	, mt{}
-	, pivot{ static_cast<int>(mGridHeight * mGridWidth) }
+	, pivot{ static_cast<int>(mGridHeightInBlocks * mGridWidthInBlocks) }
 {
-	mSizeOfArena = QSize(QSize(width, height));
 
 	memset(&(mGrid[0]), 0, sizeof(Entity*) * widthOfGrid * heightOfGrid);
 
-	for (size_t x{}; x < mGridWidth; x++) {
-		for (size_t y{}; y < mGridHeight; y++) {
-			mEmptyCells[x + (y * mGridWidth)] = QPoint(x, y);
+	for (size_t x{}; x < mGridWidthInBlocks; x++) {
+		for (size_t y{}; y < mGridHeightInBlocks; y++) {
+			mEmptyCells[x + (y * mGridWidthInBlocks)] = QPoint(x, y);
 		}
 	}
 	std::iota(mCellIndices.begin(), mCellIndices.end(), 0);
@@ -34,35 +33,34 @@ Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGri
 
 void Arena::draw(QPainter& painter)
 {
-
 	painter.setPen(mGridColor);
-	painter.fillRect(QRect(QPoint(0, 0), mSizeOfArena), mBackgroundColor);
+	painter.fillRect(QRect(QPoint(0, 0), QSize(mWidthPixels, mHeightPixels)), mBackgroundColor);
 	painter.setPen(QPen(mGridColor, 1, Qt::SolidLine));
-	for (int i{}; i < mGridWidth; ++i) {
-		painter.drawLine(mGridSize * i, 0, mGridSize * i, mGridHeight * mGridSize);
+	for (int i{}; i < mGridWidthInBlocks; ++i) {
+		painter.drawLine(mBlockSideSizePixels * i, 0, mBlockSideSizePixels * i, mGridHeightInBlocks * mBlockSideSizePixels);
 	}
-	for (int j{}; j < mGridHeight; ++j) {
-		painter.drawLine(0, mGridSize * j, mGridWidth * mGridSize, mGridSize * j);
+	for (int j{}; j < mGridHeightInBlocks; ++j) {
+		painter.drawLine(0, mBlockSideSizePixels * j, mGridWidthInBlocks * mBlockSideSizePixels, mBlockSideSizePixels * j);
 	}
-	painter.drawLine(0, mGridHeight * mGridSize, mGridWidth * mGridSize, mGridHeight * mGridSize);
-	painter.drawLine(mGridWidth * mGridSize, 0, mGridWidth * mGridSize, mGridHeight * mGridSize);
+	painter.drawLine(0, mGridHeightInBlocks * mBlockSideSizePixels, mGridWidthInBlocks * mBlockSideSizePixels, mGridHeightInBlocks * mBlockSideSizePixels);
+	painter.drawLine(mGridWidthInBlocks * mBlockSideSizePixels, 0, mGridWidthInBlocks * mBlockSideSizePixels, mGridHeightInBlocks * mBlockSideSizePixels);
 
 	painter.setPen(Qt::NoPen);
 }
 
 size_t Arena::getBlockSideSize() const
 {
-	return mGridSize;
+	return mBlockSideSizePixels;
 }
 
 int Arena::getArenaHeightInBlocks() const
 {
-	return mGridHeight;
+	return mGridHeightInBlocks;
 }
 
 int Arena::getArenaWidthInBlocks() const
 {
-	return mGridWidth;
+	return mGridWidthInBlocks;
 }
 
 std::vector<Entity*>& Arena::getGrid()
@@ -82,13 +80,13 @@ std::vector<int>& Arena::getCellIndices()
 
 int Arena::generateRandomNumberInSize()
 {
-	std::uniform_int_distribution<> distrib(0, mGridWidth * mGridHeight);
+	std::uniform_int_distribution<> distrib(0, mGridWidthInBlocks * mGridHeightInBlocks);
 	return 0;
 }
 
 void Arena::insertInCellIndices(QPoint posToInsert)
 {
-	auto pos{ posToInsert.x() + (posToInsert.y() * mGridWidth) };
+	auto pos{ posToInsert.x() + (posToInsert.y() * mGridWidthInBlocks) };
 	std::swap(mEmptyCells[mCellIndices[pos]], mEmptyCells[pivot - 1]);
 	std::swap(mCellIndices[pos], mCellIndices[pivot - 1]);
 	--pivot;
@@ -96,8 +94,8 @@ void Arena::insertInCellIndices(QPoint posToInsert)
 
 void Arena::deleteInCellIndices(QPoint posToDelete)
 {
-	auto pos{ posToDelete.x() + (posToDelete.y() * mGridWidth) };
-	auto posPivot{ mEmptyCells[pivot].x() + (mEmptyCells[pivot].y() * mGridWidth) };
+	auto pos{ posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks) };
+	auto posPivot{ mEmptyCells[pivot].x() + (mEmptyCells[pivot].y() * mGridWidthInBlocks) };
 
 	if (mCellIndices[pos] != pivot) {
 		auto oldPointPos = mCellIndices[pos];

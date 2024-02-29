@@ -15,7 +15,7 @@ Snake::Snake(Arena& board, Controller* controller)
 	, LUTDirectionDisplacement{ QPoint(0, -1), QPoint(1, 0), QPoint(0, 1), QPoint(-1, 0) }
 	, LUTDirectionAction{ &Snake::goUp, &Snake::goRight, &Snake::goDown, &Snake::goLeft }
 	, mController{ std::move(controller) }
-	, mHeadColor{ Qt::red }
+	, mHeadColor{ Qt::darkGray }
 	, mBodyColor{ Qt::white }
 	, mHasMoved{}
 {
