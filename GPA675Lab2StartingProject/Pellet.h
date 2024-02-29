@@ -12,14 +12,16 @@ public:
 	virtual ~Pellet() = default;
 	int score() const { return mScore; }
 	void setScore(int score) { mScore = score; }
-	virtual void applyEffectOnSnake(Snake& snake) =0;
-	virtual void isEaten()=0;
-	virtual bool isColliding(const QPoint& position)=0;
+	
+	virtual void applyEffectOnSnake(Snake& snake) = 0;
+
 	void changeAmplitude(float amplitude) { mAmplitude = amplitude; }
 	float getAmplitude() const { return mAmplitude; }
 
+	// Beaucoup des fonctions requises sont dans Entity et StaticEntity
+
 private:
 	int mScore = 0;
-	float mAmplitude = 0.0; //Amplitude du pouvoir.
+	float mAmplitude = 0.0; // Amplitude du pouvoir.
 };
 #endif //PELLET_H

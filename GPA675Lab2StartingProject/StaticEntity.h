@@ -32,7 +32,6 @@ protected:
 	QPoint mPosition;
 	QColor mColor;
 	qreal mElapsedTimeTotal;
-	Body mBody;
 };
 
 #endif //STATIC_ENTITY_H
