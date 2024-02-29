@@ -1,6 +1,6 @@
 #include "SnakeGameEngine.h"
 
-#include <QPainter>
+constexpr int gridWidthBlocks{ 5 }, gridHeightBlocks{ 15 };
 
 std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.55, 0.5, 0.1),
@@ -9,7 +9,8 @@ std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	: mSize(size)
 	, mColor(Qt::blue)
-	, mArena{ Arena(size.width(), size.height(), 5,15, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
+	, mArena{ Arena(size.width(), size.height(), gridWidthBlocks, gridHeightBlocks, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
+	, mType{ foreverRed }
 {
 }
 
@@ -27,6 +28,8 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 
 	mEntities.remove_if([](Entity* en) { if (!(en->isAlive())) { delete en; return true; } else return false; });
 	// Se retire du tableau de pointeurs avec le destructeur
+
+	insertPelletIfNecessary();
 }
 
 void SnakeGameEngine::draw(QPainter& painter)
@@ -60,6 +63,16 @@ void SnakeGameEngine::clearAllEntities()
 Arena& SnakeGameEngine::arena()
 {
 	return mArena;
+}
+
+void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
+{
+	mType = type;
+}
+
+void SnakeGameEngine::insertPelletIfNecessary()
+{
+	std::uniform_int_distribution<> distrib(1, 6);
 }
 
 QColor SnakeGameEngine::blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio)

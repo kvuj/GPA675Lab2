@@ -38,7 +38,6 @@ void SnakeGameApplication::keyPressEvent(QKeyEvent* event)
 	if (!event->isAutoRepeat()) {
 		mPressedKeys.push_back(static_cast<Qt::Key>(event->key()));
 	}
-
 	Snake* ptr{};
 	for (auto& i : mGame.entities()) {
 		ptr = reinterpret_cast<Snake*>(i);

@@ -196,17 +196,17 @@ void Snake::turnLeft()
 void Snake::goUp()
 {
 	go(mBody.first() + LUTDirectionDisplacement[0]);
-	}
+}
 
 void Snake::goRight()
 {
 	go(mBody.first() + LUTDirectionDisplacement[1]);
-	}
+}
 
 void Snake::goDown()
 {
 	go(mBody.first() + LUTDirectionDisplacement[2]);
-	}
+}
 
 void Snake::goLeft()
 {
