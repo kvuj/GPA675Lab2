@@ -5,13 +5,9 @@
 #include "Pellet.h"
 #include "Snake.h"
 
-class AcceleratingPellet : public Pellet
+class AcceleratingPellet
 {
-public:
-	AcceleratingPellet() = default;
-	AcceleratingPellet(Arena& board, QPoint position);
-	~AcceleratingPellet() = default;
-	void applyEffectOnSnake(Snake& snake) override;
+
 };
 
 #endif //ACCELERATING_PELLET_H

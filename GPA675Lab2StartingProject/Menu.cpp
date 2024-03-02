@@ -33,7 +33,7 @@ Menu::Menu(QWidget* parent)
 	line->setFrameShape(QFrame::HLine);
 	line->setFrameShadow(QFrame::Sunken);
 
-	mGame = new SnakeGameApplication;
+	
 
 	// Créer un layout vertical
 	QVBoxLayout* layout = new QVBoxLayout;
@@ -70,6 +70,7 @@ void Menu::Exit()
 
 void Menu::Start()
 {
+	mGame = new SnakeGameApplication;
 	// Récupérer le texte sélectionné dans le QComboBox
 	QString selectedText = mGameType->currentText();
 
@@ -90,7 +91,6 @@ void Menu::Start()
 		mGame->setGameType(SnakeGameApplication::GameType::Origin);
 	else if (selectedText == "SnakeBlockade")
 		mGame->setGameType(SnakeGameApplication::GameType::Blockade);
-
 	mGame->show();
 	close();
 }

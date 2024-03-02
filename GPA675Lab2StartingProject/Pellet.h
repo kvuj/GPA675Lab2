@@ -9,19 +9,18 @@ class Pellet : public StaticEntity
 {
 public:
 	Pellet(Arena& board, QColor color, QPoint position);
+	Pellet(Arena& board, QPoint position);
 	virtual ~Pellet() = default;
-	int score() const { return mScore; }
-	void setScore(int score) { mScore = score; }
-	
+
 	virtual void applyEffectOnSnake(Snake& snake) = 0;
 
-	void changeAmplitude(float amplitude) { mAmplitude = amplitude; }
-	float getAmplitude() const { return mAmplitude; }
+	float getAmplitudeEffect() const { return mAmplitudeEffect; }
 
 	// Beaucoup des fonctions requises sont dans Entity et StaticEntity
-
-private:
-	int mScore = 0;
-	float mAmplitude = 0.0; // Amplitude du pouvoir.
+protected:
+	
+	QPoint mPosition;
+	float mAmplitudeEffect = { 1.0 };
+	int mRadius = { 1 };
 };
 #endif //PELLET_H

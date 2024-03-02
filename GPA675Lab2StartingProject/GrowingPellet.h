@@ -13,7 +13,14 @@ public:
 	GrowingPellet() = default;
 	GrowingPellet(Arena& board, QPoint position);
 	~GrowingPellet() = default;
+	void draw(QPainter& painter) override;
 	void applyEffectOnSnake(Snake& snake) override;
+
+private:
+	//la pastille est rouge
+
+	QColor mColor = QColor(255, 0, 0);
+
 };
 
 #endif //GROWING_PELLET_H

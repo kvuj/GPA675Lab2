@@ -10,7 +10,7 @@
 
 class Entity;
 
-class Arena-
+class Arena
 {
 public:
 	Arena(size_t width, size_t height, size_t gridAmount, QColor backgroundColor, QColor gridColor);

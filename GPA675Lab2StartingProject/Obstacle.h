@@ -3,9 +3,7 @@
 #define OBSTACLE_H
 
 
-#include "StaticEntity.h"
-
-class Obstacle:public StaticEntity
+class Obstacle
 {
 	public:
 		Obstacle() = default;

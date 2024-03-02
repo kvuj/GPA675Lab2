@@ -30,6 +30,7 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 	// Se retire du tableau de pointeurs avec le destructeur
 
 	insertPelletIfNecessary();
+
 }
 
 void SnakeGameEngine::draw(QPainter& painter)
@@ -72,9 +73,17 @@ void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
 
 void SnakeGameEngine::insertPelletIfNecessary()
 {
+	//recherche de position vide dans l'arena
+	std::vector<QPoint>& positions = mArena.getEmptyCells();
+
+
 	switch (mType) {
 	case foreverRed:
-
+		// Insertion d'une seule pastille rouge dans les cellules vides
+		if (!positions.empty()) {
+			GrowingPellet* pellet = new GrowingPellet(mArena, positions[0]);
+			addEntity(pellet);
+		}
 		break;
 	case random:
 		break;

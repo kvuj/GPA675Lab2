@@ -19,13 +19,12 @@ SnakeGameApplication::SnakeGameApplication()
 {
 
 	// Configuration de la barre de titre de l'application
-	setWindowTitle("Snake++");
+	
 	prepareGame();
-
 	// Configuration générale : taille et focus
 	setFixedSize(mWindowSize);
 	setFocusPolicy(Qt::StrongFocus);
-
+	setWindowTitle("Snake++");
 	// Configuration de la boucle générale via l'objet 'timer'.
 	mTimer.setSingleShot(true);
 	connect(&mTimer, &QTimer::timeout, this, &SnakeGameApplication::tic);

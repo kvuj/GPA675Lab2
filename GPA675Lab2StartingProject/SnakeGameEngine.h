@@ -17,6 +17,7 @@
 #include "Entity.h"
 #include "Snake.h"
 #include "StaticEntity.h"
+#include "GrowingPellet.h"
 
 class QPainter;
 
