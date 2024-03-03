@@ -11,6 +11,11 @@ void GrowingPellet::applyEffectOnSnake(Snake& snake)
 	snake.grow(getAmplitudeEffect());
 }
 
+bool GrowingPellet::isAlive()
+{
+    return mAlive;
+}
+
 void GrowingPellet::draw(QPainter& painter)
 {
     // Récupérez la taille du bloc de l'arène

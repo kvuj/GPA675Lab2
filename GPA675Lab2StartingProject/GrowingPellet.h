@@ -16,6 +16,8 @@ public:
 	void draw(QPainter& painter) override;
 	void applyEffectOnSnake(Snake& snake) override;
 
+	bool isAlive() override;
+
 private:
 	//la pastille est rouge
 

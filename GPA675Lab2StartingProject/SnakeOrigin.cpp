@@ -3,6 +3,7 @@
 SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedKeys& pressedKeysQt):
 	SnakeGameScenario(gameEngine)
 {
+	mGameEngine.clearAllEntities();
 	auto ar{ this->mGameEngine.arena() };
 	auto* ptr{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };
 
@@ -15,5 +16,9 @@ SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedK
 	ptr->reset({ static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
 		Snake::Direction::toUp, 3, 2);
 	this->mGameEngine.addEntity(ptr);
+
 	mGameEngine.setPelletInsertionType(SnakeGameEngine::foreverRed);
+	std::vector<QPoint>& positions = mGameEngine.arena().getEmptyCells();
+	GrowingPellet* pellet = new GrowingPellet(mGameEngine.arena(), positions[1]);
+	this->mGameEngine.addEntity(pellet);
 }

@@ -67,7 +67,7 @@ public:
 
 	// À appeler avant le début de la partie.
 	void setPelletInsertionType(pelletInsertionType type);
-
+	
 private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
 	QColor mColor;      // Couleur de l'élément principal de jeu, utilisée lors du rendu.
@@ -79,10 +79,10 @@ private:
 	std::list<Entity*> mEntities;
 	Arena mArena;
 	pelletInsertionType mType;
-
+	void insertPelletIfNecessary();
 
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
-	void insertPelletIfNecessary();
+	
 };
 
 
