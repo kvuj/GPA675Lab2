@@ -82,7 +82,17 @@ void SnakeGameEngine::insertPelletIfNecessary()
 		if (mTimeBetweenPelletInsertion > timeUntilRandomPellet) {
 			mTimeBetweenPelletInsertion -= timeUntilRandomPellet;
 			auto num{ mArena.generateRandomPositionInSize() };
-			auto en{ new GrowingPellet(mArena, num) };
+			Entity* en = nullptr;
+
+			// Croissance
+			if (mArena.generateRandomNumber(0, 100) <= 60) {
+				en = new GrowingPellet(mArena, num, mArena.generateRandomNumber(1, 10));
+			}
+			// Accel
+			else {
+				en = new AcceleratingPellet(mArena, num, static_cast<float>(mArena.generateRandomNumber(25, 50)) / 10.0);
+			}
+
 			mArena.insertEntity(en, num);
 			mEntities.emplace_back(en);
 		}

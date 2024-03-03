@@ -84,6 +84,12 @@ QPoint Arena::generateRandomPositionInSize()
 	return mEmptyCells[distrib(mt)];
 }
 
+int Arena::generateRandomNumber(int low, int high)
+{
+	std::uniform_int_distribution<> distrib(low, high);
+	return distrib(mt);
+}
+
 void Arena::insertInCellIndices(QPoint posToInsert)
 {
 	auto pos{ posToInsert.x() + (posToInsert.y() * mGridWidthInBlocks) };

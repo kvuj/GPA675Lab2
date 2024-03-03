@@ -1,13 +1,13 @@
 #include "AcceleratingPellet.h"
 
-AcceleratingPellet::AcceleratingPellet(Arena& board, QPoint position)
-	: Pellet(board, { 255, 0, 255 }, position)
+AcceleratingPellet::AcceleratingPellet(Arena& board, QPoint position, float amplitudeEffect)
+	: Pellet(board, { 255, 0, 255 }, position), mAmplitudeAccel{ amplitudeEffect }
 {
 }
 
 void AcceleratingPellet::applyEffectOnSnake(Snake& snake)
 {
-	snake.setSpeed(snake.speed() + (snake.speed() * getAmplitudeEffect()) / 100);
+	snake.setSpeed(snake.speed() + (snake.speed() * mAmplitudeAccel) / 100);
 }
 
 bool AcceleratingPellet::isAlive()

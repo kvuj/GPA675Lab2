@@ -1,13 +1,13 @@
 #include "GrowingPellet.h"
 
-GrowingPellet::GrowingPellet(Arena& board, QPoint position)
-	: Pellet(board, { 255, 0, 0 }, position)
+GrowingPellet::GrowingPellet(Arena& board, QPoint position, int amplitudeEffect)
+	: Pellet(board, { 255, 0, 0 }, position), mAmplitudeGrowing{ amplitudeEffect }
 {
 }
 
 void GrowingPellet::applyEffectOnSnake(Snake& snake)
 {
-	snake.grow(getAmplitudeEffect());
+	snake.grow(mAmplitudeGrowing);
 }
 
 bool GrowingPellet::isAlive()

@@ -43,6 +43,7 @@ public:
 
 	void insertEntity(Entity* en, QPoint pos);
 	QPoint generateRandomPositionInSize();
+	int generateRandomNumber(int low, int high);
 
 private:
 	size_t mWidthPixels;
