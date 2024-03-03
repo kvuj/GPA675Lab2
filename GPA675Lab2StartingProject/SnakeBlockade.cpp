@@ -50,11 +50,24 @@ void SnakeBlockade::insertPellet()
 	mt.seed(rd());
 	auto type{ distrib(mt) };
 	if (type < 60) {
-		auto* ptrPellet{ createGrowingPellet(this->mGameEngine.arena(), 10) };
+		//valeur aléatoire entre 1 et 10
+		std::uniform_int_distribution<> distrib(1, 10);
+		std::mt19937 mt;
+		std::random_device rd;
+		mt.seed(rd());
+		auto grossissement{ distrib(mt) };
+
+		auto* ptrPellet{ createGrowingPellet(this->mGameEngine.arena(),grossissement) };
 		this->mGameEngine.addEntity(ptrPellet);
 	}
 	else {
-		auto* ptrPellet{ createAcceleratingPellet(this->mGameEngine.arena(), 5.0) };
+		/*vitesse supplémentaire aléatoire entre 2.5 % et 5.0 % */
+		std::uniform_int_distribution<> distrib(2.5,5.0);
+		std::mt19937 mt;
+		std::random_device rd;
+		mt.seed(rd());
+		auto vitesse{ distrib(mt) };
+		auto* ptrPellet{ createAcceleratingPellet(this->mGameEngine.arena(),vitesse) };
 		this->mGameEngine.addEntity(ptrPellet);
 	}
  }

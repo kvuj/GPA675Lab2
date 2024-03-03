@@ -8,7 +8,8 @@ AcceleratingPellet::AcceleratingPellet(Arena& board, QPoint position)
 
 void AcceleratingPellet::applyEffectOnSnake(Snake& snake)
 {
-    snake.setSpeed(snake.speed() + getAmplitudeEffect());
+
+    snake.setSpeed(snake.speed() + (snake.speed()*getAmplitudeEffect())/100);
 }
 
 bool AcceleratingPellet::isAlive()
