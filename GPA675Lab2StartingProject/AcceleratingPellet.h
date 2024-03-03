@@ -8,7 +8,6 @@
 class AcceleratingPellet: public Pellet
 {
 public :
-	AcceleratingPellet() = default;
 	AcceleratingPellet(Arena& board, QPoint position);
 	~AcceleratingPellet() = default;
 	void draw(QPainter& painter) override;

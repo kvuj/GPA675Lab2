@@ -11,7 +11,6 @@
 class GrowingPellet : public Pellet
 {
 public:
-	GrowingPellet() = default;
 	GrowingPellet(Arena& board, QPoint position);
 	~GrowingPellet() = default;
 	void draw(QPainter& painter) override;

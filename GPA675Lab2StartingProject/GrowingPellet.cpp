@@ -3,7 +3,6 @@
 GrowingPellet::GrowingPellet(Arena& board, QPoint position)
 	: Pellet(board, { 255, 0, 0 }, position)
 {
-	mPosition = position;
 }
 
 void GrowingPellet::applyEffectOnSnake(Snake& snake)

@@ -3,7 +3,6 @@
 AcceleratingPellet::AcceleratingPellet(Arena& board, QPoint position)
 	: Pellet(board, { 255, 0, 255 }, position)
 {
-	mPosition = position;
 }
 
 void AcceleratingPellet::applyEffectOnSnake(Snake& snake)
