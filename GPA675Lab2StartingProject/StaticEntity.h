@@ -31,7 +31,7 @@ public:
 	QPoint getPosition();
 protected:
 	QPoint mPosition; // Pas besoin de body, on a seulement une position
-	QColor mColor = QColor(0,0,0);
+	QColor mColor;
 	qreal mElapsedTimeTotal;
 };
 

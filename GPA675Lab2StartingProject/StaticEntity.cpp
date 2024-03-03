@@ -1,7 +1,7 @@
 #include "StaticEntity.h"
 
 StaticEntity::StaticEntity(Arena& board, QColor color , QPoint position)
-	: Entity(board), mElapsedTimeTotal{}
+	: Entity(board), mElapsedTimeTotal{}, mPosition(position), mColor(color)
 {
 	
 }

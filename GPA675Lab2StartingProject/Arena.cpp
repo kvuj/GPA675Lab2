@@ -17,7 +17,7 @@ Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGri
 	, mGrid(widthOfGrid* heightOfGrid)
 	, mEmptyCells(mGridHeightInBlocks* mGridWidthInBlocks)
 	, mCellIndices(mGridHeightInBlocks* mGridWidthInBlocks)
-	, mt{}
+	, mt(std::random_device()())
 	, pivot{ static_cast<int>(mGridHeightInBlocks * mGridWidthInBlocks) }
 {
 

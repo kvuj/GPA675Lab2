@@ -10,7 +10,7 @@
 
 SnakeGameApplication::SnakeGameApplication()
 	: QWidget(nullptr)
-	, mWindowSize(1024, 1024)
+	, mWindowSize(800, 800)
 	, mTimer()
 	, mElapsedTimer()
 	, mPressedKeys()
