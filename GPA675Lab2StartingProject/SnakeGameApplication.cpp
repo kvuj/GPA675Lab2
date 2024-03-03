@@ -37,12 +37,12 @@ void SnakeGameApplication::keyPressEvent(QKeyEvent* event)
 	if (!event->isAutoRepeat()) {
 		mPressedKeys.push_back(static_cast<Qt::Key>(event->key()));
 	}
-	Snake* ptr{};
+
 	for (auto& i : mGame.entities()) {
-		ptr = reinterpret_cast<Snake*>(i);
-		if (!ptr || !ptr->isAlive())
-			continue;
-		ptr->controller().control();
+		Snake* snake = dynamic_cast<Snake*>(i);
+		if (snake && snake->isAlive()) {
+			snake->controller().control();
+		}
 	}
 }
 
@@ -55,12 +55,11 @@ void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
 		}
 	}
 
-	Snake* ptr{};
 	for (auto& i : mGame.entities()) {
-		ptr = reinterpret_cast<Snake*>(i);
-		if (!ptr || !ptr->isAlive())
-			continue;
-		ptr->controller().control();
+		Snake* snake = dynamic_cast<Snake*>(i);
+		if (snake && snake->isAlive()) {
+			snake->controller().control();
+		}
 	}
 }
 

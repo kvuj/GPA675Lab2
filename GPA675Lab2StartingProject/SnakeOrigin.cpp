@@ -19,12 +19,12 @@ SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedK
 
 	mGameEngine.setPelletInsertionType(SnakeGameEngine::foreverRed);
 	std::vector<QPoint>& positions = mGameEngine.arena().getEmptyCells();
+
 	//donne une position aléatoire
 	std::uniform_int_distribution<> distrib(0, positions.size() - 1);
 	std::mt19937 mt;
 	std::random_device rd;
 	mt.seed(rd());
-
-	GrowingPellet* pellet = new GrowingPellet(mGameEngine.arena(), positions[distrib(mt)]);
-	this->mGameEngine.addEntity(pellet);
+	auto* ptrPellet{ new GrowingPellet(this->mGameEngine.arena(), positions[distrib(mt)])};
+	this->mGameEngine.addEntity(ptrPellet);
 }
