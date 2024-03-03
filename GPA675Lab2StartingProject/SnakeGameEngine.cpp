@@ -1,6 +1,6 @@
 #include "SnakeGameEngine.h"
 
-constexpr int gridWidthBlocks{ 5 }, gridHeightBlocks{ 15 };
+constexpr int gridWidthBlocks{ 5 }, gridHeightBlocks{ 10 };
 
 std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.55, 0.5, 0.1),
@@ -73,15 +73,14 @@ void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
 
 void SnakeGameEngine::insertPelletIfNecessary()
 {
-	//recherche de position vide dans l'arena
 	std::vector<QPoint>& positions = mArena.getEmptyCells();
-
 
 	switch (mType) {
 	case foreverRed:
 		// Insertion d'une seule pastille rouge dans les cellules vides
 		if (!positions.empty()) {
-			GrowingPellet* pellet = new GrowingPellet(mArena, positions[0]);
+		
+			GrowingPellet* pellet = new GrowingPellet(mArena,positions[1]);
 			addEntity(pellet);
 		}
 		break;
