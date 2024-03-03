@@ -11,6 +11,7 @@ SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	, mColor(Qt::blue)
 	, mArena{ Arena(size.width(), size.height(), gridWidthBlocks, gridHeightBlocks, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
 	, mType{ foreverRed }
+	, mTimeBetweenPelletInsertion{}
 {
 }
 
@@ -29,8 +30,9 @@ void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 	mEntities.remove_if([](Entity* en) { if (!(en->isAlive())) { delete en; return true; } else return false; });
 	// Se retire du tableau de pointeurs avec le destructeur
 
+	if (elapsedTime > 0)
+		mTimeBetweenPelletInsertion += elapsedTime;
 	insertPelletIfNecessary();
-
 }
 
 void SnakeGameEngine::draw(QPainter& painter)
@@ -71,14 +73,19 @@ void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
 	mType = type;
 }
 
-
 void SnakeGameEngine::insertPelletIfNecessary()
 {
-
 	switch (mType) {
 	case foreverRed:
 		break;
 	case random:
+		if (mTimeBetweenPelletInsertion > timeUntilRandomPellet) {
+			mTimeBetweenPelletInsertion -= timeUntilRandomPellet;
+			auto num{ mArena.generateRandomPositionInSize() };
+			auto en{ new GrowingPellet(mArena, num) };
+			mArena.insertEntity(en, num);
+			mEntities.emplace_back(en);
+		}
 		break;
 	}
 }

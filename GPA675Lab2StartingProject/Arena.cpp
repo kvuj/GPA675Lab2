@@ -78,11 +78,10 @@ std::vector<int>& Arena::getCellIndices()
 	return mCellIndices;
 }
 
-int Arena::generateRandomNumberInSize()
+QPoint Arena::generateRandomPositionInSize()
 {
-	std::uniform_int_distribution<> distrib(0, mGridWidthInBlocks * mGridHeightInBlocks);
-	return 0;
-	//return distrib(mt);
+	std::uniform_int_distribution<> distrib(0, pivot - 1);
+	return mEmptyCells[distrib(mt)];
 }
 
 void Arena::insertInCellIndices(QPoint posToInsert)
@@ -124,7 +123,8 @@ std::vector<int>& Arena::cellIndices()
 	return mCellIndices;
 }
 
-//void Arena::insertPellet(const Pellet& pell)
-//{
-	// TODO... ajout au grid de pointeurs et aux deux tableaux
-//}
+void Arena::insertEntity(Entity* en, QPoint pos)
+{
+	insertInCellIndices(pos);
+	mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)] = en;
+}

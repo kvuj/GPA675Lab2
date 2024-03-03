@@ -1,7 +1,5 @@
 #include "Entity.h"
 
-
-
 void Entity::ticPrepare(qreal mTotalElapsedTime)
 {
 }

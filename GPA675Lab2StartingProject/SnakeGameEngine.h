@@ -21,6 +21,8 @@
 
 class QPainter;
 
+constexpr qreal timeUntilRandomPellet = 5.0;
+
 // 
 // Classe SnakeGameEngine
 // Classe représentant l'engin de jeu pour gérer la logique et l'affichage du jeu.
@@ -72,6 +74,7 @@ private:
 	QSize mSize;        // Taille du canvas de jeu, en pixels, influençant la zone de mouvement des éléments de jeu.
 	QColor mColor;      // Couleur de l'élément principal de jeu, utilisée lors du rendu.
 	static std::array<QColor, 2> mBackgroundColors; // Les couleurs définissant le fond de la scène. 
+	qreal mTimeBetweenPelletInsertion;
 
 	// Liste des entités de jeu, utilisées pour gérer les éléments de jeu supplémentaires.
 	// Utilisation de shared pointer interdite. 
@@ -79,10 +82,10 @@ private:
 	std::list<Entity*> mEntities;
 	Arena mArena;
 	pelletInsertionType mType;
-	void insertPelletIfNecessary();
 
+
+	void insertPelletIfNecessary();
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
-	
 };
 
 

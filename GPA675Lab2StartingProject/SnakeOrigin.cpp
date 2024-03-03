@@ -3,10 +3,18 @@
 SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedKeys& pressedKeysQt):
 	SnakeGameScenario(gameEngine)
 {
-	mGameEngine.clearAllEntities();
 	auto ar{ this->mGameEngine.arena() };
-	
-	this->mGameEngine.addEntity(createSnake(ar, keys, pressedKeysQt));
+	auto* ptr{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };
+
+	if (keys.size() == 4)
+		ptr->setController(new SnakeKeyboardAbsoluteController(*ptr, keys, pressedKeysQt));
+	else
+		ptr->setController(new SnakeKeyboardRelativeController(*ptr, keys, pressedKeysQt));
+
+
+	ptr->reset({ static_cast<int>(ar.getArenaWidthInBlocks() / 2), static_cast<int>(ar.getArenaHeightInBlocks() / 2) },
+		Snake::Direction::toUp, 3, 1);
+	this->mGameEngine.addEntity(ptr);
+
 	mGameEngine.setPelletInsertionType(SnakeGameEngine::foreverRed);
-	this->mGameEngine.addEntity(createGrowingPellet(mGameEngine.arena(),1.0));
 }

@@ -4,7 +4,8 @@
 
 #include <QPainter>
 #include <QPointF>
-#include "Arena.h"
+
+class Arena;
 
 class Entity
 {

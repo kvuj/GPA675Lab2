@@ -5,11 +5,3 @@ Pellet::Pellet(Arena& board, QColor color, QPoint position)
 {
 	mPosition = position;
 }
-
-Pellet::Pellet(Arena& board, QPoint position)
-	:StaticEntity(board, position)
-{
-	mPosition = position;
-}
-
-

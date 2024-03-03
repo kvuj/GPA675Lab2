@@ -13,14 +13,7 @@ public :
 	~AcceleratingPellet() = default;
 	void draw(QPainter& painter) override;
 	void applyEffectOnSnake(Snake& snake) override;
-
 	bool isAlive() override;
-
-private:
-	//la pastille est magenta
-
-	QColor mColor = QColor(255, 0, 255);
-
 };
 
 #endif //ACCELERATING_PELLET_H

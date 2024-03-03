@@ -1,4 +1,7 @@
 #pragma once
+#ifndef ARENA_H
+#define ARENA_H
+
 #include <QPainter>
 #include <QPointF>
 #include <QColor>
@@ -6,9 +9,7 @@
 #include <random>
 #include <numeric>
 
-//#include "Pellet.h"
-
-class Entity;
+#include "Entity.h"
 
 class Arena
 {
@@ -40,7 +41,8 @@ public:
 	/// </summary>
 	std::vector<int>& cellIndices();
 
-	//void insertPellet(const Pellet& pell);
+	void insertEntity(Entity* en, QPoint pos);
+	QPoint generateRandomPositionInSize();
 
 private:
 	size_t mWidthPixels;
@@ -59,7 +61,6 @@ private:
 	std::vector<QPoint> mEmptyCells;
 	std::vector<int> mCellIndices;
 	int pivot;
-
-
-	int generateRandomNumberInSize();
 };
+
+#endif

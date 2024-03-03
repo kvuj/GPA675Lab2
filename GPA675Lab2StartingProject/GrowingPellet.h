@@ -2,6 +2,7 @@
 #ifndef GROWING_PELLET_H	
 #define GROWING_PELLET_H
 
+#include "Arena.h"
 #include "Pellet.h"
 #include "Snake.h"
 
@@ -15,14 +16,7 @@ public:
 	~GrowingPellet() = default;
 	void draw(QPainter& painter) override;
 	void applyEffectOnSnake(Snake& snake) override;
-
 	bool isAlive() override;
-
-private:
-	//la pastille est rouge
-
-	QColor mColor = QColor(255, 0, 0);
-
 };
 
 #endif //GROWING_PELLET_H

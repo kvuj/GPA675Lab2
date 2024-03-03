@@ -1,14 +1,11 @@
 #include "SnakeBlockade.h"
 
-
-
-
-SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, PressedKeys keys2, PressedKeys& pressedKeysQt):
+SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, PressedKeys keys2, PressedKeys& pressedKeysQt) :
 	SnakeGameScenario(gameEngine)
 {
 	auto ar{ this->mGameEngine.arena() };
 	auto* ptr{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };
-	auto* ptr2{ new Snake(this->mGameEngine.arena(), nullptr) };
+	auto* ptr2{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };
 
 	if (keys1.size() == 4)
 		ptr->setController(new SnakeKeyboardAbsoluteController(*ptr, keys1, pressedKeysQt));
@@ -27,47 +24,9 @@ SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, Pre
 		Snake::Direction::toUp, 3, 1);
 	this->mGameEngine.addEntity(ptr);
 	this->mGameEngine.addEntity(ptr2);
-	
+
 	// Définition de la fréquence d'apparition des pastilles
 	qreal pelletInsertionInterval = 5.0; // toutes les 5 secondes
 
 	mGameEngine.setPelletInsertionType(SnakeGameEngine::random);
-    insertPellet();
-
-
 }
-
-void SnakeBlockade::insertPellet()
-{
-	/*une pastille est insérée à toutes les 5 secondes de jeu :
-		le type est déterminé aléatoirement ainsi :
-		60 % de chance d’avoir une pastille de croissance de longueur aléatoire entre 1 et 10 et de pointage équivalent
-		40 % de chance d’avoir une pastille d’accélération de vitesse supplémentaire aléatoire entre 2.5 % et 5.0 %*/
-
-	std::uniform_int_distribution<> distrib(0, 100);
-	std::mt19937 mt;
-	std::random_device rd;
-	mt.seed(rd());
-	auto type{ distrib(mt) };
-	if (type < 60) {
-		//valeur aléatoire entre 1 et 10
-		std::uniform_int_distribution<> distrib(1, 10);
-		std::mt19937 mt;
-		std::random_device rd;
-		mt.seed(rd());
-		auto grossissement{ distrib(mt) };
-
-		auto* ptrPellet{ createGrowingPellet(this->mGameEngine.arena(),grossissement) };
-		this->mGameEngine.addEntity(ptrPellet);
-	}
-	else {
-		/*vitesse supplémentaire aléatoire entre 2.5 % et 5.0 % */
-		std::uniform_int_distribution<> distrib(2.5,5.0);
-		std::mt19937 mt;
-		std::random_device rd;
-		mt.seed(rd());
-		auto vitesse{ distrib(mt) };
-		auto* ptrPellet{ createAcceleratingPellet(this->mGameEngine.arena(),vitesse) };
-		this->mGameEngine.addEntity(ptrPellet);
-	}
- }
