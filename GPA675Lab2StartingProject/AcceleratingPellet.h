@@ -8,11 +8,9 @@
 class AcceleratingPellet: public Pellet
 {
 public :
-	AcceleratingPellet(Arena& board, QPoint position, float amplitudeEffect);
+	AcceleratingPellet(Arena& arena, QPoint position, float amplitudeEffect);
 	~AcceleratingPellet() = default;
-	void draw(QPainter& painter) override;
 	void applyEffectOnSnake(Snake& snake) override;
-	bool isAlive() override;
 
 private:
 	float mAmplitudeAccel;

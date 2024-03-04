@@ -11,11 +11,10 @@
 class GrowingPellet : public Pellet
 {
 public:
-	GrowingPellet(Arena& board, QPoint position, int amplitudeEffect);
+	GrowingPellet(Arena& arena, QPoint position, int amplitudeEffect);
 	~GrowingPellet() = default;
-	void draw(QPainter& painter) override;
+
 	void applyEffectOnSnake(Snake& snake) override;
-	bool isAlive() override;
 
 private:
 	int mAmplitudeGrowing;

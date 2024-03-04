@@ -9,8 +9,8 @@
 class StaticEntity : public Entity
 {
 public:
-	StaticEntity(Arena& board, QColor color, QPoint position);
-	StaticEntity(Arena& board, QPoint p);
+	StaticEntity(Arena& arena, QColor color, QPoint position);
+	StaticEntity(Arena& arena, QPoint p);
 	virtual ~StaticEntity() = default;
 
 	// Accesseurs inline

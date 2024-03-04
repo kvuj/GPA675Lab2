@@ -1,7 +1,7 @@
 #include "Snake.h"
 
-Snake::Snake(Arena& board, Controller* controller)
-	: DynamicEntity(board)
+Snake::Snake(Arena& arena, Controller* controller)
+	: DynamicEntity(arena)
 	, mReverseProhibited{ true }
 	, mScore{}
 	, mSizeToGrow{}
@@ -22,8 +22,8 @@ Snake::Snake(Arena& board, Controller* controller)
 	addToGrid();
 }
 
-Snake::Snake(Arena& board, PressedKeys const& pressedKeys)
-	: Snake(board, nullptr)
+Snake::Snake(Arena& arena, PressedKeys const& pressedKeys)
+	: Snake(arena, nullptr)
 {
 }
 
@@ -75,17 +75,17 @@ void Snake::ticPrepare(qreal elapsedTime)
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 
 	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
-	auto newHeadPos = xPos + (yPos * mBoard.getArenaWidthInBlocks());
+	auto newHeadPos = xPos + (yPos * mArena.getArenaWidthInBlocks());
 
 	// Si hors grille, à supprimer
-	if (xPos >= mBoard.getArenaWidthInBlocks() || xPos < 0 ||
-		yPos >= mBoard.getArenaHeightInBlocks() || yPos < 0) {
+	if (xPos >= mArena.getArenaWidthInBlocks() || xPos < 0 ||
+		yPos >= mArena.getArenaHeightInBlocks() || yPos < 0) {
 		setDead();
 		return;
 	}
 
 	// On retire le serpent s'il y a de quoi.
-	if (mBoard.getGrid()[newHeadPos]) {
+	if (mArena.getGrid()[newHeadPos]) {
 		setDead();
 	}
 
@@ -103,7 +103,7 @@ void Snake::ticExecute()
 
 void Snake::draw(QPainter& painter)
 {
-	mBody.draw(painter, mHeadColor, mBodyColor, this->mBoard.getBlockSideSize());
+	mBody.draw(painter, mHeadColor, mBodyColor, this->mArena.getBlockSideSize());
 }
 
 [[deprecated("You shouldn't check collisions this way. Use the grid of pointers in the arena")]]
@@ -227,18 +227,18 @@ void Snake::go(QPoint pt)
 void Snake::clearGridIncludingTail()
 {
 	for (auto& part : mBody) {
-		size_t pos{ part.x() + (part.y() * static_cast<size_t>(mBoard.getArenaWidthInBlocks()))};
-		if (pos < mBoard.getGrid().size())
-			mBoard.getGrid()[pos] = nullptr;
+		size_t pos{ part.x() + (part.y() * static_cast<size_t>(mArena.getArenaWidthInBlocks()))};
+		if (pos < mArena.getGrid().size())
+			mArena.getGrid()[pos] = nullptr;
 	}
 }
 
 void Snake::clearGridExcludingTail()
 {
 	for (auto it{ mBody.begin() }; it != mBody.endMinusOne(); it++) {
-		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mBoard.getArenaWidthInBlocks())) };
-		if (pos < mBoard.getGrid().size())
-			mBoard.getGrid()[pos] = nullptr;
+		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mArena.getArenaWidthInBlocks())) };
+		if (pos < mArena.getGrid().size())
+			mArena.getGrid()[pos] = nullptr;
 	}
 }
 
@@ -246,9 +246,9 @@ void Snake::addToGrid()
 {
 	// On saute la tail pour éviter de regarder les collisions avec la queue.
 	for (auto it{ mBody.begin() }; it != mBody.endMinusOne(); it++) {
-		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mBoard.getArenaWidthInBlocks())) };
-		if (pos < mBoard.getGrid().size())
-			mBoard.getGrid()[pos] = this;
+		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mArena.getArenaWidthInBlocks())) };
+		if (pos < mArena.getGrid().size())
+			mArena.getGrid()[pos] = this;
 	}
 }
 

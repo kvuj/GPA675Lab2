@@ -18,12 +18,13 @@ public:
 	// Créer les widgets du GUI
 
 private slots:
+
 	void Exit();
 	void Start();
 
 
 private:
-	SnakeGameApplication* mGame;
+	SnakeGameApplication* mApplication;
 	QComboBox* mGameType;
 	QComboBox* mKeyboardPlayer1;
 	QComboBox* mKeyboardPlayer2;

@@ -10,7 +10,7 @@ class Arena;
 class Entity
 {
 public:
-	Entity(Arena& board) : mBoard(board), mAge(0), mAlive(true) {}
+	Entity(Arena& arena) : mArena(arena), mAge(0), mAlive(true) {}
 	virtual ~Entity() = default;
 
 	void setDead() { mAlive = false; }
@@ -25,7 +25,7 @@ public:
 	virtual QPoint getPosition() = 0;
 
 protected:
-	Arena& mBoard;
+	Arena& mArena;
 	double mAge;
 	bool mAlive;
 };

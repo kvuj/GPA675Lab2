@@ -29,8 +29,8 @@ public:
 
 	class Controller;
 
-	Snake(Arena& board, Controller* controller);
-	Snake(Arena& board, PressedKeys const& pressedKeys);
+	Snake(Arena& arena, Controller* controller);
+	Snake(Arena& arena, PressedKeys const& pressedKeys);
 	~Snake();
 
 	bool isValid() override;

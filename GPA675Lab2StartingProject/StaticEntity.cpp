@@ -1,16 +1,15 @@
 #include "StaticEntity.h"
 
-StaticEntity::StaticEntity(Arena& board, QColor color , QPoint position)
-	: Entity(board), mElapsedTimeTotal{}, mPosition(position), mColor(color)
+StaticEntity::StaticEntity(Arena& arena, QColor color , QPoint position)
+	: Entity(arena), mElapsedTimeTotal{}, mPosition(position), mColor(color)
 {
 	
 }
 
-StaticEntity::StaticEntity(Arena& board, QPoint p)
-	: StaticEntity(board, QColor(91, 76, 76), p)
+StaticEntity::StaticEntity(Arena& arena, QPoint p)
+	: StaticEntity(arena, QColor(91, 76, 76), p)
 {
 }
-
 
 bool StaticEntity::isColliding(const QPoint& position)
 {
@@ -39,7 +38,7 @@ bool StaticEntity::isValid()
 
 bool StaticEntity::isAlive()
 {
-	return false;
+	return mAlive;
 }
 
 QPoint StaticEntity::getPosition()

@@ -7,7 +7,7 @@
 class DynamicEntity : public Entity 
 {
 public:
-	DynamicEntity(Arena& board);
+	DynamicEntity(Arena& arena);
 	virtual ~DynamicEntity() = default;
 };
 

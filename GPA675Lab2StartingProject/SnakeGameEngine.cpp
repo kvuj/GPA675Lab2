@@ -1,6 +1,6 @@
 #include "SnakeGameEngine.h"
 #include <algorithm>
-constexpr int gridWidthBlocks{ 5 }, gridHeightBlocks{ 10 };
+constexpr int gridWidthBlocks{ 10 }, gridHeightBlocks{ 10 };
 
 std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.55, 0.5, 0.1),
@@ -21,15 +21,18 @@ SnakeGameEngine::~SnakeGameEngine()
 
 void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
 {
+	//préparation du tic suivant
 	for (auto& i : mEntities)
 		i->ticPrepare(elapsedTime);
 
+	//execution du tic 
 	for (auto& i : mEntities)
 		i->ticExecute();
 
 	mEntities.remove_if([](Entity* en) { if (!(en->isAlive())) { delete en; return true; } else return false; });
 	// Se retire du tableau de pointeurs avec le destructeur
 
+	//comptabilisation du temps écoulé
 	if (elapsedTime > 0)
 		mTimeBetweenPelletInsertion += elapsedTime;
 	insertPelletIfNecessary();

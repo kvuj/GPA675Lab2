@@ -73,6 +73,7 @@ void SnakeGameApplication::paintEvent(QPaintEvent* event)
 
 void SnakeGameApplication::setGameType(GameType type)
 {
+	mScenario->resetGame();
 	mType = type;
 	mGame.clearAllEntities();
 	prepareGame();

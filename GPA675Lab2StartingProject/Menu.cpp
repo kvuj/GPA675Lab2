@@ -66,31 +66,32 @@ Menu::Menu(QWidget* parent)
 void Menu::Exit()
 {
 	close();
+
 }
 
 void Menu::Start()
 {
-	mGame = new SnakeGameApplication;
+	mApplication = new SnakeGameApplication;
 	// Récupérer le texte sélectionné dans le QComboBox
 	QString selectedText = mGameType->currentText();
 
 	// Clavier 1
 	if (mKeyboardPlayer1->currentText() == "Absolu (WASD)")
-		mGame->setKeyboardType1({ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A });
+		mApplication->setKeyboardType1({ Qt::Key_W, Qt::Key_D, Qt::Key_S, Qt::Key_A });
 	else
-		mGame->setKeyboardType1({ Qt::Key_D, Qt::Key_A });
+		mApplication->setKeyboardType1({ Qt::Key_D, Qt::Key_A });
 
 	// Clavier 2
 	if (mKeyboardPlayer2->currentText() == "Absolu (IJKL)")
-		mGame->setKeyboardType2({ Qt::Key_I, Qt::Key_L, Qt::Key_K, Qt::Key_J });
+		mApplication->setKeyboardType2({ Qt::Key_I, Qt::Key_L, Qt::Key_K, Qt::Key_J });
 	else
-		mGame->setKeyboardType2({ Qt::Key_L, Qt::Key_J });
+		mApplication->setKeyboardType2({ Qt::Key_L, Qt::Key_J });
 
 	// On lance le jeu avec la configuration sélectionnée
 	if (selectedText == "SnakeOrigin")
-		mGame->setGameType(SnakeGameApplication::GameType::Origin);
+		mApplication->setGameType(SnakeGameApplication::GameType::Origin);
 	else if (selectedText == "SnakeBlockade")
-		mGame->setGameType(SnakeGameApplication::GameType::Blockade);
-	mGame->show();
+		mApplication->setGameType(SnakeGameApplication::GameType::Blockade);
+	mApplication->show();
 	close();
 }
