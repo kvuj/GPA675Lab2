@@ -77,6 +77,7 @@ void SnakeGameEngine::insertPelletIfNecessary()
 {
 	switch (mType) {
 	case foreverRed:
+
 		break;
 	case random:
 		if (mTimeBetweenPelletInsertion > timeUntilRandomPellet) {

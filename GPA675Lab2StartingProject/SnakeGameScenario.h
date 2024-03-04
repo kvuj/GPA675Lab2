@@ -20,7 +20,7 @@ public:
 protected:
 	SnakeGameEngine& mGameEngine;
 
-	void addSnake(std::optional<PressedKeys> keys1, std::optional<PressedKeys> keys2, SnakeGameEngine& gameEngine, PressedKeys& pressedKeysQt);
+	Snake* addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys& pressedKeysQt, int x, int y);
 };
 
 #endif //SNAKE_GAME_SCENARIO_H
