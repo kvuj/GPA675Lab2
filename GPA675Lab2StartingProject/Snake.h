@@ -14,6 +14,7 @@
 
 #include <qnamespace.h>
 #include <QPoint>
+#include "Pellet.h"
 
 class Snake : public DynamicEntity
 {

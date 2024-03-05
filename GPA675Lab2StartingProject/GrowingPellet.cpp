@@ -10,5 +10,3 @@ void GrowingPellet::applyEffectOnSnake(Snake& snake)
 	snake.grow(mAmplitudeGrowing);
 }
 
-
-

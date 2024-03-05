@@ -15,7 +15,7 @@ public:
 	~GrowingPellet() = default;
 
 	void applyEffectOnSnake(Snake& snake) override;
-
+	
 private:
 	int mAmplitudeGrowing;
 };

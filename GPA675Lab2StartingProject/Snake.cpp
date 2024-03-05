@@ -1,5 +1,7 @@
 #include "Snake.h"
 
+class Pellet;
+
 Snake::Snake(Arena& arena, Controller* controller)
 	: DynamicEntity(arena)
 	, mReverseProhibited{ true }
@@ -84,10 +86,19 @@ void Snake::ticPrepare(qreal elapsedTime)
 		return;
 	}
 
-	// On retire le serpent s'il y a de quoi.
-	if (mArena.getGrid()[newHeadPos]) {
-		setDead();
+	//Si il y a une collision le serpent meurt sauf si c'est une pellet
+	if (auto* entity = mArena.getGrid()[newHeadPos])
+	{
+		if (auto* pellet = dynamic_cast<Pellet*>(entity)) {
+			pellet->isEatenBy(*this);
+			return;
+		}
+		else {
+			setDead();
+			return;
+		}
 	}
+	
 
 	mHasMoved = true;
 }

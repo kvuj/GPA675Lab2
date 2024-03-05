@@ -22,3 +22,24 @@ void Pellet::draw(QPainter& painter)
 	painter.drawEllipse(QRectF(x, y, blockSize / 2, blockSize / 2)); //
 }
 
+void Pellet::ticPrepare(qreal elapsedTime)
+{
+	if (elapsedTime > 0)
+		mElapsedTimeTotal += elapsedTime;
+
+	if (!mAlive)
+		return;
+	mAge++;
+}
+
+void Pellet::ticExecute()
+{
+
+}
+
+void Pellet::isEatenBy(Snake& snake)
+{
+	applyEffectOnSnake(snake);
+	mAlive = false;
+	mArena.deleteInCellIndices(mPosition);
+}
