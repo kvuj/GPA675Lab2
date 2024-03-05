@@ -78,8 +78,25 @@ void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
 
 void SnakeGameEngine::insertPelletIfNecessary()
 {
+	bool hasGrowingPellet = false;
 	switch (mType) {
+		
 	case foreverRed:
+		
+		// Vérifier si un GrowingPellet est déjà présent dans la liste d'entités
+		for (Entity* entity : mEntities) {
+			if (dynamic_cast<GrowingPellet*>(entity) != nullptr) {
+				hasGrowingPellet = true;
+				break;
+			}
+		}
+		// Si aucun GrowingPellet n'est présent, insérer un nouveau pellet
+		if (!hasGrowingPellet) {
+			auto num{ mArena.generateRandomPositionInSize() };
+			GrowingPellet* pellet = new GrowingPellet(mArena, num, 1);
+			mArena.insertEntity(pellet, num);
+			mEntities.emplace_back(pellet);
+		}
 
 		break;
 	case random:
