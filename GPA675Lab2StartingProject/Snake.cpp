@@ -72,33 +72,33 @@ void Snake::ticPrepare(qreal elapsedTime)
 	mAge++;
 
 
-	// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
-	// les collisions.
-	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
-
-	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
-	auto newHeadPos = xPos + (yPos * mArena.getArenaWidthInBlocks());
-
-	// Si hors grille, à supprimer
-	if (xPos >= mArena.getArenaWidthInBlocks() || xPos < 0 ||
-		yPos >= mArena.getArenaHeightInBlocks() || yPos < 0) {
-		setDead();
-		return;
-	}
-
-	//Si il y a une collision le serpent meurt sauf si c'est une pellet
+	auto oldXPos{ getPosition().x() }, oldYPos{ getPosition().y() };
+	auto newHeadPos = (oldXPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].x()) 
+		+ ((oldYPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].y()) * mArena.getArenaWidthInBlocks());
+	
+	// Si il y a une collision le serpent meurt sauf si c'est une pellet
 	if (auto* entity = mArena.getGrid()[newHeadPos])
 	{
 		if (auto* pellet = dynamic_cast<Pellet*>(entity)) {
 			pellet->isEatenBy(*this);
-			return;
 		}
 		else {
 			setDead();
 			return;
 		}
 	}
-	
+
+	// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
+	// les collisions.
+	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
+
+	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
+	// Si hors grille, à supprimer
+	if (xPos >= mArena.getArenaWidthInBlocks() || xPos < 0 ||
+		yPos >= mArena.getArenaHeightInBlocks() || yPos < 0) {
+		setDead();
+		return;
+	}
 
 	mHasMoved = true;
 }
