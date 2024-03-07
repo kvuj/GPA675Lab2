@@ -84,6 +84,12 @@ QPoint Arena::generateRandomPositionInSize()
 	return mEmptyCells[distrib(mt)];
 }
 
+void Arena::deletePellet(QPoint pos)
+{
+	mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)] = nullptr;
+	deleteInCellIndices(pos);
+}
+
 int Arena::generateRandomNumber(int low, int high)
 {
 	std::uniform_int_distribution<> distrib(low, high);

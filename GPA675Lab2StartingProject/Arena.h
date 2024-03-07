@@ -45,6 +45,8 @@ public:
 	QPoint generateRandomPositionInSize();
 	int generateRandomNumber(int low, int high);
 
+	void deletePellet(QPoint pos);
+
 private:
 	size_t mWidthPixels;
 	size_t mHeightPixels;

@@ -41,5 +41,5 @@ void Pellet::isEatenBy(Snake& snake)
 {
 	applyEffectOnSnake(snake);
 	mAlive = false;
-	mArena.deleteInCellIndices(mPosition);
+	mArena.deletePellet(mPosition);
 }
