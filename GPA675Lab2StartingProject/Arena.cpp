@@ -106,6 +106,9 @@ void Arena::insertInCellIndices(QPoint posToInsert)
 
 void Arena::deleteInCellIndices(QPoint posToDelete)
 {
+	if (pivot == mGridHeightInBlocks * mGridWidthInBlocks)
+		return;
+
 	auto pos{ posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks) };
 	auto posPivot{ mEmptyCells[pivot].x() + (mEmptyCells[pivot].y() * mGridWidthInBlocks) };
 
