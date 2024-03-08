@@ -12,3 +12,7 @@ void GamingState::tic(float elapsedTime)
 {
 	mSnakeGameEngine->process(elapsedTime, mPressedKeys);
 }
+
+void GamingState::draw(QPainter& painter)
+{
+}

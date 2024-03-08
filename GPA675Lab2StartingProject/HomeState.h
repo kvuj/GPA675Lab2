@@ -17,6 +17,9 @@ public:
 	void handleKeyPress() override;
 	void handleKeyRelease() override;
 
+	void draw(QPainter& painter) override;
+
+
 private:
 	//std::vector<std::tuple< Qt::Key,State * >> mTransitingKeys;
 
