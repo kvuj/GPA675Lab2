@@ -12,6 +12,7 @@
 #include "SnakeOrigin.h"
 #include "Snakify.h"
 #include "Entity.h"
+#include "FiniteStateMachine.h"
 
 
 // 
@@ -92,6 +93,7 @@ private:
 	GameType mType;
 	SnakeGameScenario  *mScenario;
 	std::vector<Qt::Key> keys1, keys2;
+	FiniteStateMachine stateMachine;
 };
 
 

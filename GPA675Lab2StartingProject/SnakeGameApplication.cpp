@@ -19,7 +19,7 @@ SnakeGameApplication::SnakeGameApplication()
 {
 
 	// Configuration de la barre de titre de l'application
-	
+	stateMachine(mPressedKeys, SnakeGameEngine & engine);
 	prepareGame();
 	// Configuration générale : taille et focus
 	setFixedSize(mWindowSize);

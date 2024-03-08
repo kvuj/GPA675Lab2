@@ -32,13 +32,19 @@ constexpr qreal timeUntilRandomPellet = 5.0;
 // et fournit des méthodes pour leur mise à jour et leur rendu.
 class SnakeGameEngine
 {
-public:
-	// 
-	// Constructeur de la classe SnakeGameEngine.
-	// Initialise l'état du jeu avec une taille spécifiée, configurant les paramètres par défaut pour les éléments du jeu.
-	// 
-	// > size Taille du canvas de jeu, généralement correspondant à la taille de la fenêtre de l'application.
+// 
+// Constructeur de la classe SnakeGameEngine.
+// Initialise l'état du jeu avec une taille spécifiée, configurant les paramètres par défaut pour les éléments du jeu.
+// 
+// > size Taille du canvas de jeu, généralement correspondant à la taille de la fenêtre de l'application.
+protected:
 	SnakeGameEngine(QSize const& size);
+	static SnakeGameEngine* snakeGameEngine_;
+public:
+
+	SnakeGameEngine(SnakeGameEngine& other) = delete;
+	void operator=(const SnakeGameEngine&) = delete;
+	static SnakeGameEngine* GetInstance(QSize const& size);
 	// 
 	// Destructeur par défaut.
 	~SnakeGameEngine();
@@ -88,6 +94,17 @@ private:
 	void insertPelletIfNecessary();
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
 };
-
+SnakeGameEngine* SnakeGameEngine::snakeGameEngine_ = nullptr;;
+SnakeGameEngine* SnakeGameEngine::GetInstance(QSize const& size = QSize(800,60))
+{
+	/**
+	 * This is a safer way to create an instance. instance = new Singleton is
+	 * dangeruous in case two instance threads wants to access at the same time
+	 */	
+	if (snakeGameEngine_ == nullptr) {
+		snakeGameEngine_ = new SnakeGameEngine(size);
+	}
+	return snakeGameEngine_;
+}
 
 #endif // GAME_H
