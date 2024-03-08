@@ -121,9 +121,9 @@ private:
 	void goLeft();
 	void go(QPoint pt);
 
-	void clearGridIncludingTail();
 	void clearGridExcludingTail();
-	void addToGrid();
+	void addToGridExcludingTail();
+	void moveGrids();
 };
 
 #endif //SNAKE_H
