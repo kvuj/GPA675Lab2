@@ -7,3 +7,8 @@ SnakeGameState::SnakeGameState(PressedKeys const& registeredKeys)
 
 
 }
+
+SnakeGameEngine* SnakeGameState::getEngine()
+{
+	return mSnakeGameEngine;
+}

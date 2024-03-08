@@ -14,12 +14,11 @@ SnakeGameApplication::SnakeGameApplication()
 	, mTimer()
 	, mElapsedTimer()
 	, mPressedKeys()
-	, mGame(mWindowSize)
 	, mType{ GameType::Origin }
+	, mStateMachine(mPressedKeys)
 {
 
 	// Configuration de la barre de titre de l'application
-	stateMachine(mPressedKeys, SnakeGameEngine & engine);
 	prepareGame();
 	// Configuration générale : taille et focus
 	setFixedSize(mWindowSize);
@@ -38,12 +37,7 @@ void SnakeGameApplication::keyPressEvent(QKeyEvent* event)
 		mPressedKeys.push_back(static_cast<Qt::Key>(event->key()));
 	}
 
-	for (auto& i : mGame.entities()) {
-		Snake* snake = dynamic_cast<Snake*>(i);
-		if (snake && snake->isAlive()) {
-			snake->controller().control();
-		}
-	}
+	mStateMachine.currentSnakeState()->getEngine()->handleKeyPressed();
 }
 
 void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
@@ -54,13 +48,7 @@ void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
 			mPressedKeys.erase(it);
 		}
 	}
-
-	for (auto& i : mGame.entities()) {
-		Snake* snake = dynamic_cast<Snake*>(i);
-		if (snake && snake->isAlive()) {
-			snake->controller().control();
-		}
-	}
+	mStateMachine.currentSnakeState()->getEngine()->handleKeyReleased();
 }
 
 void SnakeGameApplication::paintEvent(QPaintEvent* event)
@@ -68,14 +56,14 @@ void SnakeGameApplication::paintEvent(QPaintEvent* event)
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 
-	mGame.draw(painter);
+	mStateMachine.currentSnakeState()->getEngine()->draw(painter);
 }
 
 void SnakeGameApplication::setGameType(GameType type)
 {
 	mScenario->resetGame();
 	mType = type;
-	mGame.clearAllEntities();
+	mStateMachine.currentSnakeState()->getEngine()->clearAllEntities();
 	prepareGame();
 }
 
@@ -92,18 +80,18 @@ void SnakeGameApplication::setKeyboardType2(std::vector<Qt::Key> keys2)
 void SnakeGameApplication::prepareGame()
 {
 	if (mType == GameType::Origin) {
-		mScenario = new SnakeOrigin(mGame, keys1, mPressedKeys);
+		mScenario = new SnakeOrigin(*mStateMachine.currentSnakeState()->getEngine(), keys1, mPressedKeys);
 	}
 	else if (mType == GameType::Blockade) {
-		mScenario = new SnakeBlockade(mGame, keys1, keys2, mPressedKeys);
+		mScenario = new SnakeBlockade(*mStateMachine.currentSnakeState()->getEngine(), keys1, keys2, mPressedKeys);
 	}
 }
 
 void SnakeGameApplication::tic()
 {
 	double elapsedTime{ mElapsedTimer.restart() / 1.0e3 };
-
-	mGame.process(elapsedTime, mPressedKeys);
+	
+	mStateMachine.tic(elapsedTime);
 	repaint();
 
 	mTimer.start();

@@ -1,6 +1,7 @@
 #include "SnakeGameEngine.h"
 #include <algorithm>
 constexpr int gridWidthBlocks{ 10 }, gridHeightBlocks{ 10 };
+SnakeGameEngine* SnakeGameEngine::snakeGameEngine_ = nullptr;
 
 std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.55, 0.5, 0.1),
@@ -13,6 +14,19 @@ SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	, mType{ foreverRed }
 	, mTimeBetweenPelletInsertion{}
 {
+}
+
+
+SnakeGameEngine* SnakeGameEngine::GetInstance(QSize const& size)
+{
+	/**
+	 * This is a safer way to create an instance. instance = new Singleton is
+	 * dangeruous in case two instance threads wants to access at the same time
+	 */
+	if (snakeGameEngine_ == nullptr) {
+		snakeGameEngine_ = new SnakeGameEngine(size);
+	}
+	return snakeGameEngine_;
 }
 
 SnakeGameEngine::~SnakeGameEngine()
@@ -56,6 +70,26 @@ void SnakeGameEngine::addEntity(Entity* entity)
 std::list<Entity*>& SnakeGameEngine::entities()
 {
 	return mEntities;
+}
+
+void SnakeGameEngine::handleKeyReleased()
+{
+	for (auto& i : mEntities) {
+		Snake* snake = dynamic_cast<Snake*>(i);
+		if (snake && snake->isAlive()) {
+			snake->controller().control();
+		}
+	}
+}
+
+void SnakeGameEngine::handleKeyPressed()
+{
+	for (auto& i : mEntities) {
+		Snake* snake = dynamic_cast<Snake*>(i);
+		if (snake && snake->isAlive()) {
+			snake->controller().control();
+		}
+	}
 }
 
 void SnakeGameEngine::clearAllEntities()

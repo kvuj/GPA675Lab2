@@ -2,8 +2,13 @@
 
 
 
-GamingState::GamingState(PressedKeys const& registeredKeys, SnakeGameEngine& engine)
-	:SnakeGameState(registeredKeys, engine)
+GamingState::GamingState(PressedKeys const& registeredKeys)
+	:SnakeGameState(registeredKeys)
 {
 
+}
+
+void GamingState::tic(float elapsedTime)
+{
+	mSnakeGameEngine->process(elapsedTime, mPressedKeys);
 }

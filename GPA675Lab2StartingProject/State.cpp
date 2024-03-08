@@ -17,6 +17,8 @@ void State::defineTransitionKeys(std::vector<Qt::Key> transitingKeyList)
 	};
 }
 
+
+
 void State::generateKeyboardTransition(std::vector<std::tuple<Qt::Key,State*>> transitingKeyList)
 {
 	for (std::tuple<Qt::Key, State*> line : transitingKeyList)

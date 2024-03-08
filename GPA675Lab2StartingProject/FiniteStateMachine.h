@@ -2,14 +2,14 @@
 #ifndef FINITESTATEMACHINE_H
 #define FINITESTATEMACHINE_H
 
-#include "SnakeGameApplication.h"
+//#include "SnakeGameApplication.h"
 #include<variant>
 //#include "State.h"
-//#include "SnakeGameState.h"
+#include "SnakeGameState.h"
 #include "HomeState.h"
-//#include "GamingState.h"
-//#include "GameOverState.h"
-//#include "PauseState.h"
+#include "GamingState.h"
+#include "GameOverState.h"
+#include "PauseState.h"
 //#include "Transition.h"
 //#include "KeyboardTransition.h"
 //#include "ConfigurationState.h"
@@ -22,6 +22,7 @@ public:
 	~FiniteStateMachine() = default;
 	void tic(float elapsedTime);
 	State* currentState();
+	SnakeGameState* currentSnakeState();
 	void generateTransitions();
 
 private:

@@ -5,14 +5,12 @@
 #include <QtWidgets/QWidget>
 #include <QTimer>
 #include <QElapsedTimer>
-
-#include "SnakeGameEngine.h"
+#include "FiniteStateMachine.h"
 #include "SnakeGameScenario.h"
 #include "SnakeBlockade.h"
 #include "SnakeOrigin.h"
 #include "Snakify.h"
 #include "Entity.h"
-#include "FiniteStateMachine.h"
 
 
 // 
@@ -84,16 +82,14 @@ public slots:
 
 
 private:
+	FiniteStateMachine mStateMachine;
 	QSize const mWindowSize;        // Taille immuable de la fenêtre de l'application.
 	QTimer mTimer;                  // Timer pour gérer la boucle de simulation à intervalles réguliers.
 	QElapsedTimer mElapsedTimer;    // Chronomètre pour mesurer les intervalles de temps entre les tics.
-	PressedKeys mPressedKeys;       // Structure pour gérer l'état des touches du clavier pressées.
-
-	SnakeGameEngine mGame;          // Instance de l'engin de jeu gérant la logique et l'état du jeu.
+	PressedKeys mPressedKeys;       // Structure pour gérer l'état des touches du clavier pressées.									// Instance de l'engin de jeu gérant la logique et l'état du jeu.
 	GameType mType;
 	SnakeGameScenario  *mScenario;
 	std::vector<Qt::Key> keys1, keys2;
-	FiniteStateMachine stateMachine;
 };
 
 

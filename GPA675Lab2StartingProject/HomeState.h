@@ -13,6 +13,7 @@ class HomeState : public SnakeGameState
 public:
 	HomeState(PressedKeys const & registeredKeys);
 	~HomeState() = default;
+	virtual void tic(float elapsedTime);
 
 private:
 	//std::vector<std::tuple< Qt::Key,State * >> mTransitingKeys;

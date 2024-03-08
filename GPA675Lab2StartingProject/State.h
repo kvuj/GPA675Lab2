@@ -3,7 +3,6 @@
 #define State_H
 
 #include <vector>
-//#include "FiniteStateMachine.h"
 #include "KeyBoardTransition.h"
 #include "PressedKeys.h"
 #include "Transition.h"
@@ -17,7 +16,7 @@ public:
 	//virtual bool isValid() = 0;
 	//virtual void entering() = 0;
 	//virtual void exiting() = 0;
-	//virtual void tic(float elapsedTime);
+	virtual void tic(float elapsedTime) = 0;
 	void generateKeyboardTransition(std::vector<std::tuple<Qt::Key, State*>> transitingKeyList) ;
 
 

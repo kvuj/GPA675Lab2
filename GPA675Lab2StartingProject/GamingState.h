@@ -6,8 +6,10 @@
 
 class GamingState:public SnakeGameState
 {
-	GamingState(PressedKeys const& registeredKeys, SnakeGameEngine& engine);
+public :
+	GamingState(PressedKeys const& registeredKeys);
 	~GamingState() = default;
+	void tic(float elapsedTime) override;
 };
 
 #endif // GAMINGSTATE_H

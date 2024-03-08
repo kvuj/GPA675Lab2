@@ -5,3 +5,7 @@ HomeState::HomeState(PressedKeys const& registeredKeys)
 {
 	
 }
+
+void HomeState::tic(float elapsedTime)
+{
+}

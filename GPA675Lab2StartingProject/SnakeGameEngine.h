@@ -44,7 +44,7 @@ public:
 
 	SnakeGameEngine(SnakeGameEngine& other) = delete;
 	void operator=(const SnakeGameEngine&) = delete;
-	static SnakeGameEngine* GetInstance(QSize const& size);
+	static SnakeGameEngine* GetInstance(QSize const& size = QSize(800, 800));
 	// 
 	// Destructeur par défaut.
 	~SnakeGameEngine();
@@ -65,6 +65,8 @@ public:
 
 	void addEntity(Entity* entity);
 	std::list<Entity*>& entities();
+	void handleKeyReleased();
+	void handleKeyPressed();
 	void clearAllEntities();
 	Arena& arena();
 
@@ -94,17 +96,6 @@ private:
 	void insertPelletIfNecessary();
 	static QColor blendColorsHsl(QColor const& color1, QColor const& color2, qreal color1Ratio);
 };
-SnakeGameEngine* SnakeGameEngine::snakeGameEngine_ = nullptr;;
-SnakeGameEngine* SnakeGameEngine::GetInstance(QSize const& size = QSize(800,60))
-{
-	/**
-	 * This is a safer way to create an instance. instance = new Singleton is
-	 * dangeruous in case two instance threads wants to access at the same time
-	 */	
-	if (snakeGameEngine_ == nullptr) {
-		snakeGameEngine_ = new SnakeGameEngine(size);
-	}
-	return snakeGameEngine_;
-}
+
 
 #endif // GAME_H
