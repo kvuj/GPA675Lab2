@@ -3,11 +3,11 @@
 #define GAMINGSTATE_H
 
 #include "SnakeGameState.h"
-#include "SnakeGameScenario.h"
 
 class GamingState:public SnakeGameState
 {
-	
+	GamingState(PressedKeys const& registeredKeys, SnakeGameEngine& engine);
+	~GamingState() = default;
 };
 
 #endif // GAMINGSTATE_H

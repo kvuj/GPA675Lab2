@@ -2,26 +2,33 @@
 #ifndef	State_H
 #define State_H
 
-//#include "Transition.h"
 #include <vector>
-class Transition;
-
+//#include "FiniteStateMachine.h"
+#include "KeyBoardTransition.h"
+#include "PressedKeys.h"
+#include "Transition.h"
 
 class State
 {
 public:
-	State() = default;
-	virtual ~State() = 0;
+	State(PressedKeys const& registeredKeys) ;
+	virtual ~State() = default;
 	//Transition* isTransiting();
-	virtual bool isValid() = 0;
-	virtual void entering() = 0;
-	virtual void exiting() = 0;
-	virtual void tic(float elapsedTime) = 0;
+	//virtual bool isValid() = 0;
+	//virtual void entering() = 0;
+	//virtual void exiting() = 0;
+	//virtual void tic(float elapsedTime);
+	void generateKeyboardTransition(std::vector<std::tuple<Qt::Key, State*>> transitingKeyList) ;
 
 
 protected:
-	std::vector< Transition* > mTransitions;
+	std::vector< Transition * > mTransitions;
+	std::vector<std::tuple<Qt::Key, bool>> mActiveKeys;
+	PressedKeys const& mPressedKeys;
 
+private:
+	std::vector<Qt::Key> mTransitingKeys;
+	void defineTransitionKeys(std::vector<Qt::Key> transitingKeyList);
 	
 };
 

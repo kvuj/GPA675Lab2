@@ -120,17 +120,23 @@
     <ClCompile Include="State.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
+    <ClCompile Include="SnakeBlockade.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeGameScenario.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="SnakeOrigin.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakify.cpp">
+      <Filter>Source Files\GameEngine</Filter>
+    </ClCompile>
     <ClCompile Include="Transition.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
     <ClCompile Include="SnakeGameState.cpp">
       <Filter>Source Files\State</Filter>
-    </ClCompile>
-    <ClCompile Include="KeyboardTransition.cpp">
-      <Filter>Source Files\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTransition.cpp">
-      <Filter>Source Files\Tools</Filter>
     </ClCompile>
     <ClCompile Include="Arena.cpp">
       <Filter>Source Files\GameEngine</Filter>
@@ -167,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="Snakify.cpp">
       <Filter>Source Files\GameEngine\scenario</Filter>
+    </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardTransition.cpp">
+      <Filter>Source Files\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,9 +230,6 @@
     <ClInclude Include="State.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
-    <ClInclude Include="Transition.h">
-      <Filter>Header Files\State</Filter>
-    </ClInclude>
     <ClInclude Include="SnakeGameState.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
@@ -229,6 +238,18 @@
     </ClInclude>
     <ClInclude Include="GameTransition.h">
       <Filter>Header Files\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeGameScenario.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeOrigin.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SnakeBlockade.h">
+      <Filter>Header Files\Game Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakify.h">
+      <Filter>Header Files\Game Engine</Filter>
     </ClInclude>
     <ClInclude Include="Arena.h">
       <Filter>Header Files\Game Engine</Filter>
@@ -259,6 +280,12 @@
     </ClInclude>
     <ClInclude Include="SnakeGameScenario.h">
       <Filter>Header Files\Game Engine\scenario</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardTransition.h">
+      <Filter>Header Files\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

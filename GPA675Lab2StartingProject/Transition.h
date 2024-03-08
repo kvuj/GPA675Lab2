@@ -3,17 +3,18 @@
 #ifndef Transition_H
 #define Transition_H
 
-#include "State.h"
+#include "PressedKeys.h"
 
+class State;
 
 class Transition
 {
 public:
 	Transition(State* state = nullptr) ;
-	virtual ~Transition() = 0;
-	virtual bool isTransiting() = 0;
+	virtual ~Transition() = default;
+	//virtual bool isTransiting() = 0;
 	State* state() const;
-	void setState(State* State);
+	void setState(State* state);
 
 private:
 

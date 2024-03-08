@@ -10,7 +10,7 @@ State* Transition::state() const
     return mNextState;
 }
 
-void Transition::setState(State* State)
+void Transition::setState(State* state)
 {
-    mNextState = State;
+    mNextState = state;
 }
