@@ -12,7 +12,7 @@ class KeyboardTransition : public Transition
 public:
 
 	KeyboardTransition(Qt::Key key,State* state );
-	~KeyboardTransition()=default;
+	~KeyboardTransition() = default;
 	//bool isTransiting() override;
 
 private:

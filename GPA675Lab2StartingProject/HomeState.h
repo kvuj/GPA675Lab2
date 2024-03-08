@@ -11,7 +11,7 @@ Cet état doit être invitant et permettre une transition facile vers les fonction
 class HomeState : public SnakeGameState
 {
 public:
-	HomeState(PressedKeys const & registeredKeys, SnakeGameEngine & engine);
+	HomeState(PressedKeys const & registeredKeys);
 	~HomeState() = default;
 
 private:

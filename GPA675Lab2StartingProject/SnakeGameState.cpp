@@ -1,7 +1,9 @@
 #include "SnakeGameState.h"
 
-SnakeGameState::SnakeGameState(PressedKeys const& registeredKeys,SnakeGameEngine& engine)
+SnakeGameState::SnakeGameState(PressedKeys const& registeredKeys)
 	: State(registeredKeys)
-	, mSnakeGameEngine{engine}
+	, mSnakeGameEngine{ SnakeGameEngine::GetInstance()}
 {
+
+
 }

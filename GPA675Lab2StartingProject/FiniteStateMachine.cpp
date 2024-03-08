@@ -1,7 +1,7 @@
 #include "FiniteStateMachine.h"
 
-FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys, SnakeGameEngine& engine)
-    : mStates{new HomeState(mPressedKeys,engine)}
+FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys)
+    : mStates{new HomeState(mPressedKeys)}
     , mInitialState{mStates[0]}
     , mCurrentState{ mInitialState }
     , mHomeStateTransition{std::tuple(Qt::Key::Key_1,mStates[0])}
@@ -22,4 +22,5 @@ State* FiniteStateMachine::currentState()
 void FiniteStateMachine::generateTransitions()
 {
     mStates[0]->generateKeyboardTransition(mHomeStateTransition);
+
 }
