@@ -233,12 +233,6 @@
     <ClInclude Include="SnakeGameState.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
-    <ClInclude Include="KeyboardTransition.h">
-      <Filter>Header Files\Tools</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTransition.h">
-      <Filter>Header Files\Tools</Filter>
-    </ClInclude>
     <ClInclude Include="SnakeGameScenario.h">
       <Filter>Header Files\Game Engine</Filter>
     </ClInclude>
@@ -282,6 +276,9 @@
       <Filter>Header Files\Game Engine\scenario</Filter>
     </ClInclude>
     <ClInclude Include="Transition.h">
+      <Filter>Header Files\State</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardTransition.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardTransition.h">
