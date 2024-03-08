@@ -11,13 +11,14 @@ class KeyboardTransition : public Transition
 {
 public:
 
-	KeyboardTransition(Qt::Key key,State* state );
+	KeyboardTransition(Qt::Key key,State* state,PressedKeys const & pressedKey );
 	~KeyboardTransition() = default;
-	//bool isTransiting() override;
+	bool isTransiting() override;
 
 private:
 
 	Qt::Key mTransitingKey;
+	const PressedKeys& mPressedKey;
 	
 };
 

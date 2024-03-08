@@ -7,12 +7,13 @@ FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys)
     , mHomeStateTransition{std::tuple(Qt::Key::Key_1,mStates[1])}
     , mGamingStateTransition{ std::tuple(Qt::Key::Key_Escape,mStates[0] )}
 {
-   
+    generateTransitions();
 }
 
 void FiniteStateMachine::tic(float elapsedTime)
 {
     mCurrentState->tic(elapsedTime);
+    handleTransition();
 }
 
 State* FiniteStateMachine::currentState()
@@ -29,4 +30,14 @@ void FiniteStateMachine::generateTransitions()
 {
     mStates[0]->generateKeyboardTransition(mHomeStateTransition);
     mStates[1]->generateKeyboardTransition(mGamingStateTransition);
+}
+
+void FiniteStateMachine::handleTransition()
+{
+    Transition* activeTransition =  mCurrentState->isTransiting();
+    if (activeTransition) {
+        mCurrentState->exiting();
+        mCurrentState = activeTransition->state();
+        mCurrentState->entering();
+    }
 }

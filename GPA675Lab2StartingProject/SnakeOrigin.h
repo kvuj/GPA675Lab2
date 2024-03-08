@@ -5,6 +5,6 @@
 class SnakeOrigin : public SnakeGameScenario 
 {
 public: 
-	SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys key, PressedKeys& pressedKeysQt);
+	SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys key, PressedKeys const & pressedKeysQt);
 };
 

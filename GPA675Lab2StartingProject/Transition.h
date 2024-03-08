@@ -12,7 +12,7 @@ class Transition
 public:
 	Transition(State* state = nullptr) ;
 	virtual ~Transition() = default;
-	//virtual bool isTransiting() = 0;
+	virtual bool isTransiting() = 0;
 	State* state() const;
 	void setState(State* state);
 

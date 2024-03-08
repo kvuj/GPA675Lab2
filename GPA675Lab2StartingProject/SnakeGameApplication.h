@@ -6,10 +6,6 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include "FiniteStateMachine.h"
-#include "SnakeGameScenario.h"
-#include "SnakeBlockade.h"
-#include "SnakeOrigin.h"
-#include "Snakify.h"
 #include "Entity.h"
 
 

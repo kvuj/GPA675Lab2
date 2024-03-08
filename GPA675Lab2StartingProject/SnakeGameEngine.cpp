@@ -1,6 +1,6 @@
 #include "SnakeGameEngine.h"
 #include <algorithm>
-constexpr int gridWidthBlocks{ 10 }, gridHeightBlocks{ 10 };
+constexpr int gridWidthBlocks{ 25 }, gridHeightBlocks{ 25 };
 SnakeGameEngine* SnakeGameEngine::snakeGameEngine_ = nullptr;
 
 std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
@@ -98,6 +98,11 @@ void SnakeGameEngine::clearAllEntities()
 		delete i;
 	mEntities.clear();
 	memset(&(mArena.getGrid()[0]), 0, sizeof(mArena.getGrid()[0]) * mArena.getGrid().size());
+}
+
+QSize SnakeGameEngine::getSize()
+{
+	return mSize;
 }
 
 Arena& SnakeGameEngine::arena()

@@ -12,10 +12,10 @@ class State
 public:
 	State(PressedKeys const& registeredKeys) ;
 	virtual ~State() = default;
-	//Transition* isTransiting();
+	Transition* isTransiting();
 	//virtual bool isValid() = 0;
-	//virtual void entering() = 0;
-	//virtual void exiting() = 0;
+	virtual void entering() = 0;
+	virtual void exiting() = 0;
 	virtual void tic(float elapsedTime) = 0;
 	virtual void handleKeyPress() = 0;
 	virtual void handleKeyRelease() = 0;

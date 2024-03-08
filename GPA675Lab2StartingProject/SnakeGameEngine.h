@@ -68,6 +68,7 @@ public:
 	void handleKeyReleased();
 	void handleKeyPressed();
 	void clearAllEntities();
+	QSize getSize();
 	Arena& arena();
 
 	enum pelletInsertionType : uint8_t

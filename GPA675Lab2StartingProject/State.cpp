@@ -9,6 +9,17 @@ State::State(PressedKeys const& registeredKeys)
 	//defineTransitionKeys(transitingKeyList);
 }
 
+Transition* State::isTransiting()
+{
+	Transition* transition = nullptr;
+	for (auto trans : mTransitions) {
+		if (trans->isTransiting()) {
+			return trans;
+		}
+	}
+	return transition;
+}
+
 void State::defineTransitionKeys(std::vector<Qt::Key> transitingKeyList)
 {
 	for (Qt::Key key : transitingKeyList)
@@ -24,7 +35,7 @@ void State::generateKeyboardTransition(std::vector<std::tuple<Qt::Key,State*>> t
 	for (std::tuple<Qt::Key, State*> line : transitingKeyList)
 	{
 		mActiveKeys.push_back(std::tuple < Qt::Key,bool>( std::get<0>(line), false));
-		mTransitions.push_back(new KeyboardTransition(std::get<0>(line), std::get<1>(line)));
+		mTransitions.push_back(new KeyboardTransition(std::get<0>(line), std::get<1>(line), mPressedKeys));
 	};
 }
 

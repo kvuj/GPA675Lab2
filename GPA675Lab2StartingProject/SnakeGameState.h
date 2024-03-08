@@ -4,6 +4,9 @@
 
 #include "state.h"
 #include "SnakeGameEngine.h"
+#include <QPainter>
+#include <QPointF>
+#include <QColor>
 
 class SnakeGameEngine;
 

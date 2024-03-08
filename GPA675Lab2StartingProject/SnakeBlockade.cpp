@@ -1,6 +1,6 @@
 #include "SnakeBlockade.h"
 
-SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, PressedKeys keys2, PressedKeys& pressedKeysQt) :
+SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, PressedKeys keys2, PressedKeys const & pressedKeysQt) :
 	SnakeGameScenario(gameEngine)
 {
 	auto ar{ this->mGameEngine.arena() };

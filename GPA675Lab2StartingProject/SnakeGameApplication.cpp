@@ -48,7 +48,7 @@ void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
 			mPressedKeys.erase(it);
 		}
 	}
-	mStateMachine.currentState()->handleKeyRelease()
+	mStateMachine.currentState()->handleKeyRelease();
 }
 
 void SnakeGameApplication::paintEvent(QPaintEvent* event)
@@ -56,7 +56,7 @@ void SnakeGameApplication::paintEvent(QPaintEvent* event)
 	QPainter painter(this);
 	painter.setRenderHint(QPainter::Antialiasing);
 
-	mStateMachine.currentSnakeState()->getEngine()->draw(painter);
+	mStateMachine.currentSnakeState()->draw(painter);
 }
 
 void SnakeGameApplication::setGameType(GameType type)
@@ -79,12 +79,12 @@ void SnakeGameApplication::setKeyboardType2(std::vector<Qt::Key> keys2)
 
 void SnakeGameApplication::prepareGame()
 {
-	if (mType == GameType::Origin) {
-		mScenario = new SnakeOrigin(*mStateMachine.currentSnakeState()->getEngine(), keys1, mPressedKeys);
-	}
-	else if (mType == GameType::Blockade) {
-		mScenario = new SnakeBlockade(*mStateMachine.currentSnakeState()->getEngine(), keys1, keys2, mPressedKeys);
-	}
+	//if (mType == GameType::Origin) {
+	//	mScenario = new SnakeOrigin(*mStateMachine.currentSnakeState()->getEngine(), keys1, mPressedKeys);
+	//}
+	//else if (mType == GameType::Blockade) {
+	//	mScenario = new SnakeBlockade(*mStateMachine.currentSnakeState()->getEngine(), keys1, keys2, mPressedKeys);
+	//}
 }
 
 void SnakeGameApplication::tic()

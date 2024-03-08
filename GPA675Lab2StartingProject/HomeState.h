@@ -16,7 +16,8 @@ public:
 	void tic(float elapsedTime) override;
 	void handleKeyPress() override;
 	void handleKeyRelease() override;
-
+	void entering() override;
+	void exiting() override;
 	void draw(QPainter& painter) override;
 
 

@@ -8,7 +8,7 @@
 class SnakeBlockade : public SnakeGameScenario
 {
 public : 
-	SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, PressedKeys keys2, PressedKeys& pressedKeysQt);
+	SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, PressedKeys keys2, PressedKeys const & pressedKeysQt);
 };
 
 #endif //SNAKE_BLOCKADE_H

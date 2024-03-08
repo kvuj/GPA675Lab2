@@ -1,6 +1,6 @@
 #include "SnakeOrigin.h"
 
-SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedKeys& pressedKeysQt):
+SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedKeys const & pressedKeysQt):
 	SnakeGameScenario(gameEngine)
 {
 	auto ar{ this->mGameEngine.arena() };

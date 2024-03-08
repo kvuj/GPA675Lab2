@@ -18,7 +18,7 @@ bool SnakeGameScenario::isGameOver() const
 	return false;
 }
 
-Snake* SnakeGameScenario::addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys& pressedKeysQt, int x, int y)
+Snake* SnakeGameScenario::addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys const & pressedKeysQt, int x, int y)
 {
 	auto ar{ this->mGameEngine.arena() };
 	auto* ptr{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };
