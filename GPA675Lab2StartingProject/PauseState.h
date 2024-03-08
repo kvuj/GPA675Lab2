@@ -5,7 +5,8 @@
 
 class PauseState : public SnakeGameState
 {
-
+	void handleKeyPress() override;
+	void handleKeyRelease() override;
 };
 
 #endif // PauseState_H

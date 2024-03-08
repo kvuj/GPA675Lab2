@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "Tests.h"
+#include "SnakeGameApplication.h"
 
 #include <QtWidgets/QApplication>
 
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
 #endif
 
     QApplication application(argc, argv);
-    Menu window;
-    window.show();
+    SnakeGameApplication snakeGameApp = SnakeGameApplication();
+    snakeGameApp.show();
     return application.exec();
 }

@@ -37,7 +37,7 @@ void SnakeGameApplication::keyPressEvent(QKeyEvent* event)
 		mPressedKeys.push_back(static_cast<Qt::Key>(event->key()));
 	}
 
-	mStateMachine.currentSnakeState()->getEngine()->handleKeyPressed();
+	mStateMachine.currentState()->handleKeyPress();
 }
 
 void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
@@ -48,7 +48,7 @@ void SnakeGameApplication::keyReleaseEvent(QKeyEvent* event)
 			mPressedKeys.erase(it);
 		}
 	}
-	mStateMachine.currentSnakeState()->getEngine()->handleKeyReleased();
+	mStateMachine.currentState()->handleKeyRelease()
 }
 
 void SnakeGameApplication::paintEvent(QPaintEvent* event)

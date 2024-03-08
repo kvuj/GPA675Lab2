@@ -6,7 +6,8 @@
 
 class GameOverState : public SnakeGameState
 {
-
+	void handleKeyPress() override;
+	void handleKeyRelease() override;
 };
 
 #endif // GameOverState_H

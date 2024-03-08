@@ -24,6 +24,7 @@ public:
 	State* currentState();
 	SnakeGameState* currentSnakeState();
 	void generateTransitions();
+	void handleTransition();
 
 private:
 	

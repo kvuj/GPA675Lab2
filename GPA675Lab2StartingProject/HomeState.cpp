@@ -9,3 +9,13 @@ HomeState::HomeState(PressedKeys const& registeredKeys)
 void HomeState::tic(float elapsedTime)
 {
 }
+
+void HomeState::handleKeyPress()
+{
+	mSnakeGameEngine->handleKeyPressed();
+}
+
+void HomeState::handleKeyRelease()
+{
+	mSnakeGameEngine->handleKeyPressed();
+}

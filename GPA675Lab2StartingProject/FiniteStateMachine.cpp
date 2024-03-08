@@ -2,9 +2,9 @@
 
 FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys)
     : mStates{new HomeState(mPressedKeys), new GamingState(mPressedKeys)}
-    , mInitialState{mStates[1]}
+    , mInitialState{mStates[0]}
     , mCurrentState{ mInitialState }
-    , mHomeStateTransition{std::tuple(Qt::Key::Key_1,mStates[0])}
+    , mHomeStateTransition{std::tuple(Qt::Key::Key_1,mStates[1])}
 {
    
 }
