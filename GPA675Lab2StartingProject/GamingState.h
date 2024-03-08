@@ -10,6 +10,8 @@ public :
 	GamingState(PressedKeys const& registeredKeys);
 	~GamingState() = default;
 	void tic(float elapsedTime) override;
+
+	void draw(QPainter& painter) override;
 };
 
 #endif // GAMINGSTATE_H

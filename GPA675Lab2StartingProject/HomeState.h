@@ -15,6 +15,9 @@ public:
 	~HomeState() = default;
 	virtual void tic(float elapsedTime);
 
+	void draw(QPainter& painter) override;
+
+
 private:
 	//std::vector<std::tuple< Qt::Key,State * >> mTransitingKeys;
 

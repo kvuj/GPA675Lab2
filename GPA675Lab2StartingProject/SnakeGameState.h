@@ -14,7 +14,7 @@ class SnakeGameState :public State
 		SnakeGameEngine* getEngine();
 	virtual ~SnakeGameState() = default;
 
-	//virtual void draw(QPainter &painter) = 0;
+	virtual void draw(QPainter &painter) = 0;
 	
 protected:
 
