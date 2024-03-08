@@ -21,7 +21,10 @@ Snake::Snake(Arena& arena, Controller* controller)
 	, mBodyColor{ Qt::white }
 	, mHasMoved{}
 {
-	addToGrid();
+	addToGridExcludingTail();
+
+	if (mBody.size())
+		mArena.insertInCellIndices(mBody.last());
 }
 
 Snake::Snake(Arena& arena, PressedKeys const& pressedKeys)
@@ -31,7 +34,7 @@ Snake::Snake(Arena& arena, PressedKeys const& pressedKeys)
 
 Snake::~Snake()
 {
-	clearGridIncludingTail();
+	clearGridExcludingTail();
 	delete mController;
 }
 
@@ -73,9 +76,15 @@ void Snake::ticPrepare(qreal elapsedTime)
 
 
 	auto oldXPos{ getPosition().x() }, oldYPos{ getPosition().y() };
-	auto newHeadPos = (oldXPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].x()) 
+	auto newHeadPos = (oldXPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].x())
 		+ ((oldYPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].y()) * mArena.getArenaWidthInBlocks());
-	
+
+	// On ne peut pas faire cette opération dans moveGrids() puisqu'il
+	// faut retirer la vieille position de la queue. Contrairement au
+	// tableau de collisions, le tableau d'insertion doit être parfait
+	// en tout temps.
+	mArena.deleteInCellIndices(mBody.last());
+
 	// Si il y a une collision le serpent meurt sauf si c'est une pellet
 	if (auto* entity = mArena.getGrid()[newHeadPos])
 	{
@@ -92,8 +101,8 @@ void Snake::ticPrepare(qreal elapsedTime)
 	// les collisions.
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
 
-	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
 	// Si hors grille, à supprimer
+	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
 	if (xPos >= mArena.getArenaWidthInBlocks() || xPos < 0 ||
 		yPos >= mArena.getArenaHeightInBlocks() || yPos < 0) {
 		setDead();
@@ -108,8 +117,7 @@ void Snake::ticExecute()
 	if (!mHasMoved || !mAlive)
 		return;
 
-	clearGridIncludingTail();
-	addToGrid();
+	moveGrids();
 }
 
 void Snake::draw(QPainter& painter)
@@ -160,7 +168,6 @@ void Snake::setName(const QString& name)
 
 void Snake::reset(QPoint headPosition, Direction headDirection, size_t bodyLength, SpeedType initialSpeed)
 {
-	clearGridExcludingTail();
 	mBody.clear();
 	mBody.addFirst(headPosition);
 
@@ -170,7 +177,7 @@ void Snake::reset(QPoint headPosition, Direction headDirection, size_t bodyLengt
 
 	mSpeed = initialSpeed;
 	mHeadDirection = headDirection;
-	addToGrid();
+	addToGridExcludingTail();
 }
 
 void Snake::setSpeed(SpeedType speed)
@@ -235,32 +242,35 @@ void Snake::go(QPoint pt)
 	}
 }
 
-void Snake::clearGridIncludingTail()
-{
-	for (auto& part : mBody) {
-		size_t pos{ part.x() + (part.y() * static_cast<size_t>(mArena.getArenaWidthInBlocks()))};
-		if (pos < mArena.getGrid().size())
-			mArena.getGrid()[pos] = nullptr;
-	}
-}
-
 void Snake::clearGridExcludingTail()
 {
 	for (auto it{ mBody.begin() }; it != mBody.endMinusOne(); it++) {
 		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mArena.getArenaWidthInBlocks())) };
-		if (pos < mArena.getGrid().size())
+		if (pos < mArena.getGrid().size()) {
 			mArena.getGrid()[pos] = nullptr;
+			mArena.deleteInCellIndices(*it);
+		}
 	}
 }
 
-void Snake::addToGrid()
+void Snake::addToGridExcludingTail()
 {
 	// On saute la tail pour éviter de regarder les collisions avec la queue.
 	for (auto it{ mBody.begin() }; it != mBody.endMinusOne(); it++) {
 		size_t pos{ (*it).x() + ((*it).y() * static_cast<size_t>(mArena.getArenaWidthInBlocks())) };
-		if (pos < mArena.getGrid().size())
+		if (pos < mArena.getGrid().size()) {
 			mArena.getGrid()[pos] = this;
+			mArena.insertInCellIndices(*it);
+		}
 	}
+}
+
+void Snake::moveGrids()
+{
+	auto headPos{ mBody.first() }, tailPos{ mBody.last() };
+	mArena.getGrid()[headPos.x() + (headPos.y() * mArena.getArenaWidthInBlocks())] = this;
+	mArena.getGrid()[tailPos.x() + (tailPos.y() * mArena.getArenaWidthInBlocks())] = nullptr;
+	mArena.insertInCellIndices(headPos);
 }
 
 void Snake::goToward(Direction dir)
