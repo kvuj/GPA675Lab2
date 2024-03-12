@@ -22,7 +22,6 @@ public:
 	void tic(float elapsedTime);
 	State* currentState();
 	SnakeGameState* currentSnakeState();
-	void generateTransitions();
 	void handleTransition();
 
 private:
@@ -35,6 +34,7 @@ private:
 	std::vector<std::tuple<Qt::Key, State*>> mGameOverStateTransition;
 	std::vector<std::tuple<Qt::Key, State*>> mPauseStateTransition;
 	std::vector<std::tuple<Qt::Key, State*>> mConfigurationStateTransition;
+	bool isOldTransition;
 
 };
 

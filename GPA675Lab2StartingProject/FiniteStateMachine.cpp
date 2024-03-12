@@ -19,6 +19,7 @@ FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys)
     , mPauseStateTransition{ std::tuple(Qt::Key::Key_Space,mStates[1]),
                              std::tuple(Qt::Key::Key_Escape,mStates[0]) }
     , mConfigurationStateTransition{ std::tuple(Qt::Key::Key_Escape,mStates[0]) }
+    , isOldTransition{false}
 {
     mStates[0]->generateKeyboardTransition(mHomeStateTransition);
     mStates[1]->generateKeyboardTransition(mGamingStateTransition);
@@ -43,22 +44,27 @@ SnakeGameState* FiniteStateMachine::currentSnakeState()
     return dynamic_cast<SnakeGameState*>(mCurrentState);
 }
 
-void FiniteStateMachine::generateTransitions()
-{
-
-}
-
 void FiniteStateMachine::handleTransition()
 {
 
     Transition* activeTransition =  mCurrentState->isTransiting();
-    if (activeTransition) {
-        mCurrentState->exiting();
-        mCurrentState = activeTransition->state();
-        if (!mCurrentState)
-        {
-            throw "No State was available, End of the program";
+
+    if (activeTransition) 
+    {
+        if (isOldTransition < activeTransition->isTransiting()) {
+            mCurrentState->exiting();
+            mCurrentState = activeTransition->state();
+
+            if (!mCurrentState)
+            {
+                throw "No State was available, End of the program";
+            }
+            mCurrentState->entering();
         }
-        mCurrentState->entering();
+            isOldTransition = true;
+    }
+    else
+    {
+        isOldTransition = false;
     }
 }

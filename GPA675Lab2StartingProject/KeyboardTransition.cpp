@@ -9,6 +9,7 @@ KeyboardTransition::KeyboardTransition(Qt::Key key, State* state, PressedKeys co
 
 bool KeyboardTransition::isTransiting()
 {
+
     for (auto key : mPressedKey) {
         if (key == mTransitingKey) {
             return true;
