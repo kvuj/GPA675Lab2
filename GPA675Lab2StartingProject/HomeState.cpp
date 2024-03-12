@@ -12,9 +12,14 @@ void HomeState::tic(float elapsedTime)
 
 void HomeState::draw(QPainter& painter)
 {
+	QFont titleFont("Title", 25);
+	titleFont.setBold(true);
+	titleFont.setStyleHint(QFont::OldEnglish);
+
 	painter.fillRect(QRect(QPoint(0, 0), mSnakeGameEngine->getSize()), Qt::blue);
 	painter.setPen(QPen(Qt::white, 1, Qt::SolidLine));
-	painter.drawText(20,20,"MENU !!!!");
+	painter.setFont(titleFont);
+	painter.drawText(100,200,"Menu Principale:\n");
 }
 
 void HomeState::handleKeyPress()

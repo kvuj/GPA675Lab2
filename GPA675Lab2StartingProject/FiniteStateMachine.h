@@ -4,15 +4,14 @@
 
 //#include "SnakeGameApplication.h"
 #include<variant>
-//#include "State.h"
 #include "SnakeGameState.h"
 #include "HomeState.h"
 #include "GamingState.h"
 #include "GameOverState.h"
 #include "PauseState.h"
-//#include "Transition.h"
-//#include "KeyboardTransition.h"
-//#include "ConfigurationState.h"
+#include "Transition.h"
+#include "KeyboardTransition.h"
+#include "ConfigurationState.h"
 
 
 class FiniteStateMachine
@@ -35,7 +34,7 @@ private:
 	std::vector<std::tuple<Qt::Key, State*>> mGamingStateTransition;
 	std::vector<std::tuple<Qt::Key, State*>> mGameOverStateTransition;
 	std::vector<std::tuple<Qt::Key, State*>> mPauseStateTransition;
-	//std::vector<std::tuple<Qt::Key, State*>> mConfigurationStateTransition;
+	std::vector<std::tuple<Qt::Key, State*>> mConfigurationStateTransition;
 
 };
 

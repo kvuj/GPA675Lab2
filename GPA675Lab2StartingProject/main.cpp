@@ -13,6 +13,15 @@ int main(int argc, char *argv[])
 
     QApplication application(argc, argv);
     SnakeGameApplication snakeGameApp = SnakeGameApplication();
-    snakeGameApp.show();
-    return application.exec();
+	try
+	{
+		snakeGameApp.show();
+		return application.exec();
+	}
+	catch (...)
+	{
+		return 0;
+	}
+    
+	return 0;
 }

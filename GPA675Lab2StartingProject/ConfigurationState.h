@@ -1,13 +1,11 @@
 #pragma once
-#ifndef PauseState_H
-#define PauseState_H
 #include "SnakeGameState.h"
 
-class PauseState : public SnakeGameState
+class ConfigurationState : public SnakeGameState
 {
 public:
-	PauseState(PressedKeys const& registeredKeys);
-	~PauseState() = default;
+	ConfigurationState(PressedKeys const& registeredKeys);
+	~ConfigurationState() = default;
 	void tic(float elapsedTime) override;
 	void handleKeyPress() override;
 	void handleKeyRelease() override;
@@ -15,6 +13,4 @@ public:
 	void exiting() override;
 	void draw(QPainter& painter) override;
 };
-
-#endif // PauseState_H
 
