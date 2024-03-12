@@ -17,10 +17,6 @@ void ConfigurationState::handleKeyRelease()
 {
 }
 
-void ConfigurationState::entering()
-{
-}
-
 void ConfigurationState::exiting()
 {
 }

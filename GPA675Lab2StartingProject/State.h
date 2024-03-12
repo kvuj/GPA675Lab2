@@ -14,7 +14,7 @@ public:
 	virtual ~State() = default;
 	Transition* isTransiting();
 	//virtual bool isValid() = 0;
-	virtual void entering() = 0;
+	virtual void entering(Transition * lastTransition );
 	virtual void exiting() = 0;
 	virtual void tic(float elapsedTime) = 0;
 	virtual void handleKeyPress() = 0;
@@ -24,13 +24,12 @@ public:
 
 protected:
 	std::vector< Transition * > mTransitions;
-	std::vector<std::tuple<Qt::Key, bool>> mActiveKeys;
+	//std::vector<std::tuple<Qt::Key, bool>> mActiveKeys;
 	PressedKeys const& mPressedKeys;
 
 private:
+
 	std::vector<Qt::Key> mTransitingKeys;
-	void defineTransitionKeys(std::vector<Qt::Key> transitingKeyList);
-	
 };
 
 #endif // State_H

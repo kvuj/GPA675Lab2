@@ -14,6 +14,7 @@ public:
 	KeyboardTransition(Qt::Key key,State* state,PressedKeys const & pressedKey );
 	~KeyboardTransition() = default;
 	bool isTransiting() override;
+	Qt::Key transitingKey();
 
 private:
 

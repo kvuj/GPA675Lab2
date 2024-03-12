@@ -19,9 +19,6 @@ void GameOverState::handleKeyRelease()
 	mSnakeGameEngine->handleKeyReleased();
 }
 
-void GameOverState::entering()
-{
-}
 
 void GameOverState::exiting()
 {

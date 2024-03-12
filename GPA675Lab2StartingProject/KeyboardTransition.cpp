@@ -18,8 +18,8 @@ bool KeyboardTransition::isTransiting()
     return false;
 }
 
-//bool KeyboardTransition::isTransiting()
-//{
-//    
-//    return false;
-//}
+Qt::Key KeyboardTransition::transitingKey()
+{
+    return mTransitingKey;
+}
+

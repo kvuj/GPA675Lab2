@@ -14,7 +14,7 @@ public :
 	GamingState(PressedKeys const& registeredKeys);
 	~GamingState() = default;
 	void tic(float elapsedTime) override;
-	void entering() override;
+	void entering(Transition * oldTransition) override;
 	void exiting() override;
 	void draw(QPainter& painter) override;
 	void handleKeyPress() override;

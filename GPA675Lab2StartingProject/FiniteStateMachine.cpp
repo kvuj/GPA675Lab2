@@ -59,7 +59,7 @@ void FiniteStateMachine::handleTransition()
             {
                 throw "No State was available, End of the program";
             }
-            mCurrentState->entering();
+            mCurrentState->entering(activeTransition);
         }
             isOldTransition = true;
     }
