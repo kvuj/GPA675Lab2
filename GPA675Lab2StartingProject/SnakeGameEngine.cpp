@@ -110,6 +110,11 @@ Arena& SnakeGameEngine::arena()
 	return mArena;
 }
 
+void SnakeGameEngine::resizeArena(int width, int height)
+{
+	mArena = Arena(mSize.width(), mSize.height(), width, height, mBackgroundColors[0], QColor::fromRgba(qRgb(255, 255, 255)));
+}
+
 void SnakeGameEngine::setPelletInsertionType(pelletInsertionType type)
 {
 	mType = type;

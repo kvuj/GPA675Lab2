@@ -11,5 +11,6 @@ public:
 	void handleKeyRelease() override;
 	void exiting() override;
 	void draw(QPainter& painter) override;
+	void changeArenaSize(int x, int y);
 };
 

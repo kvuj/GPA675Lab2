@@ -70,6 +70,7 @@ public:
 	void clearAllEntities();
 	QSize getSize();
 	Arena& arena();
+	void resizeArena(int width, int height);
 
 	enum pelletInsertionType : uint8_t
 	{
