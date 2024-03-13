@@ -29,6 +29,6 @@ Snake* SnakeGameScenario::addSnake(PressedKeys keys, SnakeGameEngine& gameEngine
 		ptr->setController(new SnakeKeyboardRelativeController(*ptr, keys, pressedKeysQt));
 
 
-	ptr->reset({ x, y }, Snake::Direction::toUp, 3, 1);
+	ptr->reset({ x, y }, Snake::Direction::toUp, 3, 4);
 	return ptr;
 }

@@ -3,7 +3,8 @@
 
 
 GamingState::GamingState(PressedKeys const& registeredKeys)
-	: SnakeGameState(registeredKeys)
+	: SnakeGameState(registeredKeys),
+	mGameScenario{nullptr}
 {
 
 }
@@ -24,23 +25,26 @@ void GamingState::entering(Transition * oldTransition)
 	{
 	case(Qt::Key_1):
 		mSnakeGameEngine->clearAllEntities();
-		new SnakeOrigin(*mSnakeGameEngine, keys1, mPressedKeys);
+		mGameScenario = new SnakeOrigin(*mSnakeGameEngine, keys1, mPressedKeys);
 		break;
 	case(Qt::Key_2):
 		mSnakeGameEngine->clearAllEntities();
-		new SnakeBlockade(*mSnakeGameEngine, keys1, keys2, mPressedKeys);
+		mGameScenario = new SnakeBlockade(*mSnakeGameEngine, keys1, keys2, mPressedKeys);
 		break;
 	case(Qt::Key_3):
 		mSnakeGameEngine->clearAllEntities();
-		new Snakify();
+		mGameScenario = new Snakify(*mSnakeGameEngine, keys1, keys2, mPressedKeys);
 		break;
 	default:
 		break;
 	}
+
 }
 
 void GamingState::exiting()
 {
+
+	delete mGameScenario;
 }
 
 void GamingState::draw(QPainter& painter)

@@ -19,6 +19,8 @@ public :
 	void draw(QPainter& painter) override;
 	void handleKeyPress() override;
 	void handleKeyRelease() override;
+private :
+	SnakeGameScenario* mGameScenario;
 };
 
 #endif // GAMINGSTATE_H

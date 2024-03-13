@@ -8,6 +8,7 @@ Cet état doit être invitant et permettre une transition facile vers les fonction
 #include "SnakeGameState.h"
 
 
+
 class HomeState : public SnakeGameState
 {
 public:
