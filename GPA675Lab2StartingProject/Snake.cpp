@@ -76,14 +76,22 @@ void Snake::ticPrepare(qreal elapsedTime)
 
 
 	auto oldXPos{ getPosition().x() }, oldYPos{ getPosition().y() };
-	auto newHeadPos = (oldXPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].x())
-		+ ((oldYPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].y()) * mArena.getArenaWidthInBlocks());
+	auto xPos{ oldXPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].x() };
+	auto yPos{ oldYPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].y() };
+	auto newHeadPos = xPos + (yPos * mArena.getArenaWidthInBlocks());
 
 	// On ne peut pas faire cette opération dans moveGrids() puisqu'il
 	// faut retirer la vieille position de la queue. Contrairement au
 	// tableau de collisions, le tableau d'insertion doit être parfait
 	// en tout temps.
 	mArena.deleteInCellIndices(mBody.last());
+
+	// Si hors grille, à supprimer
+	if (xPos >= mArena.getArenaWidthInBlocks() || xPos < 0 ||
+		yPos >= mArena.getArenaHeightInBlocks() || yPos < 0) {
+		setDead();
+		return;
+	}
 
 	// Si il y a une collision le serpent meurt sauf si c'est une pellet
 	if (auto* entity = mArena.getGrid()[newHeadPos])
@@ -100,14 +108,6 @@ void Snake::ticPrepare(qreal elapsedTime)
 	// On met à jour le tableau de pointeurs pour que la queue soit retirée et on regarde
 	// les collisions.
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
-
-	// Si hors grille, à supprimer
-	auto xPos{ getPosition().x() }, yPos{ getPosition().y() };
-	if (xPos >= mArena.getArenaWidthInBlocks() || xPos < 0 ||
-		yPos >= mArena.getArenaHeightInBlocks() || yPos < 0) {
-		setDead();
-		return;
-	}
 
 	mHasMoved = true;
 }
