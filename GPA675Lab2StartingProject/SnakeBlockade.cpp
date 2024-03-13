@@ -14,8 +14,23 @@ SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, Pre
 
 std::tuple<bool, std::optional<std::string>> SnakeBlockade::isGameOver()
 {
-	if (mGameEngine.entities().size())
+	Snake* ptrs[2]{ nullptr };
+
+	// On prend avantage du fait que les serpents sont toujours dans les deux
+	// premières positions de la grille.
+	int i = 0;
+	for (auto it{ mGameEngine.entities().begin() }; it != mGameEngine.entities().end() && i < 2; ++it) {
+		ptrs[i] = dynamic_cast<Snake*>(*it);
+		i++;
+	}
+
+	if (!(ptrs[0])) // Si deux morts
+		return { true, "Les deux sont morts" };
+	else if (ptrs[1]) // Si 0 mort
 		return { false, std::nullopt };
 
-	return { true, "La partie est finie!" };
+	std::string str("Le joueur TODO: a eu un score de ");
+	str.append(std::to_string(ptrs[0]->score()));
+
+	return { true, std::move(str) };
 }
