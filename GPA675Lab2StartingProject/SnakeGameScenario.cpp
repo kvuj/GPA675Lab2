@@ -1,7 +1,7 @@
 #include "SnakeGameScenario.h"
 
-SnakeGameScenario::SnakeGameScenario(SnakeGameEngine& gameEngine):
-	mGameEngine{gameEngine}
+SnakeGameScenario::SnakeGameScenario(SnakeGameEngine& gameEngine) :
+	mGameEngine{ gameEngine }
 {
 }
 
@@ -13,12 +13,12 @@ void SnakeGameScenario::resetGame()
 {
 }
 
-bool SnakeGameScenario::isGameOver() const
+std::tuple<bool, std::optional<std::string>> SnakeGameScenario::isGameOver()
 {
-	return false;
+	return { false, std::nullopt };
 }
 
-Snake* SnakeGameScenario::addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys const & pressedKeysQt, int x, int y)
+Snake* SnakeGameScenario::addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys const& pressedKeysQt, int x, int y)
 {
 	auto ar{ this->mGameEngine.arena() };
 	auto* ptr{ new Snake(this->mGameEngine.arena(), pressedKeysQt) };

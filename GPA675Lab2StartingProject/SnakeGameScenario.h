@@ -15,7 +15,7 @@ public:
 	SnakeGameScenario(SnakeGameEngine& gameEngine);
 	virtual ~SnakeGameScenario();
 	void resetGame();
-	bool isGameOver() const;
+	virtual std::tuple<bool, std::optional<std::string>> isGameOver();
 
 protected:
 	SnakeGameEngine& mGameEngine;

@@ -6,6 +6,7 @@
 
 Menu::Menu(QWidget* parent)
 	: QMainWindow(parent)
+	, mApplication{ nullptr }
 {
 	// Créer les boutons Exit et Start
 
