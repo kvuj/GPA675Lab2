@@ -25,7 +25,7 @@ void HomeState::draw(QPainter& painter)
 	painter.drawText(300,100,"Menu Principal:");
 
 	painter.setFont(selectFont);
-	painter.drawText(200,200,"1) Snake Origine ");
+	painter.drawText(200,200,"1) Snake Origin ");
 	painter.drawText(200,250,"2) Snake Blockade ");
 	painter.drawText(200,300,"3) Snakify ");
 	painter.drawText(200,350,"C) Configuration ");
