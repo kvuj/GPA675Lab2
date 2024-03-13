@@ -48,7 +48,6 @@ void GamingState::entering(Transition * oldTransition)
 
 void GamingState::exiting()
 {
-
 	delete mGameScenario;
 }
 

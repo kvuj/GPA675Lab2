@@ -57,10 +57,12 @@ void FiniteStateMachine::handleTransition()
 
             if (!mCurrentState)
             {
-                throw "No State was available, End of the program";
+				QCoreApplication::quit();
             }
+			else {
             mCurrentState->entering(activeTransition);
         }
+		}
             isOldTransition = true;
     }
     else

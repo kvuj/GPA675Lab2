@@ -13,6 +13,8 @@
 #include "KeyboardTransition.h"
 #include "ConfigurationState.h"
 
+#include <QCoreApplication>
+
 
 class FiniteStateMachine
 {

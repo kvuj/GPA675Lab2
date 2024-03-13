@@ -4,24 +4,15 @@
 
 #include <QtWidgets/QApplication>
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
 #ifdef _DEBUG
-    Tests t;
-    t.runTests();
+	Tests t;
+	t.runTests();
 #endif
 
-    QApplication application(argc, argv);
-    SnakeGameApplication snakeGameApp = SnakeGameApplication();
-	try
-	{
-		snakeGameApp.show();
-		return application.exec();
-	}
-	catch (...)
-	{
-		return 0;
-	}
-    
-	return 0;
+	QApplication application(argc, argv);
+	SnakeGameApplication snakeGameApp = SnakeGameApplication();
+	snakeGameApp.show();
+	return application.exec();
 }
