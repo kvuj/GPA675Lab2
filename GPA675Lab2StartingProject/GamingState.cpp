@@ -11,7 +11,12 @@ GamingState::GamingState(PressedKeys const& registeredKeys)
 
 void GamingState::tic(float elapsedTime)
 {
-	mSnakeGameEngine->process(elapsedTime, mPressedKeys);
+	auto returnValue{ mGameScenario->isGameOver() };
+	if (std::get<0>(returnValue))
+		mSnakeGameEngine->process(elapsedTime, mPressedKeys);
+	else {
+		// TODO: Utiliser le string en le montrant à l'écran
+	}
 }
 
 void GamingState::entering(Transition * oldTransition)

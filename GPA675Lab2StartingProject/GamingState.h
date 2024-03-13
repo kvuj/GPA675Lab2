@@ -8,6 +8,8 @@
 #include "SnakeOrigin.h"
 #include "Snakify.h"
 
+#include <variant>
+
 class GamingState:public SnakeGameState
 {
 public :
