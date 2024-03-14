@@ -83,10 +83,10 @@ bool Arena::checkIfCollision(QPoint pos)
 	if (i) {
 		// On ignore la queue.
 		if (i->isTail(pos))
-			return true;
+			return false;
 	}
 
-	return false;
+	return mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)];
 }
 
 std::optional<Entity*> Arena::getPelletIf(QPoint pos)
