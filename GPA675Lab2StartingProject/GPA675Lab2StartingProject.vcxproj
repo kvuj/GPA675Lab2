@@ -105,7 +105,9 @@
   <ItemGroup>
     <ClCompile Include="AcceleratingPellet.cpp" />
     <ClCompile Include="Arena.cpp" />
+    <ClCompile Include="BlackoutPellet.cpp" />
     <ClCompile Include="ConfigurationState.cpp" />
+    <ClCompile Include="DeceleratingPellet.cpp" />
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="GameOverState.cpp" />
@@ -115,9 +117,10 @@
     <ClCompile Include="HomeState.cpp" />
     <ClCompile Include="KeyboardTransition.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Pellet.cpp" />
+    <ClCompile Include="PoisoningPellet.cpp" />
+    <ClCompile Include="ShrinkingPellet.cpp" />
     <ClCompile Include="Snake.cpp" />
     <ClCompile Include="SnakeBlockade.cpp" />
     <ClCompile Include="SnakeGameScenario.cpp" />
@@ -142,8 +145,10 @@
   <ItemGroup>
     <ClInclude Include="AcceleratingPellet.h" />
     <ClInclude Include="Arena.h" />
+    <ClInclude Include="BlackoutPellet.h" />
     <ClInclude Include="Body.h" />
     <ClInclude Include="ConfigurationState.h" />
+    <ClInclude Include="DeceleratingPellet.h" />
     <ClInclude Include="DynamicEntity.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FiniteStateMachine.h" />
@@ -151,6 +156,8 @@
     <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GamingState.h" />
     <ClInclude Include="PauseState.h" />
+    <ClInclude Include="PoisoningPellet.h" />
+    <ClInclude Include="ShrinkingPellet.h" />
     <ClInclude Include="SnakeGameEngine.h" />
     <ClInclude Include="GrowingPellet.h" />
     <ClInclude Include="HomeState.h" />
@@ -162,7 +169,6 @@
     <ClInclude Include="Snakify.h" />
     <ClInclude Include="Transition.h" />
     <QtMoc Include="Menu.h" />
-    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="Pellet.h" />
     <ClInclude Include="PressedKeys.h" />
     <ClInclude Include="Snake.h" />

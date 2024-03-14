@@ -74,7 +74,7 @@ void Snake::ticPrepare(qreal elapsedTime)
 	mElapsedTimeTotal -= (1.0 / mSpeed);
 	mAge++;
 
-
+	
 	auto oldXPos{ getPosition().x() }, oldYPos{ getPosition().y() };
 	auto xPos{ oldXPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].x() };
 	auto yPos{ oldYPos + LUTDirectionDisplacement[static_cast<uint8_t>(mHeadDirection)].y() };
@@ -130,6 +130,12 @@ bool Snake::isColliding(const QPoint& position)
 {
 	return mBody.isColliding(position);
 }
+
+Snake::Direction Snake::getDirection() const
+{
+	return Direction();
+}
+
 
 QString Snake::name()
 {
@@ -275,14 +281,29 @@ void Snake::moveGrids()
 
 void Snake::goToward(Direction dir)
 {
-	// Oops, tu meurt
-	if (mReverseProhibited && (mHeadDirection - 2 == dir || mHeadDirection + 2 == dir)) {
-		auto temp{ mBody.first() };
-		mBody.clear();
-		mBody.addFirst(temp); // Pour simplifier la logique dans le process()
-		mAlive = false;
+	//Le serpent ne bouge aps dans qu'il est empisonné.
+	//le counter poison est utilisé pour savoir combien de temps le serpent est empoisonné
+	if (mPoison && mCounterPoison > 0)
+	{
+		mCounterPoison--;
+		if (mCounterPoison == 0)
+		{
+			mPoison = false;
+		}
+		return;	
 	}
-	mHeadDirection = dir;
+	else if (!mPoison && mCounterPoison == 0)
+	{
+		// Oops, tu meurt
+		if (mReverseProhibited && (mHeadDirection - 2 == dir || mHeadDirection + 2 == dir)) {
+			auto temp{ mBody.first() };
+			mBody.clear();
+			mBody.addFirst(temp); // Pour simplifier la logique dans le process()
+			mAlive = false;
+		}
+		mHeadDirection = dir;
+	}
+	
 }
 
 void Snake::grow(size_t size)
@@ -317,6 +338,13 @@ void Snake::accelerate(SpeedType percentMore)
 void Snake::decelerate(SpeedType percentLess)
 {
 	mSpeed -= (percentLess / 100.0) * mSpeed;
+}
+
+void Snake::isPoisonned(bool poison, int mAmplitudePoison)
+{
+	mPoison = poison;
+	mCounterPoison = mAmplitudePoison;
+
 }
 
 bool Snake::hasMoved()

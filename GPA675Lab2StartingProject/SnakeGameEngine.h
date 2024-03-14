@@ -19,6 +19,7 @@
 #include "StaticEntity.h"
 #include "AcceleratingPellet.h"
 #include "GrowingPellet.h"
+#include "PoisoningPellet.h"
 
 class QPainter;
 
