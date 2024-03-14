@@ -97,7 +97,9 @@ void Snake::ticExecute()
 	if (!mHasMoved || !mAlive)
 		return;
 
+	mArena.deleteInCellIndices(mBody.last(), this);
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
+	mArena.insertInCellIndices(mBody.first(), this);
 }
 
 void Snake::draw(QPainter& painter)
