@@ -11,6 +11,7 @@ class GameTransition : public Transition
 		GameTransition(State* state );
 		~GameTransition() = default;
 		void activateTransition();
+		void deActivateTransition();
 	private:
 		bool transitionActivated;
 		SnakeGameEngine* mGameEngine;

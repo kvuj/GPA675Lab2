@@ -58,6 +58,11 @@ void GamingState::entering(Transition * oldTransition)
 
 void GamingState::exiting()
 {
+	for (auto trans : mTransitions) {
+		if (auto t = dynamic_cast<GameTransition*>(trans)) {
+			t->deActivateTransition();
+		}
+	}
 }
 
 void GamingState::draw(QPainter& painter)
