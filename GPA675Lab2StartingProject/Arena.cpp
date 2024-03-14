@@ -161,16 +161,16 @@ void Arena::insertInCellIndices(QPoint posToInsert, Entity* ptr)
 
 void Arena::deleteInCellIndices(QPoint posToDelete, std::optional<Entity*> ptrToValidate)
 {
-	if (ptrToValidate.has_value()) {
-		if (mGrid[posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks)] != ptrToValidate.value())
-			return;
-	}
-
 	// Si hors grid. Certains destructeurs peuvent appeler cette fonction alors
 	// que la grosseur de la grille a été changée.
 	if (posToDelete.x() >= mGridWidthInBlocks || posToDelete.x() < 0 ||
 		posToDelete.y() >= mGridHeightInBlocks || posToDelete.y() < 0) {
 		return;
+	}
+
+	if (ptrToValidate.has_value()) {
+		if (mGrid[posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks)] != ptrToValidate.value())
+			return;
 	}
 
 	// Insertion O(1)
