@@ -40,7 +40,7 @@ public:
 	void ticExecute() override;
 	void draw(QPainter& painter) override;
 	bool isColliding(const QPoint& position) override;
-
+	Direction getDirection() const;
 	QString name();
 	int score() const;
 	size_t bodyLength() const;
@@ -68,6 +68,8 @@ public:
 	void decreaseSpeed(SpeedType amount);
 	void accelerate(SpeedType percentMore);
 	void decelerate(SpeedType percentLess);
+
+	void isPoisonned(bool poison, int mAmplitudePoison);
 
 	bool hasMoved();
 	void setMoved(bool flag);
@@ -124,6 +126,8 @@ private:
 	void clearGridExcludingTail();
 	void addToGridExcludingTail();
 	void moveGrids();
+	bool mPoison =false; 
+	int mCounterPoison=0;
 };
 
 #endif //SNAKE_H

@@ -129,7 +129,7 @@ void SnakeGameEngine::insertPelletIfNecessary()
 		
 		// Vérifier si un GrowingPellet est déjà présent dans la liste d'entités
 		for (Entity* entity : mEntities) {
-			if (dynamic_cast<GrowingPellet*>(entity) != nullptr) {
+			if (dynamic_cast<PoisonningPellet*>(entity) != nullptr) {
 				hasGrowingPellet = true;
 				break;
 			}
@@ -137,7 +137,7 @@ void SnakeGameEngine::insertPelletIfNecessary()
 		// Si aucun GrowingPellet n'est présent, insérer un nouveau pellet
 		if (!hasGrowingPellet) {
 			auto num{ mArena.generateRandomPositionInSize() };
-			GrowingPellet* pellet = new GrowingPellet(mArena, num, 1);
+			PoisonningPellet* pellet = new PoisonningPellet(mArena, num, 3);
 			mArena.insertEntity(pellet, num);
 			mEntities.emplace_back(pellet);
 		}
