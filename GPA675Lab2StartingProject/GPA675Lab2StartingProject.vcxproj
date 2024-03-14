@@ -109,6 +109,7 @@
     <ClCompile Include="DynamicEntity.cpp" />
     <ClCompile Include="FiniteStateMachine.cpp" />
     <ClCompile Include="GameOverState.cpp" />
+    <ClCompile Include="GameTransition.cpp" />
     <ClCompile Include="GamingState.cpp" />
     <ClCompile Include="GrowingPellet.cpp" />
     <ClCompile Include="HomeState.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FiniteStateMachine.h" />
     <ClInclude Include="GameOverState.h" />
+    <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GamingState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="SnakeGameEngine.h" />

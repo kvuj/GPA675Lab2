@@ -7,7 +7,7 @@
 #include "SnakeBlockade.h"
 #include "SnakeOrigin.h"
 #include "Snakify.h"
-
+#include "GameOverState.h"
 #include <variant>
 
 class GamingState:public SnakeGameState

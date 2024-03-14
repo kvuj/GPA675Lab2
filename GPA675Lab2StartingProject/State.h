@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "KeyBoardTransition.h"
+#include "GameTransition.h"
 #include "PressedKeys.h"
 #include "Transition.h"
 
@@ -19,7 +20,7 @@ public:
 	virtual void tic(float elapsedTime) = 0;
 	virtual void handleKeyPress() = 0;
 	virtual void handleKeyRelease() = 0;
-	void generateKeyboardTransition(std::vector<std::tuple<Qt::Key, State*>> transitingKeyList) ;
+	void setTranstions(std::vector<Transition*> transition) ;
 
 
 protected:

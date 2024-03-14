@@ -8,24 +8,25 @@ FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys)
                 new ConfigurationState(mPressedKeys)}
     , mInitialState{mStates[0]}
     , mCurrentState{ mInitialState }
-    , mHomeStateTransition{ std::tuple(Qt::Key::Key_1,mStates[1]),
-                            std::tuple(Qt::Key::Key_2,mStates[1]),
-                            std::tuple(Qt::Key::Key_3,mStates[1]),
-                            std::tuple(Qt::Key::Key_C,mStates[4]),
-                            std::tuple(Qt::Key::Key_Escape,nullptr) }
-    , mGamingStateTransition{ std::tuple(Qt::Key::Key_Space,mStates[3])}
-    , mGameOverStateTransition{ std::tuple(Qt::Key::Key_Space,mStates[0]),
-                                std::tuple(Qt::Key::Key_Escape,nullptr) }
-    , mPauseStateTransition{ std::tuple(Qt::Key::Key_Space,mStates[1]),
-                             std::tuple(Qt::Key::Key_Escape,mStates[0]) }
-    , mConfigurationStateTransition{ std::tuple(Qt::Key::Key_Escape,mStates[0]) }
+    , mHomeStateTransition{ new KeyboardTransition(Qt::Key::Key_1,mStates[1],mPressedKeys),
+                            new KeyboardTransition(Qt::Key::Key_2,mStates[1],mPressedKeys),
+                            new KeyboardTransition(Qt::Key::Key_3,mStates[1],mPressedKeys),
+                            new KeyboardTransition(Qt::Key::Key_C,mStates[4],mPressedKeys),
+                            new KeyboardTransition(Qt::Key::Key_Escape,nullptr,mPressedKeys) }
+    , mGamingStateTransition{ new KeyboardTransition(Qt::Key::Key_Space,mStates[3],mPressedKeys),
+                              new GameTransition(mStates[2])}
+    , mGameOverStateTransition{ new KeyboardTransition(Qt::Key::Key_Space,mStates[0],mPressedKeys),
+                                new KeyboardTransition(Qt::Key::Key_Escape,nullptr,mPressedKeys) }
+    , mPauseStateTransition{ new KeyboardTransition(Qt::Key::Key_Space,mStates[1],mPressedKeys),
+                             new KeyboardTransition(Qt::Key::Key_Escape,mStates[0],mPressedKeys) }
+    , mConfigurationStateTransition{ new KeyboardTransition(Qt::Key::Key_Escape,mStates[0],mPressedKeys) }
     , isOldTransition{false}
 {
-    mStates[0]->generateKeyboardTransition(mHomeStateTransition);
-    mStates[1]->generateKeyboardTransition(mGamingStateTransition);
-    mStates[2]->generateKeyboardTransition(mGameOverStateTransition);
-    mStates[3]->generateKeyboardTransition(mPauseStateTransition);
-    mStates[4]->generateKeyboardTransition(mConfigurationStateTransition);
+    mStates[0]->setTranstions(mHomeStateTransition);
+    mStates[1]->setTranstions(mGamingStateTransition);
+    mStates[2]->setTranstions(mGameOverStateTransition);
+    mStates[3]->setTranstions(mPauseStateTransition);
+    mStates[4]->setTranstions(mConfigurationStateTransition);
 }
 
 void FiniteStateMachine::tic(float elapsedTime)

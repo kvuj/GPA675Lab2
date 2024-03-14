@@ -10,6 +10,7 @@ public:
 	GameOverState(PressedKeys const& registeredKeys);
 	~GameOverState() = default;
 
+	std::string textToDraw;
 	void tic(float elapsedTime) override;
 	void handleKeyPress() override;
 	void handleKeyRelease() override;
