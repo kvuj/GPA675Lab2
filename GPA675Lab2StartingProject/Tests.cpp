@@ -95,7 +95,7 @@ ADD_TEST(testArenaDoubleArraysDelete)
 	assert(ar.emptyCells()[21] == QPoint(4, 1));
 	assert(ar.cellIndices()[21] == 10);
 	assert(ar.emptyCells()[23] == QPoint(1, 1));
-	assert(ar.cellIndices()[23] == 7);
-	assert(ar.emptyCells()[8] == QPoint(2, 1));
-	assert(ar.cellIndices()[8] == 8);
+	assert(ar.cellIndices()[23] == 8);
+	assert(ar.emptyCells()[8] == QPoint(5, 3));
+	assert(ar.cellIndices()[8] == 20);
 }
