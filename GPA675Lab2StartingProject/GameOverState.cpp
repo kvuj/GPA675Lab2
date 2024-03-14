@@ -40,17 +40,17 @@ void GameOverState::draw(QPainter& painter)
 	painter.setFont(selectFont);
 	painter.drawText(200, 200, QString::fromStdString(textToDraw));
 	painter.setFont(drawFont);
-	painter.drawText(QRect(200, 420, 800, 400), R"(
-
-           ______
-          |_X| X |
-       /~         \
-   ___|_________/  \
-  /      \______\    \                                   
- /\              /    /                                   /   \ \
-               /     /      	    _-~    ~-_           /   / \/
-               \     \         _-~    _--_    ~-_       /   /
-                 \      ~-____-~    _-~    ~-_    ~-_-~    /
-                   ~-_           _-~          ~-_       _-~
-                      ~--______-~                ~-___-~ snaeking around)");
+	painter.drawText(QRect(100,300, 1000, 400), R"(
+          ______
+         |_X| X |
+      /~         \
+  ___|_________/  \
+ /      \______\    \                         
+/\              /    /                                   /   \ \
+              /     /              _-~    ~-_           /   / \/
+              \     \         _-~    _--_    ~-_       /   /
+                \      ~-____-~    _-~    ~-_    ~-_-~    /
+                  ~-_           _-~          ~-_       _-~
+                     ~--______-~                ~-___-~ snaeking around)");
+	;
 }

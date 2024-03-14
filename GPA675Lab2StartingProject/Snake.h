@@ -70,7 +70,7 @@ public:
 	void decelerate(SpeedType percentLess);
 
 	void isPoisonned(bool poison, int mAmplitudePoison);
-
+	void setScore(int score);
 	bool hasMoved();
 	void setMoved(bool flag);
 

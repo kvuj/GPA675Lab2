@@ -347,6 +347,11 @@ void Snake::isPoisonned(bool poison, int mAmplitudePoison)
 
 }
 
+void Snake::setScore(int score)
+{
+	mScore = score;
+}
+
 bool Snake::hasMoved()
 {
 	return mHasMoved;

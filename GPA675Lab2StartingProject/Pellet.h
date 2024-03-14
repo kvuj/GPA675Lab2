@@ -26,5 +26,6 @@ public:
 
 protected:
 	int mRadius = { 50 };
+	float AmplitudeEffect;
 };
 #endif //PELLET_H
