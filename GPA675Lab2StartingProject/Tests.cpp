@@ -75,11 +75,11 @@ ADD_TEST(testLLCollision)
 ADD_TEST(testArenaDoubleArrays)
 {
 	Arena ar(500, 500, 6, 4, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
-	ar.insertInCellIndices(QPoint(2, 1));
-	ar.insertInCellIndices(QPoint(3, 1));
-	ar.insertInCellIndices(QPoint(4, 1));
-	ar.insertInCellIndices(QPoint(1, 1));
-	ar.deleteInCellIndices(QPoint(1, 1));
+	ar.insertInCellIndices(QPoint(2, 1), nullptr);
+	ar.insertInCellIndices(QPoint(3, 1), nullptr);
+	ar.insertInCellIndices(QPoint(4, 1), nullptr);
+	ar.insertInCellIndices(QPoint(1, 1), nullptr);
+	ar.deleteInCellIndices(QPoint(1, 1), nullptr);
 	assert(ar.emptyCells()[21] == QPoint(4, 1));
 	assert(ar.cellIndices()[21] == 10);
 }
@@ -87,11 +87,11 @@ ADD_TEST(testArenaDoubleArrays)
 ADD_TEST(testArenaDoubleArraysDelete)
 {
 	Arena ar(500, 500, 6, 4, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
-	ar.insertInCellIndices(QPoint(2, 1));
-	ar.insertInCellIndices(QPoint(3, 1));
-	ar.insertInCellIndices(QPoint(4, 1));
-	ar.insertInCellIndices(QPoint(1, 1));
-	ar.deleteInCellIndices(QPoint(2, 1));
+	ar.insertInCellIndices(QPoint(2, 1), nullptr);
+	ar.insertInCellIndices(QPoint(3, 1), nullptr);
+	ar.insertInCellIndices(QPoint(4, 1), nullptr);
+	ar.insertInCellIndices(QPoint(1, 1), nullptr);
+	ar.deleteInCellIndices(QPoint(2, 1), nullptr);
 	assert(ar.emptyCells()[21] == QPoint(4, 1));
 	assert(ar.cellIndices()[21] == 10);
 	assert(ar.emptyCells()[23] == QPoint(1, 1));

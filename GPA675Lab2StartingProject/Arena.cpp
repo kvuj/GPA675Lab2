@@ -78,16 +78,53 @@ std::vector<int>& Arena::getCellIndices()
 	return mCellIndices;
 }
 
+bool Arena::checkIfCollision(QPoint pos)
+{
+	// Si hors grid.
+	if (pos.x() >= mGridWidthInBlocks || pos.x() < 0 ||
+		pos.y() >= mGridHeightInBlocks || pos.y() < 0) {
+		return true;
+	}
+
+	// On check si c'est un serpent.
+	auto* i{ dynamic_cast<DynamicEntity*>(mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)]) };
+	if (i) {
+		// On ignore la queue.
+		if (i->isTail(pos))
+			return true;
+	}
+
+	return false;
+}
+
+std::optional<Entity*> Arena::getPelletIf(QPoint pos)
+{
+	// Si hors grid.
+	if (pos.x() >= mGridWidthInBlocks || pos.x() < 0 ||
+		pos.y() >= mGridHeightInBlocks || pos.y() < 0) {
+		return std::nullopt;
+	}
+
+	auto* i{ dynamic_cast<StaticEntity*>(mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)]) };
+	if (i)
+		return i;
+	return std::nullopt;
+}
+
 QPoint Arena::generateRandomPositionInSize()
 {
 	std::uniform_int_distribution<> distrib(0, pivot - 1);
 	return mEmptyCells[distrib(mt)];
 }
 
-void Arena::deletePellet(QPoint pos)
+std::vector<QPoint>& Arena::emptyCells()
 {
-	mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)] = nullptr;
-	deleteInCellIndices(pos);
+	return mEmptyCells;
+}
+
+std::vector<int>& Arena::cellIndices()
+{
+	return mCellIndices;
 }
 
 int Arena::generateRandomNumber(int low, int high)
@@ -96,16 +133,26 @@ int Arena::generateRandomNumber(int low, int high)
 	return distrib(mt);
 }
 
-void Arena::insertInCellIndices(QPoint posToInsert)
+void Arena::insertInCellIndices(QPoint posToInsert, Entity* ptr)
 {
+	// Insertion O(1)
 	auto pos{ posToInsert.x() + (posToInsert.y() * mGridWidthInBlocks) };
 	std::swap(mEmptyCells[mCellIndices[pos]], mEmptyCells[pivot - 1]);
 	std::swap(mCellIndices[pos], mCellIndices[pivot - 1]);
 	--pivot;
+
+	// Collisions O(1)
+	mGrid[posToInsert.x() + (posToInsert.y() * mGridWidthInBlocks)] = ptr;
 }
 
-void Arena::deleteInCellIndices(QPoint posToDelete)
+void Arena::deleteInCellIndices(QPoint posToDelete, std::optional<Entity*> ptrToValidate)
 {
+	if (ptrToValidate.has_value()) {
+		if (mGrid[posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks)] != ptrToValidate.value())
+			return;
+	}
+
+	// Insertion O(1)
 	if (pivot == mGridHeightInBlocks * mGridWidthInBlocks)
 		return;
 
@@ -126,20 +173,7 @@ void Arena::deleteInCellIndices(QPoint posToDelete)
 	std::swap(mEmptyCells[pivot], mEmptyCells[pos]);
 	std::swap(mCellIndices[pivot], mCellIndices[pos]);
 	++pivot;
-}
 
-std::vector<QPoint>& Arena::emptyCells()
-{
-	return mEmptyCells;
-}
-
-std::vector<int>& Arena::cellIndices()
-{
-	return mCellIndices;
-}
-
-void Arena::insertEntity(Entity* en, QPoint pos)
-{
-	insertInCellIndices(pos);
-	mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)] = en;
+	// Collisions O(1)
+	mGrid[posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks)] = nullptr;
 }

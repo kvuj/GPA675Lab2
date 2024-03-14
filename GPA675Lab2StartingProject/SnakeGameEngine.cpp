@@ -21,7 +21,7 @@ SnakeGameEngine* SnakeGameEngine::GetInstance(QSize const& size)
 {
 	/**
 	 * This is a safer way to create an instance. instance = new Singleton is
-	 * dangeruous in case two instance threads wants to access at the same time
+	 * dangerous in case two instance threads wants to access at the same time
 	 */
 	if (snakeGameEngine_ == nullptr) {
 		snakeGameEngine_ = new SnakeGameEngine(size);
@@ -138,7 +138,7 @@ void SnakeGameEngine::insertPelletIfNecessary()
 		if (!hasGrowingPellet) {
 			auto num{ mArena.generateRandomPositionInSize() };
 			GrowingPellet* pellet = new GrowingPellet(mArena, num, 1);
-			mArena.insertEntity(pellet, num);
+			mArena.insertInCellIndices(num, pellet);
 			mEntities.emplace_back(pellet);
 		}
 
@@ -158,7 +158,7 @@ void SnakeGameEngine::insertPelletIfNecessary()
 				en = new AcceleratingPellet(mArena, num, static_cast<float>(mArena.generateRandomNumber(25, 50)) / 10.0);
 			}
 
-			mArena.insertEntity(en, num);
+			mArena.insertInCellIndices(num, en);
 			mEntities.emplace_back(en);
 		}
 		break;

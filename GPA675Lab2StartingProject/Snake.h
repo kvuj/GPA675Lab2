@@ -56,6 +56,8 @@ public:
 	void setController(Controller* ptr);
 	void adjustScore(int score);
 
+	bool isTail(QPoint pos) override;
+
 	void turnRight();
 	void turnLeft();
 	void goToward(Direction dir);
@@ -69,7 +71,7 @@ public:
 	void accelerate(SpeedType percentMore);
 	void decelerate(SpeedType percentLess);
 
-	void isPoisonned(bool poison, int mAmplitudePoison);
+	void isPoisoned(bool poison, int mAmplitudePoison);
 	void setScore(int score);
 	bool hasMoved();
 	void setMoved(bool flag);
@@ -123,11 +125,10 @@ private:
 	void goLeft();
 	void go(QPoint pt);
 
-	void clearGridExcludingTail();
-	void addToGridExcludingTail();
-	void moveGrids();
-	bool mPoison =false; 
-	int mCounterPoison=0;
+	void clearGrids();
+	void addToGrids();
+	bool mPoison = false;
+	int mCounterPoison = 0;
 };
 
 #endif //SNAKE_H

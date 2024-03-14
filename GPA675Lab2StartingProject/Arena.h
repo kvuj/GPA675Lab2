@@ -8,8 +8,11 @@
 
 #include <random>
 #include <numeric>
+#include <optional>
 
 #include "Entity.h"
+#include "DynamicEntity.h"
+#include "StaticEntity.h"
 
 class Arena
 {
@@ -27,25 +30,24 @@ public:
 	/// <summary>
 	/// Insertion dans les tableaux pour l'insertion en O(1)
 	/// </summary>
-	void insertInCellIndices(QPoint posToInsert);
+	void insertInCellIndices(QPoint posToInsert, Entity* ptr);
 	/// <summary>
 	/// Suppression dans les tableaux pour l'insertion en O(1)
 	/// </summary>
-	void deleteInCellIndices(QPoint posToDelete);
+	void deleteInCellIndices(QPoint posToDelete, std::optional<Entity*> ptrToValidate);
 	/// <summary>
-	/// Accès d'un tableau pour l'insertion en O(1)
+	/// Regarde les collisions. Si un queue, retourne faux car il ne faut pas mourir (l'autre serpent avance).
 	/// </summary>
-	std::vector<QPoint>& emptyCells();
-	/// <summary>
-	/// Accès d'un tableau pour l'insertion en O(1)
-	/// </summary>
-	std::vector<int>& cellIndices();
+	/// <returns></returns>
+	bool checkIfCollision(QPoint pos);
 
-	void insertEntity(Entity* en, QPoint pos);
+	std::optional<Entity*> getPelletIf(QPoint pos);
+
 	QPoint generateRandomPositionInSize();
 	int generateRandomNumber(int low, int high);
 
-	void deletePellet(QPoint pos);
+	std::vector<QPoint>& emptyCells();
+	std::vector<int>& cellIndices();
 
 private:
 	size_t mWidthPixels;

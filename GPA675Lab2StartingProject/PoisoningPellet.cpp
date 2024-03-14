@@ -9,6 +9,6 @@ PoisonningPellet::PoisonningPellet(Arena& arena, QPoint position, float amplitud
 void PoisonningPellet::applyEffectOnSnake(Snake& snake)
 {
 	//le serpent garde sa direction pour la durée de l'effet
-	snake.isPoisonned(true, mAmplitudePoison);
+	snake.isPoisoned(true, mAmplitudePoison);
 	
 }

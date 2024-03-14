@@ -2,6 +2,8 @@
 #ifndef PELLET_H
 #define PELLET_H
 
+#include <optional>
+
 #include "StaticEntity.h"
 #include "Arena.h"
 class Snake;
