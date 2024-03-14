@@ -14,7 +14,7 @@ class Pellet : public StaticEntity
 {
 public:
 	Pellet(Arena& arena, QColor color, QPoint position);
-	virtual ~Pellet() = default;
+	virtual ~Pellet();
 
 	virtual void applyEffectOnSnake(Snake& snake) = 0; //chaque pellet a un effet différent
 	void isEatenBy(Snake& snake);

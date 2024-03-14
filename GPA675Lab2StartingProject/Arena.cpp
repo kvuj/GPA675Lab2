@@ -20,15 +20,7 @@ Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGri
 	, mt(std::random_device()())
 	, pivot{ static_cast<int>(mGridHeightInBlocks * mGridWidthInBlocks) }
 {
-
-	memset(&(mGrid[0]), 0, sizeof(Entity*) * widthOfGrid * heightOfGrid);
-
-	for (size_t x{}; x < mGridWidthInBlocks; x++) {
-		for (size_t y{}; y < mGridHeightInBlocks; y++) {
-			mEmptyCells[x + (y * mGridWidthInBlocks)] = QPoint(x, y);
-		}
-	}
-	std::iota(mCellIndices.begin(), mCellIndices.end(), 0);
+	clearAll();
 }
 
 void Arena::draw(QPainter& painter)
@@ -114,12 +106,28 @@ std::optional<Entity*> Arena::getPelletIf(QPoint pos)
 QPoint Arena::generateRandomPositionInSize()
 {
 	std::uniform_int_distribution<> distrib(0, pivot - 1);
-	return mEmptyCells[distrib(mt)];
+	int a = { distrib(mt) };
+	if (mGrid[mEmptyCells[a].x() + (mEmptyCells[a].y() * mGridWidthInBlocks)])
+		int a = 2;
+	return mEmptyCells[a];
 }
 
 std::vector<QPoint>& Arena::emptyCells()
 {
 	return mEmptyCells;
+}
+
+void Arena::clearAll()
+{
+	memset(&(mGrid[0]), 0, sizeof(Entity*) * mGridWidthInBlocks * mGridHeightInBlocks);
+
+	for (size_t x{}; x < mGridWidthInBlocks; x++) {
+		for (size_t y{}; y < mGridHeightInBlocks; y++) {
+			mEmptyCells[x + (y * mGridWidthInBlocks)] = QPoint(x, y);
+		}
+	}
+	std::iota(mCellIndices.begin(), mCellIndices.end(), 0);
+	pivot = static_cast<int>(mGridHeightInBlocks * mGridWidthInBlocks);
 }
 
 std::vector<int>& Arena::cellIndices()
@@ -136,9 +144,15 @@ int Arena::generateRandomNumber(int low, int high)
 void Arena::insertInCellIndices(QPoint posToInsert, Entity* ptr)
 {
 	// Insertion O(1)
-	auto pos{ posToInsert.x() + (posToInsert.y() * mGridWidthInBlocks) };
-	std::swap(mEmptyCells[mCellIndices[pos]], mEmptyCells[pivot - 1]);
-	std::swap(mCellIndices[pos], mCellIndices[pivot - 1]);
+	auto posCI{ posToInsert.x() + (posToInsert.y() * mGridWidthInBlocks) };
+
+	auto ECIdx{ mCellIndices[posCI] };
+	auto ECIdxPivot{ mEmptyCells[pivot - 1].x() + (mEmptyCells[pivot - 1].y() * mGridWidthInBlocks) };
+	auto ECIdxPos{ mEmptyCells[ECIdx].x() + (mEmptyCells[ECIdx].y() * mGridWidthInBlocks) };
+
+	std::swap(mEmptyCells[ECIdx], mEmptyCells[pivot - 1]);
+	std::swap(mCellIndices[ECIdxPos], mCellIndices[ECIdxPivot]);
+
 	--pivot;
 
 	// Collisions O(1)
@@ -157,21 +171,14 @@ void Arena::deleteInCellIndices(QPoint posToDelete, std::optional<Entity*> ptrTo
 		return;
 
 	auto pos{ posToDelete.x() + (posToDelete.y() * mGridWidthInBlocks) };
-	auto posPivot{ mEmptyCells[pivot].x() + (mEmptyCells[pivot].y() * mGridWidthInBlocks) };
+	auto positionIdx{ mCellIndices[pos] };
+	auto pivotIdx{ mEmptyCells[pivot].x() + (mEmptyCells[pivot].y() * mGridWidthInBlocks) };
 
-	if (mCellIndices[pos] != pivot) {
-		auto oldPointPos = mCellIndices[pos];
-		auto oldPointPivot = mCellIndices[posPivot];
-
-		std::swap(mCellIndices[oldPointPos], mCellIndices[oldPointPivot]);
-		std::swap(mEmptyCells[oldPointPos], mEmptyCells[oldPointPivot]);
-
-		std::swap(mCellIndices[posPivot], mCellIndices[pos]);
-		std::swap(mEmptyCells[posPivot], mEmptyCells[pos]);
+	if (pos != positionIdx) {
+		std::swap(mEmptyCells[pivot], mEmptyCells[positionIdx]);
+		std::swap(mCellIndices[pos], mCellIndices[pivotIdx]);
 	}
 
-	std::swap(mEmptyCells[pivot], mEmptyCells[pos]);
-	std::swap(mCellIndices[pivot], mCellIndices[pos]);
 	++pivot;
 
 	// Collisions O(1)

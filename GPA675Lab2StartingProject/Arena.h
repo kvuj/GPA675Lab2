@@ -49,6 +49,8 @@ public:
 	std::vector<QPoint>& emptyCells();
 	std::vector<int>& cellIndices();
 
+	void clearAll();
+
 private:
 	size_t mWidthPixels;
 	size_t mHeightPixels;

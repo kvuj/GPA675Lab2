@@ -97,9 +97,7 @@ void Snake::ticExecute()
 	if (!mHasMoved || !mAlive)
 		return;
 
-	mArena.deleteInCellIndices(mBody.last(), this);
 	(this->*LUTDirectionAction[static_cast<uint8_t>(mHeadDirection)])();
-	mArena.insertInCellIndices(mBody.first(), this);
 }
 
 void Snake::draw(QPainter& painter)
@@ -117,7 +115,6 @@ Snake::Direction Snake::getDirection() const
 {
 	return Direction();
 }
-
 
 QString Snake::name()
 {
@@ -229,11 +226,13 @@ void Snake::go(QPoint pt)
 {
 	mBody.addFirst(pt);
 	if (!mSizeToGrow) {
+		mArena.deleteInCellIndices(mBody.last(), this);
 		mBody.removeLast();
 	}
 	else {
 		mSizeToGrow--;
 	}
+	mArena.insertInCellIndices(mBody.first(), this);
 }
 
 void Snake::clearGrids()

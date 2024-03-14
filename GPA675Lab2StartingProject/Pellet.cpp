@@ -6,6 +6,11 @@ Pellet::Pellet(Arena& arena, QColor color, QPoint position)
 	mPosition = position;
 }
 
+Pellet::~Pellet()
+{
+	mArena.deleteInCellIndices(mPosition, this);
+}
+
 void Pellet::draw(QPainter& painter)
 {
 
