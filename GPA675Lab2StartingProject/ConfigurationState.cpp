@@ -64,5 +64,6 @@ void ConfigurationState::draw(QPainter& painter)
 
 void ConfigurationState::changeArenaSize(int x, int y)
 {
-	mSnakeGameEngine->resizeArena(mSnakeGameEngine->arena().getArenaWidthInBlocks() + x, mSnakeGameEngine->arena().getArenaHeightInBlocks() + y);
+	if(mSnakeGameEngine->arena().getArenaWidthInBlocks() + x > 0 && mSnakeGameEngine->arena().getArenaHeightInBlocks() + y > 0)
+		mSnakeGameEngine->resizeArena(mSnakeGameEngine->arena().getArenaWidthInBlocks() + x, mSnakeGameEngine->arena().getArenaHeightInBlocks() + y);
 }
