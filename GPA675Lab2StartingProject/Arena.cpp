@@ -166,6 +166,13 @@ void Arena::deleteInCellIndices(QPoint posToDelete, std::optional<Entity*> ptrTo
 			return;
 	}
 
+	// Si hors grid. Certains destructeurs peuvent appeler cette fonction alors
+	// que la grosseur de la grille a été changée.
+	if (posToDelete.x() >= mGridWidthInBlocks || posToDelete.x() < 0 ||
+		posToDelete.y() >= mGridHeightInBlocks || posToDelete.y() < 0) {
+		return;
+	}
+
 	// Insertion O(1)
 	if (pivot == mGridHeightInBlocks * mGridWidthInBlocks)
 		return;
