@@ -2,7 +2,7 @@
 
 class Pellet;
 
-Snake::Snake(Arena& arena, Controller* controller)
+Snake::Snake(Arena& arena, Controller* controller, int id)
 	: DynamicEntity(arena)
 	, mReverseProhibited{ true }
 	, mScore{}
@@ -20,12 +20,13 @@ Snake::Snake(Arena& arena, Controller* controller)
 	, mHeadColor{ Qt::darkGray }
 	, mBodyColor{ Qt::white }
 	, mHasMoved{}
+	, mId{ id }
 {
 	addToGrids();
 }
 
-Snake::Snake(Arena& arena, PressedKeys const& pressedKeys)
-	: Snake(arena, nullptr)
+Snake::Snake(Arena& arena, PressedKeys const& pressedKeys, int id)
+	: Snake(arena, nullptr, id)
 {
 }
 
@@ -80,7 +81,8 @@ void Snake::ticPrepare(qreal elapsedTime)
 		setDead();
 	}
 
-	// L'arène nous indique s'il y a un pellet à manger.
+	// L'arène nous indique s'il y a un pellet à manger et elle
+	// s'occupe de nous le donner.
 	auto staticEnt{ mArena.getPelletIf(newPos) };
 	if (staticEnt.has_value()) {
 		auto pell{ dynamic_cast<Pellet*>(staticEnt.value()) };
@@ -187,6 +189,11 @@ void Snake::adjustScore(int score)
 	mScore = score;
 }
 
+int Snake::getId()
+{
+	return mId;
+}
+
 bool Snake::isTail(QPoint pos)
 {
 	return mBody.last() == pos;
@@ -251,7 +258,7 @@ void Snake::addToGrids()
 
 void Snake::goToward(Direction dir)
 {
-	// Le serpent ne bouge aps dans qu'il est empoisonné.
+	// Le serpent ne bouge pas dans qu'il est empoisonné.
 	// Le counter poison est utilisé pour savoir combien de temps le serpent est empoisonné.
 	if (mPoison && mCounterPoison > 0)
 	{

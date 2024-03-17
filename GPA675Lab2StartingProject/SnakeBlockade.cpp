@@ -5,9 +5,9 @@ SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, Pre
 {
 	auto ar{ this->mGameEngine.arena() };
 	this->mGameEngine.addEntity(addSnake(keys1, gameEngine, pressedKeysQt,
-		static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2)));
+		static_cast<int>(ar.getArenaWidthInBlocks() / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2), 1));
 	this->mGameEngine.addEntity(addSnake(keys2, gameEngine, pressedKeysQt,
-		static_cast<int>(ar.getArenaWidthInBlocks() * 2 / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2)));
+		static_cast<int>(ar.getArenaWidthInBlocks() * 2 / 3), static_cast<int>(ar.getArenaHeightInBlocks() / 2), 2));
 
 	mGameEngine.setPelletInsertionType(SnakeGameEngine::random);
 }
@@ -29,7 +29,8 @@ std::tuple<bool, std::optional<std::string>> SnakeBlockade::isGameOver()
 	else if (ptrs[1]) // Si 0 mort
 		return { false, std::nullopt };
 
-	std::string str("Le joueur TODO: a eu un score de ");
+	std::string str("Le joueur : a eu un score de ");
+	str.insert(10, std::to_string(ptrs[0]->getId()));
 	str.append(std::to_string(ptrs[0]->score()));
 
 	return { true, std::move(str) };

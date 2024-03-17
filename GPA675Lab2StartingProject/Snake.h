@@ -30,8 +30,8 @@ public:
 
 	class Controller;
 
-	Snake(Arena& arena, Controller* controller);
-	Snake(Arena& arena, PressedKeys const& pressedKeys);
+	Snake(Arena& arena, Controller* controller, int id = 1);
+	Snake(Arena& arena, PressedKeys const& pressedKeys, int id = 1);
 	~Snake();
 
 	bool isValid() override;
@@ -55,6 +55,8 @@ public:
 	void setColors(QColor head, QColor body);
 	void setController(Controller* ptr);
 	void adjustScore(int score);
+
+	int getId();
 
 	bool isTail(QPoint pos) override;
 
@@ -112,6 +114,8 @@ private:
 	bool mHasMoved;
 	qreal mElapsedTimeTotal;
 	Controller* mController;
+
+	int mId;
 
 	const std::array<Direction, 4> LUTTurnLeftDirection;
 	const std::array<Direction, 4> LUTTurnRightDirection;

@@ -20,7 +20,7 @@ public:
 protected:
 	SnakeGameEngine& mGameEngine;
 
-	Snake* addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys const & pressedKeysQt, int x, int y);
+	Snake* addSnake(PressedKeys keys, SnakeGameEngine& gameEngine, PressedKeys const & pressedKeysQt, int x, int y, int id = 1);
 };
 
 #endif //SNAKE_GAME_SCENARIO_H
