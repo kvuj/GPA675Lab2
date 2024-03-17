@@ -9,4 +9,5 @@ deceleratingPellet::deceleratingPellet(Arena& arena, QPoint position, float ampl
 void deceleratingPellet::applyEffectOnSnake(Snake& snake)
 {
 	snake.decelerate(mAmplitudeAccel);
+	snake.setScore(snake.score() + 1);
 }

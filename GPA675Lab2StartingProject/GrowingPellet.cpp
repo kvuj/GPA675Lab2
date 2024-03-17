@@ -8,6 +8,6 @@ GrowingPellet::GrowingPellet(Arena& arena, QPoint position, int amplitudeEffect)
 void GrowingPellet::applyEffectOnSnake(Snake& snake)
 {
 	snake.grow(mAmplitudeGrowing);
-	snake.setScore(1);
+	snake.setScore(snake.score()+1);
 }
 

@@ -60,6 +60,7 @@ void ConfigurationState::draw(QPainter& painter)
 	painter.drawText(250, 250, " (↑) Augmenter la hauteur  ");
 	painter.drawText(50, 280, " Diminuer la largeur (←)    (→) Augmenter la largeur");
 	painter.drawText(250, 310, " (↓) Diminuer la hauteur ");
+	painter.drawText(250, 350, " Esc) Main Menu ");
 }
 
 void ConfigurationState::changeArenaSize(int x, int y)

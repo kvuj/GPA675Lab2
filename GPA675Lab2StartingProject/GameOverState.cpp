@@ -35,22 +35,24 @@ void GameOverState::draw(QPainter& painter)
 	painter.fillRect(QRect(QPoint(0, 0), mSnakeGameEngine->getSize()), Qt::black);
 	painter.setPen(QPen(Qt::white, 1, Qt::SolidLine));
 	painter.setFont(titleFont);
-	painter.drawText(300, 100, "Menu Principal:");
+	painter.drawText(300, 100, "Game Over:");
 
 	painter.setFont(selectFont);
 	painter.drawText(200, 200, QString::fromStdString(textToDraw));
+	painter.drawText(200, 250, "Esc) Exitt Application");
+	painter.drawText(200, 300, "Space) Main Menu");
 	painter.setFont(drawFont);
-	painter.drawText(QRect(100,300, 1000, 400), R"(
+	painter.drawText(QRect(100,350, 1000, 450), R"(
           ______
          |_X| X |
       /~         \
-  ___|_________/  \
- /      \______\    \                         
-/\              /    /                                   /   \ \
+  ___|_________/  \                                         ^
+ /      \______\    \                                     /   \  
+/\              /    /                                   /   ^ \
               /     /              _-~    ~-_           /   / \/
-              \     \         _-~    _--_    ~-_       /   /
-                \      ~-____-~    _-~    ~-_    ~-_-~    /
+              \     \         _-~    _--_    ~-_       /   /     
+                \      ~-____-~    _-~    ~-_    ~-_-~    / 
                   ~-_           _-~          ~-_       _-~
-                     ~--______-~                ~-___-~ snaeking around)");
+                     ~--______-~                ~-___-~ snaeking flat)");
 	;
 }

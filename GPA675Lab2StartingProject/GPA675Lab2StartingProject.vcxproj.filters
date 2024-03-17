@@ -105,9 +105,6 @@
     <ClCompile Include="GrowingPellet.cpp">
       <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
-    <ClCompile Include="Obstacle.cpp">
-      <Filter>Source Files\Entities\Static</Filter>
-    </ClCompile>
     <ClCompile Include="Pellet.cpp">
       <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
@@ -183,6 +180,21 @@
     <ClCompile Include="ConfigurationState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BlackoutPellet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DeceleratingPellet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTransition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PoisoningPellet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShrinkingPellet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Entity.h">
@@ -213,9 +225,6 @@
       <Filter>Header Files\Entities\Dynamic</Filter>
     </ClInclude>
     <ClInclude Include="GrowingPellet.h">
-      <Filter>Header Files\Entities\Static</Filter>
-    </ClInclude>
-    <ClInclude Include="Obstacle.h">
       <Filter>Header Files\Entities\Static</Filter>
     </ClInclude>
     <ClInclude Include="Pellet.h">
@@ -287,8 +296,23 @@
     <ClInclude Include="KeyboardTransition.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigurationState.h">
+    <ClInclude Include="BlackoutPellet.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DeceleratingPellet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTransition.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PoisoningPellet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShrinkingPellet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigurationState.h">
+      <Filter>Header Files\State</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,5 +10,9 @@ void PoisonningPellet::applyEffectOnSnake(Snake& snake)
 {
 	//le serpent garde sa direction pour la durée de l'effet
 	snake.isPoisoned(true, mAmplitudePoison);
+	if (snake.score())
+	{
+		snake.setScore(snake.score() - 1);
+	}
 	
 }

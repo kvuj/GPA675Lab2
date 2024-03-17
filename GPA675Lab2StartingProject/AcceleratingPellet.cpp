@@ -8,5 +8,5 @@ AcceleratingPellet::AcceleratingPellet(Arena& arena, QPoint position, float ampl
 void AcceleratingPellet::applyEffectOnSnake(Snake& snake)
 {
 	snake.setSpeed(snake.speed() + (snake.speed() * mAmplitudeAccel) / 100);
-	snake.setScore(mAmplitudeAccel * 100);
+	snake.setScore(snake.score() + 1);
 }

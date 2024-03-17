@@ -8,5 +8,9 @@ ShrinkingPellet::ShrinkingPellet(Arena& arena, QPoint position, int amplitudeEff
 void ShrinkingPellet::applyEffectOnSnake(Snake& snake)
 {
 	snake.shrink(mAmplitudeShrinking);
+	if (snake.score())
+	{
+		snake.setScore(snake.score() - 1);
+	}
 }
 
