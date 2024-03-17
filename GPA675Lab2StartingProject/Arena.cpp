@@ -11,10 +11,10 @@ Arena::Arena(size_t width, size_t height, size_t widthOfGrid, size_t heightOfGri
 	, mHeightPixels{ height }
 	, mBackgroundColor{ backgroundColor }
 	, mGridColor{ gridColor }
-	, mGridHeightInBlocks(heightOfGrid)
-	, mGridWidthInBlocks{ widthOfGrid }
+	, mGridHeightInBlocks(heightOfGrid + 2)
+	, mGridWidthInBlocks{ widthOfGrid + 2}
 	, mBlockSideSizePixels{ static_cast <size_t>(sqrt(floor(static_cast <double>(width * height) / static_cast <double>(pow(std::max(widthOfGrid, heightOfGrid), 2))))) }
-	, mGrid(widthOfGrid* heightOfGrid)
+	, mGrid((widthOfGrid +2 )* (heightOfGrid+2))
 	, mEmptyCells(mGridHeightInBlocks* mGridWidthInBlocks)
 	, mCellIndices(mGridHeightInBlocks* mGridWidthInBlocks)
 	, mt(std::random_device()())
@@ -28,10 +28,10 @@ void Arena::draw(QPainter& painter)
 	painter.setPen(mGridColor);
 	painter.fillRect(QRect(QPoint(0, 0), QSize(mWidthPixels, mHeightPixels)), mBackgroundColor);
 	painter.setPen(QPen(mGridColor, 1, Qt::SolidLine));
-	for (int i{}; i < mGridWidthInBlocks; ++i) {
+	for (int i{0}; i < mGridWidthInBlocks-2; ++i) {
 		painter.drawLine(mBlockSideSizePixels * i, 0, mBlockSideSizePixels * i, mGridHeightInBlocks * mBlockSideSizePixels);
 	}
-	for (int j{}; j < mGridHeightInBlocks; ++j) {
+	for (int j{0}; j < mGridHeightInBlocks-2; ++j) {
 		painter.drawLine(0, mBlockSideSizePixels * j, mGridWidthInBlocks * mBlockSideSizePixels, mBlockSideSizePixels * j);
 	}
 	painter.drawLine(0, mGridHeightInBlocks * mBlockSideSizePixels, mGridWidthInBlocks * mBlockSideSizePixels, mGridHeightInBlocks * mBlockSideSizePixels);
@@ -70,13 +70,19 @@ std::vector<int>& Arena::getCellIndices()
 	return mCellIndices;
 }
 
+QPoint Arena::getRelativePostion(QPoint initialPosition) const
+{
+	QPoint relativePoint = QPoint(initialPosition.x(), initialPosition.y());
+	return relativePoint;
+}
+
 bool Arena::checkIfCollision(QPoint pos)
 {
 	// Si hors grid.
-	if (pos.x() >= mGridWidthInBlocks || pos.x() < 0 ||
-		pos.y() >= mGridHeightInBlocks || pos.y() < 0) {
-		return true;
-	}
+	//if (pos.x() >= mGridWidthInBlocks || pos.x() < 0 ||
+//		pos.y() >= mGridHeightInBlocks || pos.y() < 0) {
+	//	return true;
+	//}
 
 	// On check si c'est un serpent.
 	auto* i{ dynamic_cast<DynamicEntity*>(mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)]) };
@@ -84,6 +90,12 @@ bool Arena::checkIfCollision(QPoint pos)
 		// On ignore la queue.
 		if (i->isTail(pos))
 			return false;
+		return true;
+	}
+
+	// On check si c'est un obstacle.
+	auto* obstacle{ dynamic_cast<Obstacle*>(mGrid[pos.x() + (pos.y() * mGridWidthInBlocks)]) };
+	if (obstacle) {
 		return true;
 	}
 

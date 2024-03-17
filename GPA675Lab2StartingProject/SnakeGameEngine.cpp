@@ -65,6 +65,7 @@ void SnakeGameEngine::draw(QPainter& painter)
 void SnakeGameEngine::addEntity(Entity* entity)
 {
 	mEntities.push_back(entity);
+	mArena.insertInCellIndices(QPoint(entity->getPosition().x() , entity->getPosition().y()), entity);
 }
 
 std::list<Entity*>& SnakeGameEngine::entities()

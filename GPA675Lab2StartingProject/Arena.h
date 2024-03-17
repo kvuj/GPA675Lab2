@@ -13,6 +13,9 @@
 #include "Entity.h"
 #include "DynamicEntity.h"
 #include "StaticEntity.h"
+#include "Obstacle.h"
+
+//class Obstacle;
 
 class Arena
 {
@@ -27,6 +30,7 @@ public:
 	std::vector<QPoint>& getEmptyCells();
 	std::vector<int>& getCellIndices();
 
+	QPoint getRelativePostion(QPoint initialPosition) const;
 	/// <summary>
 	/// Insertion dans les tableaux pour l'insertion en O(1)
 	/// </summary>

@@ -18,6 +18,7 @@
 #include "Snake.h"
 #include "StaticEntity.h"
 #include "AcceleratingPellet.h"
+#include "Obstacle.h"
 #include "GrowingPellet.h"
 #include "PoisoningPellet.h"
 

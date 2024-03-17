@@ -55,7 +55,7 @@ void ConfigurationState::draw(QPainter& painter)
 	painter.drawText(300, 100, "Page de configuration:");
 
 	painter.setFont(selectFont);
-	std::string arenaString = "Taille de l'arène :  " + std::to_string(mSnakeGameEngine->arena().getArenaWidthInBlocks()) + " x " + std::to_string(mSnakeGameEngine->arena().getArenaHeightInBlocks());
+	std::string arenaString = "Taille de l'arène :  " + std::to_string(mSnakeGameEngine->arena().getArenaWidthInBlocks()-2) + " x " + std::to_string(mSnakeGameEngine->arena().getArenaHeightInBlocks()-2);
 	painter.drawText(50, 200,	QString::fromStdString(arenaString));
 	painter.drawText(250, 250, " (↑) Augmenter la hauteur  ");
 	painter.drawText(50, 280, " Diminuer la largeur (←)    (→) Augmenter la largeur");
@@ -65,6 +65,6 @@ void ConfigurationState::draw(QPainter& painter)
 
 void ConfigurationState::changeArenaSize(int x, int y)
 {
-	if(mSnakeGameEngine->arena().getArenaWidthInBlocks() + x > 0 && mSnakeGameEngine->arena().getArenaHeightInBlocks() + y > 0)
-		mSnakeGameEngine->resizeArena(mSnakeGameEngine->arena().getArenaWidthInBlocks() + x, mSnakeGameEngine->arena().getArenaHeightInBlocks() + y);
+	if(mSnakeGameEngine->arena().getArenaWidthInBlocks()-2 + x > 0 && mSnakeGameEngine->arena().getArenaHeightInBlocks()-2 + y > 0)
+		mSnakeGameEngine->resizeArena(mSnakeGameEngine->arena().getArenaWidthInBlocks()-2 + x, mSnakeGameEngine->arena().getArenaHeightInBlocks()-2 + y);
 }

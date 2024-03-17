@@ -177,23 +177,26 @@
     <ClCompile Include="KeyboardTransition.cpp">
       <Filter>Source Files\State</Filter>
     </ClCompile>
-    <ClCompile Include="ConfigurationState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BlackoutPellet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DeceleratingPellet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameTransition.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
     <ClCompile Include="PoisoningPellet.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
     <ClCompile Include="ShrinkingPellet.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="DeceleratingPellet.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigurationState.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTransition.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Source Files\Entities\Static</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,22 +299,25 @@
     <ClInclude Include="KeyboardTransition.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
-    <ClInclude Include="BlackoutPellet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DeceleratingPellet.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameTransition.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ConfigurationState.h">
+      <Filter>Header Files\State</Filter>
     </ClInclude>
     <ClInclude Include="PoisoningPellet.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entities\Static</Filter>
     </ClInclude>
     <ClInclude Include="ShrinkingPellet.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Entities\Static</Filter>
     </ClInclude>
-    <ClInclude Include="ConfigurationState.h">
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="BlackoutPellet.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="DeceleratingPellet.h">
+      <Filter>Header Files\Entities\Static</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTransition.h">
       <Filter>Header Files\State</Filter>
     </ClInclude>
   </ItemGroup>

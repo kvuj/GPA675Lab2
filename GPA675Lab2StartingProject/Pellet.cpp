@@ -18,8 +18,8 @@ void Pellet::draw(QPainter& painter)
 	int blockSize = mArena.getBlockSideSize();
 
 	// Calculez les coordonnées du coin supérieur gauche du rectangle où dessiner la pellet
-	int x = mPosition.x() * blockSize + blockSize / 4; // Décalage de 1/4 de la taille du bloc sur l'axe X
-	int y = mPosition.y() * blockSize + blockSize / 4; // Décalage de 1/4 de la taille du bloc sur l'axe Y
+	int x = (mPosition.x() - 1)* blockSize + blockSize / 4; // Décalage de 1/4 de la taille du bloc sur l'axe X
+	int y = (mPosition.y() - 1) * blockSize + blockSize / 4; // Décalage de 1/4 de la taille du bloc sur l'axe Y
 
 	// Dessinez la pellet au centre de la case
 	painter.setBrush(mColor);

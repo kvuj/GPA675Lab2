@@ -251,12 +251,12 @@ void Body::draw(QPainter& painter, QColor head, QColor body, size_t gridSize)
 {
 	painter.setPen(Qt::NoPen);
 	painter.setBrush(head);
-	painter.fillRect(QRect(QPoint(mHead->position.x() * gridSize, mHead->position.y() * gridSize), QSize(gridSize, gridSize)), head);
+	painter.fillRect(QRect(QPoint((mHead->position.x() - 1) * gridSize, (mHead->position.y() - 1) * gridSize), QSize(gridSize, gridSize)), head);
 
 	painter.setBrush(body);
 	// Seulement le corps
 	for (Body::Iterator it((*this)[mSize - 1]); it != begin(); --it)
-		painter.fillRect(QRect(QPoint((*it).x() * gridSize, (*it).y() * gridSize), QSize(gridSize, gridSize)), body);
+		painter.fillRect(QRect(QPoint(((*it).x() - 1) * gridSize, ((*it).y() - 1) * gridSize), QSize(gridSize, gridSize)), body);
 }
 
 Body::Iterator Body::begin()

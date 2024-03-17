@@ -74,7 +74,7 @@ ADD_TEST(testLLCollision)
 
 ADD_TEST(testArenaDoubleArrays)
 {
-	Arena ar(500, 500, 6, 4, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
+	Arena ar(500, 500, 4, 2, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
 	ar.insertInCellIndices(QPoint(2, 1), nullptr);
 	ar.insertInCellIndices(QPoint(3, 1), nullptr);
 	ar.insertInCellIndices(QPoint(4, 1), nullptr);
@@ -86,7 +86,7 @@ ADD_TEST(testArenaDoubleArrays)
 
 ADD_TEST(testArenaDoubleArraysDelete)
 {
-	Arena ar(500, 500, 6, 4, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
+	Arena ar(500, 500, 4, 2, QColor::fromRgba(qRgb(255, 255, 255)), QColor::fromRgba(qRgb(255, 255, 255)));
 	ar.insertInCellIndices(QPoint(2, 1), nullptr);
 	ar.insertInCellIndices(QPoint(3, 1), nullptr);
 	ar.insertInCellIndices(QPoint(4, 1), nullptr);

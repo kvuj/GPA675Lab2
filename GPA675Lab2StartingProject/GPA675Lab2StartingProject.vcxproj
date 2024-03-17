@@ -39,7 +39,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.6.1_msvc2019_64</QtInstall>
+    <QtInstall>6.6.0_msvc2019_64</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -117,6 +117,7 @@
     <ClCompile Include="HomeState.cpp" />
     <ClCompile Include="KeyboardTransition.cpp" />
     <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Pellet.cpp" />
     <ClCompile Include="PoisoningPellet.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameTransition.h" />
     <ClInclude Include="GamingState.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="PoisoningPellet.h" />
     <ClInclude Include="ShrinkingPellet.h" />
