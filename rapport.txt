@@ -1,0 +1,40 @@
+                            Rapport Laboratoire 2
+
+// Indiquer les noms des étudiants formant l’équipe
+Par Timothée Leclaire-Fournier, Arnaud Théberge Mandeville, Kevin Pelletier et
+Martin Euzenat.
+
+// Y a-t-il des fonctionnalités qui n’ont pas été entièrement réalisée.
+Nous avons passé en revue le document PDF de ce laboratoire afin de s'assurer que
+nous avons rien oublié.
+
+// Donnez une description du scénario personnalisé.
+Dans le cadre de l'implémentation d'un scénario qu'il fallait choisir, nous avons
+décidé de faire un jeu similaire au film sensationnel 'Tron'. Nous donnons donc une
+queue infinie au serpent en permettant aussi d'utiliser des 'pellets' de différents
+types (tels que du poison, etc).
+
+// Pour chacun des algorithmes mentionnés, discuter de votre implémentation en expliquant quelle
+// approche vous avez utilisé en précisant les adaptations que vous avez faites.
+// 1. Gestion du corps du serpent.
+// 2. Identification d'une position libre pour l'insertion d'entités
+// 3. Détection de collision
+// 4. Détection des touches au clavier
+
+// Concernant votre architecture logicielle, donnez les points saillants de votre implémentation.
+// Donner une description ultra compacte sous forme de puces.
+
+// Y a-t-il d’autres éléments de votre implémentation sur lesquels vous aimeriez porter une
+// attention.
+À travers ce projet, nous avons eu la bonne idée d'appliquer des principes interessants de
+développement utilisés en entreprises sérieuses. Nous avons donc utilisé un 'framework'
+de test développé à l'interne par nous-mêmes. Cela nous a permis de bien tester notre
+implémentation de notre liste chaînée et donc de trouver beaucoup de pépins rapidement.
+Nous avons aussi utilisé celui-ci pour s'assurer que notre arène répondait bien à nos
+critères. Ces tests sont exécutés lors du démarrage de l'application seulement lorsque
+nous compilons en mode DEBUG.
+
+Nous sommes particulièrement fiers de notre utilisation de détecteur de perte de mémoire
+(https://kinddragon.github.io/vld/) afin de s'assurer que notre implémentation de ce projet
+soit valide. Nous avons aussi utilisé l'option ASAN (address sanitizer) dans le compilateur
+MSVC pour facilement trouver des erreurs d'écriture en mémoire non valide.
