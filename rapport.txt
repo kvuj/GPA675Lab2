@@ -26,7 +26,7 @@ types (tels que du poison, etc).
 
 // Y a-t-il d’autres éléments de votre implémentation sur lesquels vous aimeriez porter une
 // attention.
-À travers ce projet, nous avons eu la bonne idée d'appliquer des principes interessants de
+À travers ce projet, nous avons eu la bonne idée d'appliquer des principes intéressants de
 développement utilisés en entreprises sérieuses. Nous avons donc utilisé un 'framework'
 de test développé à l'interne par nous-mêmes. Cela nous a permis de bien tester notre
 implémentation de notre liste chaînée et donc de trouver beaucoup de pépins rapidement.
