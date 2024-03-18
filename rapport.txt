@@ -17,12 +17,40 @@ types (tels que du poison, etc).
 // Pour chacun des algorithmes mentionnés, discuter de votre implémentation en expliquant quelle
 // approche vous avez utilisé en précisant les adaptations que vous avez faites.
 // 1. Gestion du corps du serpent.
+Puisque la gestion du corps de serpent est différent par serpent (il se peut qu'un serpent
+accélère ou grandisse) nous avons choisi de mettre la logique d'ajout de pièce dans le
+fichier Snake.cpp. Puisque le serpent possède un lien vers l'arène, on peut par la suite
+demander de façon complètement abstraite à l'arène de mettre à jour les tableaux.
+
 // 2. Identification d'une position libre pour l'insertion d'entités
+Nous avons passé du temps sur l'implémentation O(1) de l'insertion qui a été plutôt
+difficile à comprendre au début. En gardant un tableau d'index, un tableau de position
+et un pivot, nous avons fait un algorithme très rapide pour l'insertion en demandant
+une fois la génération d'un nombre aléatoire. Grâce à notre 'framework' de tests (mentionné
+à la fin de ce document) nous avons été capable de tester de nombreux types de scénarios
+pour s'assurer de l'intégrité de l'algorithme dans des cas extrêmes.
+
 // 3. Détection de collision
+La détection de collisions a été faite avec un tableau de pointeurs afin d'avoir un
+ordre de O(1). Nous mettons ce tableau à jour de façon complètement abstraite dans
+la classe afin de simplifier son usage. Nous utilisons un tableau contigu en mémoire
+(std::vector) puisque son utilisation est simple et très rapide (un tableau contigu
+se fait charger dans le cache L1 du processeur en bloc, ce qui est très efficace).
+
 // 4. Détection des touches au clavier
+Pour la détection des touches au clavier, nous avons choisi de transférer à toutes
+les classes ayant besoins des clés une référence au vecteur de clés qui sera mis
+à jour par Qt. Par la suite, il se passe un simple appel de fonction pour mentionner
+aux classes qu'il y a un changement dans le tableau.
 
 // Concernant votre architecture logicielle, donnez les points saillants de votre implémentation.
 // Donner une description ultra compacte sous forme de puces.
+* Nous sommes fiers de notre programmation de l'interface d'utilisateur. Nous avons
+  décidé de programmer une 'finite state machine' complète qui est facilement modifiable
+  avec des transitions.
+* Notre engin de snake est facilement 'pluggable' et rend abstrait toute la logique nécessaire
+  pour simplifier son utilisation par d'autres classes.
+* TODO: 
 
 // Y a-t-il d’autres éléments de votre implémentation sur lesquels vous aimeriez porter une
 // attention.
