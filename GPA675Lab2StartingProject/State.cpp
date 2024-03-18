@@ -8,6 +8,10 @@ State::State(PressedKeys const& registeredKeys)
 {
 }
 
+State::~State()
+{
+}
+
 Transition* State::isTransiting()
 {
 	Transition* transition = nullptr;

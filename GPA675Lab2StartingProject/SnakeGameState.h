@@ -15,7 +15,7 @@ class SnakeGameState :public State
 	public:
 		SnakeGameState(PressedKeys const& registeredKeys);
 		SnakeGameEngine* getEngine();
-	virtual ~SnakeGameState() = default;
+	~SnakeGameState() = default;
 
 	virtual void draw(QPainter &painter) = 0;
 	

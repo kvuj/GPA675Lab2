@@ -12,7 +12,7 @@ class State
 {
 public:
 	State(PressedKeys const& registeredKeys) ;
-	virtual ~State() = default;
+	virtual ~State();
 	Transition* isTransiting();
 	//virtual bool isValid() = 0;
 	virtual void entering(Transition * lastTransition );

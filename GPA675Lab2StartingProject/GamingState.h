@@ -14,7 +14,7 @@ class GamingState:public SnakeGameState
 {
 public :
 	GamingState(PressedKeys const& registeredKeys);
-	~GamingState() = default;
+	~GamingState();
 	void tic(float elapsedTime) override;
 	void entering(Transition * oldTransition) override;
 	void exiting() override;

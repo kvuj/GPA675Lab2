@@ -9,6 +9,11 @@ GamingState::GamingState(PressedKeys const& registeredKeys)
 
 }
 
+GamingState::~GamingState()
+{
+	delete mGameScenario;
+}
+
 void GamingState::tic(float elapsedTime)
 {
 	auto returnValue{ mGameScenario->isGameOver() };
