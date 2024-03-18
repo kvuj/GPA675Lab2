@@ -9,13 +9,13 @@ SnakeOrigin::SnakeOrigin(SnakeGameEngine& gameEngine, PressedKeys keys, PressedK
 
 	for (size_t i = 0; i < this->mGameEngine.arena().getArenaWidthInBlocks(); i++)
 	{
-		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(0, i)));
-		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(this->mGameEngine.arena().getArenaHeightInBlocks()-1, i)));
+		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(i, 0)));
+		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(i,this->mGameEngine.arena().getArenaHeightInBlocks()-1)));
 	}
 	for (size_t i = 1; i < this->mGameEngine.arena().getArenaHeightInBlocks()-1; i++)
 	{
-		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(i, 0)));
-		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(i, this->mGameEngine.arena().getArenaWidthInBlocks()-1)));
+		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(0, i)));
+		this->mGameEngine.addEntity(new Obstacle(this->mGameEngine.arena(), Qt::blue, QPoint(this->mGameEngine.arena().getArenaWidthInBlocks()-1,i)));
 	}
 
 	mGameEngine.setPelletInsertionType(SnakeGameEngine::foreverRed);

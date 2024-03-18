@@ -29,13 +29,13 @@ void Arena::draw(QPainter& painter)
 	painter.fillRect(QRect(QPoint(0, 0), QSize(mWidthPixels, mHeightPixels)), mBackgroundColor);
 	painter.setPen(QPen(mGridColor, 1, Qt::SolidLine));
 	for (int i{0}; i < mGridWidthInBlocks-2; ++i) {
-		painter.drawLine(mBlockSideSizePixels * i, 0, mBlockSideSizePixels * i, mGridHeightInBlocks * mBlockSideSizePixels);
+		painter.drawLine(mBlockSideSizePixels * i, 0, mBlockSideSizePixels * i, (mGridHeightInBlocks - 2)* mBlockSideSizePixels);
 	}
 	for (int j{0}; j < mGridHeightInBlocks-2; ++j) {
-		painter.drawLine(0, mBlockSideSizePixels * j, mGridWidthInBlocks * mBlockSideSizePixels, mBlockSideSizePixels * j);
+		painter.drawLine(0, mBlockSideSizePixels* j, (mGridWidthInBlocks-2) * mBlockSideSizePixels, mBlockSideSizePixels * j);
 	}
-	painter.drawLine(0, mGridHeightInBlocks * mBlockSideSizePixels, mGridWidthInBlocks * mBlockSideSizePixels, mGridHeightInBlocks * mBlockSideSizePixels);
-	painter.drawLine(mGridWidthInBlocks * mBlockSideSizePixels, 0, mGridWidthInBlocks * mBlockSideSizePixels, mGridHeightInBlocks * mBlockSideSizePixels);
+	painter.drawLine(0, (mGridHeightInBlocks-2) * mBlockSideSizePixels, (mGridWidthInBlocks-2) * mBlockSideSizePixels, (mGridHeightInBlocks-2) * mBlockSideSizePixels);
+	painter.drawLine((mGridWidthInBlocks-2) * mBlockSideSizePixels-2, 0, (mGridWidthInBlocks - 2)* mBlockSideSizePixels , (mGridHeightInBlocks - 2)* mBlockSideSizePixels);
 
 	painter.setPen(Qt::NoPen);
 }
