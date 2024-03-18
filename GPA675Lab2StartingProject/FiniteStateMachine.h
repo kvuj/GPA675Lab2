@@ -21,7 +21,7 @@ class FiniteStateMachine
 {
 public:
 	FiniteStateMachine(PressedKeys const& mPressedKeys);
-	~FiniteStateMachine() = default;
+	~FiniteStateMachine();
 	void tic(float elapsedTime);
 	State* currentState();
 	SnakeGameState* currentSnakeState();

@@ -22,11 +22,27 @@ FiniteStateMachine::FiniteStateMachine(PressedKeys const& mPressedKeys)
     , mConfigurationStateTransition{ new KeyboardTransition(Qt::Key::Key_Escape,mStates[0],mPressedKeys) }
     , isOldTransition{false}
 {
-    mStates[0]->setTranstions(mHomeStateTransition);
-    mStates[1]->setTranstions(mGamingStateTransition);
-    mStates[2]->setTranstions(mGameOverStateTransition);
-    mStates[3]->setTranstions(mPauseStateTransition);
-    mStates[4]->setTranstions(mConfigurationStateTransition);
+    mStates[0]->setTransitions(mHomeStateTransition);
+    mStates[1]->setTransitions(mGamingStateTransition);
+    mStates[2]->setTransitions(mGameOverStateTransition);
+    mStates[3]->setTransitions(mPauseStateTransition);
+    mStates[4]->setTransitions(mConfigurationStateTransition);
+}
+
+FiniteStateMachine::~FiniteStateMachine()
+{
+    for (auto i : mHomeStateTransition)
+        delete i;
+    for (auto i : mStates)
+        delete i;
+    for (auto i : mGamingStateTransition)
+        delete i;
+    for (auto i : mGameOverStateTransition)
+        delete i;
+    for (auto i : mPauseStateTransition)
+        delete i;
+    for (auto i : mConfigurationStateTransition)
+        delete i;
 }
 
 void FiniteStateMachine::tic(float elapsedTime)
