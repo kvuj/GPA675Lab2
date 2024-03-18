@@ -41,7 +41,7 @@ class SnakeGameEngine
 // > size Taille du canvas de jeu, généralement correspondant à la taille de la fenêtre de l'application.
 protected:
 	SnakeGameEngine(QSize const& size);
-	static SnakeGameEngine* snakeGameEngine_;
+	static std::unique_ptr<SnakeGameEngine> snakeGameEngine_;
 public:
 
 	SnakeGameEngine(SnakeGameEngine& other) = delete;

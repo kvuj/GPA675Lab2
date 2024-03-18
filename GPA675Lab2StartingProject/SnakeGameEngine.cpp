@@ -1,7 +1,7 @@
 #include "SnakeGameEngine.h"
 #include <algorithm>
 constexpr int gridWidthBlocks{ 25 }, gridHeightBlocks{ 25 };
-SnakeGameEngine* SnakeGameEngine::snakeGameEngine_ = nullptr;
+std::unique_ptr<SnakeGameEngine> SnakeGameEngine::snakeGameEngine_;
 
 std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 	QColor::fromHslF(0.55, 0.5, 0.1),
@@ -10,7 +10,7 @@ std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	: mSize(size)
 	, mColor(Qt::blue)
-	, mArena{ Arena(size.width(), size.height(), gridWidthBlocks, gridHeightBlocks, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255))) }
+	, mArena(size.width(), size.height(), gridWidthBlocks, gridHeightBlocks, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255)))
 	, mType{ foreverRed }
 	, mTimeBetweenPelletInsertion{}
 {
@@ -23,14 +23,15 @@ SnakeGameEngine* SnakeGameEngine::GetInstance(QSize const& size)
 	 * This is a safer way to create an instance. instance = new Singleton is
 	 * dangerous in case two instance threads wants to access at the same time
 	 */
-	if (snakeGameEngine_ == nullptr) {
-		snakeGameEngine_ = new SnakeGameEngine(size);
+	if (snakeGameEngine_.get() == nullptr) {
+		snakeGameEngine_.reset(new SnakeGameEngine(size));
 	}
-	return snakeGameEngine_;
+	return snakeGameEngine_.get();
 }
 
 SnakeGameEngine::~SnakeGameEngine()
 {
+	clearAllEntities();
 }
 
 void SnakeGameEngine::process(qreal elapsedTime, PressedKeys const& keys)
