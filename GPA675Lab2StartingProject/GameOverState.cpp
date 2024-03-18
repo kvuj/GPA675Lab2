@@ -39,7 +39,7 @@ void GameOverState::draw(QPainter& painter)
 
 	painter.setFont(selectFont);
 	painter.drawText(200, 200, QString::fromStdString(textToDraw));
-	painter.drawText(200, 250, "Esc) Exitt Application");
+	painter.drawText(200, 250, "Esc) Exit Application");
 	painter.drawText(200, 300, "Space) Main Menu");
 	painter.setFont(drawFont);
 	painter.drawText(QRect(100,350, 1000, 450), R"(

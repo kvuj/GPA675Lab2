@@ -23,7 +23,7 @@ void State::entering(Transition * lastTransition)
 {
 }
 
-void State::setTranstions(std::vector<Transition *> transition)
+void State::setTransitions(std::vector<Transition *> transition)
 {
 	mTransitions = transition;
 }

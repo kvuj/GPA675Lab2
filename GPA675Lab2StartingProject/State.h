@@ -20,7 +20,7 @@ public:
 	virtual void tic(float elapsedTime) = 0;
 	virtual void handleKeyPress() = 0;
 	virtual void handleKeyRelease() = 0;
-	void setTranstions(std::vector<Transition*> transition) ;
+	void setTransitions(std::vector<Transition*> transition) ;
 
 
 protected:
