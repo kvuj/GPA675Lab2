@@ -34,8 +34,7 @@ pour s'assurer de l'intégrité de l'algorithme dans des cas extrêmes.
 La détection de collisions a été faite avec un tableau de pointeurs afin d'avoir un
 ordre de O(1). Nous mettons ce tableau à jour de façon complètement abstraite dans
 la classe afin de simplifier son usage. Nous utilisons un tableau contigu en mémoire
-(std::vector) puisque son utilisation est simple et très rapide (un tableau contigu
-se fait charger dans le cache L1 du processeur en bloc, ce qui est très efficace).
+(std::vector) puisque son utilisation est simple et très rapide.
 
 // 4. Détection des touches au clavier
 Pour la détection des touches au clavier, nous avons choisi de transférer à toutes
