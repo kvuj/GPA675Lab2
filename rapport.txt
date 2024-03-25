@@ -49,6 +49,8 @@ aux classes qu'il y a un changement dans le tableau.
   avec des transitions.
 * Notre engin de snake est facilement 'pluggable' et rend abstrait toute la logique nécessaire
   pour simplifier son utilisation par d'autres classes.
+* Notre implémentation du gameEngine sous forme de Singleton nous permet de s'assurer qu'une seule instance de gameEngine existe. Ce qui la 
+  rend idéal comme classe centre pour notre architecture.
 * TODO: 
 
 // Y a-t-il d’autres éléments de votre implémentation sur lesquels vous aimeriez porter une
