@@ -10,7 +10,7 @@ std::array<QColor, 2> SnakeGameEngine::mBackgroundColors{
 SnakeGameEngine::SnakeGameEngine(QSize const& size)
 	: mSize(size)
 	, mColor(Qt::blue)
-	, mArena(size.width(), size.height(), gridWidthBlocks, gridHeightBlocks, mBackgroundColors[0], QColor::fromRgba(qRgb(255,255 ,255)))
+	, mArena(size.width(), size.height(), gridWidthBlocks, gridHeightBlocks, mBackgroundColors[0], QColor::fromRgba(qRgb(255, 255, 255)))
 	, mType{ foreverRed }
 	, mTimeBetweenPelletInsertion{}
 {
@@ -66,7 +66,7 @@ void SnakeGameEngine::draw(QPainter& painter)
 void SnakeGameEngine::addEntity(Entity* entity)
 {
 	mEntities.push_back(entity);
-	mArena.insertInCellIndices(QPoint(entity->getPosition().x() , entity->getPosition().y()), entity);
+	mArena.insertInCellIndices(QPoint(entity->getPosition().x(), entity->getPosition().y()), entity);
 }
 
 std::list<Entity*>& SnakeGameEngine::entities()
@@ -126,9 +126,9 @@ void SnakeGameEngine::insertPelletIfNecessary()
 {
 	bool hasGrowingPellet = false;
 	switch (mType) {
-		
+
 	case foreverRed:
-		
+
 		// Vérifier si un GrowingPellet est déjà présent dans la liste d'entités
 		for (Entity* entity : mEntities) {
 			if (dynamic_cast<GrowingPellet*>(entity) != nullptr) {
@@ -146,6 +146,31 @@ void SnakeGameEngine::insertPelletIfNecessary()
 
 		break;
 	case random:
+		if (mTimeBetweenPelletInsertion > timeUntilRandomPellet) {
+			mTimeBetweenPelletInsertion -= timeUntilRandomPellet;
+			auto num{ mArena.generateRandomPositionInSize() };
+			Entity* en = nullptr;
+
+			int number{ mArena.generateRandomNumber(0, 100) };
+
+			if (number <= 25) {
+				en = new GrowingPellet(mArena, num, mArena.generateRandomNumber(1, 10));
+			}
+			else if (number <= 50){
+				en = new AcceleratingPellet(mArena, num, static_cast<float>(mArena.generateRandomNumber(25, 50)) / 10.0);
+			}
+			else if (number <= 75) {
+				en = new PoisonningPellet(mArena, num, static_cast<float>(mArena.generateRandomNumber(25, 50)) / 10.0);
+			}
+			else {
+				en = new deceleratingPellet(mArena, num, static_cast<float>(mArena.generateRandomNumber(25, 50)) / 10.0);
+			}
+
+			mArena.insertInCellIndices(num, en);
+			mEntities.emplace_back(en);
+		}
+		break;
+	case blockade:
 		if (mTimeBetweenPelletInsertion > timeUntilRandomPellet) {
 			mTimeBetweenPelletInsertion -= timeUntilRandomPellet;
 			auto num{ mArena.generateRandomPositionInSize() };

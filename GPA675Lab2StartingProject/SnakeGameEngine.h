@@ -18,6 +18,7 @@
 #include "Snake.h"
 #include "StaticEntity.h"
 #include "AcceleratingPellet.h"
+#include "DeceleratingPellet.h"
 #include "Obstacle.h"
 #include "GrowingPellet.h"
 #include "PoisoningPellet.h"
@@ -77,7 +78,8 @@ public:
 	enum pelletInsertionType : uint8_t
 	{
 		foreverRed = 1, // Toujours avoir une pastille rouge sur la partie
-		random = 2		// Ajout aléatoire après un délai (à configurer)
+		blockade = 2,
+		random = 3		// Ajout aléatoire après un délai (à configurer)
 	};
 
 	// À appeler avant le début de la partie.

@@ -21,7 +21,7 @@ SnakeBlockade::SnakeBlockade(SnakeGameEngine& gameEngine, PressedKeys keys1, Pre
 	}
 
 
-	mGameEngine.setPelletInsertionType(SnakeGameEngine::random);
+	mGameEngine.setPelletInsertionType(SnakeGameEngine::blockade);
 }
 
 std::tuple<bool, std::optional<std::string>> SnakeBlockade::isGameOver()
